@@ -1,0 +1,1850 @@
+2026-06-03 21:31:47,954  WARNING  Telegram error 400: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2026-06-03 21:31:47,969  INFO    SCAN CYCLE: 2026-06-03 16:31 UTC
+2026-06-03 21:31:47,978  INFO  Scanning BTC/USDT...
+2026-06-03 21:32:10,167  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-03 21:32:13,168  INFO  Scanning ETH/USDT...
+2026-06-03 21:32:15,446  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-03 21:32:18,448  INFO  Scanning XAU/USDT...
+2026-06-03 21:32:18,449  WARNING  Fetch failed XAU/USDT 1M: bitget does not have market symbol XAU/USDT
+2026-06-03 21:32:18,451  WARNING  Fetch failed XAU/USDT 1w: bitget does not have market symbol XAU/USDT
+2026-06-03 21:32:18,455  WARNING  Fetch failed XAU/USDT 1d: bitget does not have market symbol XAU/USDT
+2026-06-03 21:32:18,457  WARNING  Fetch failed XAU/USDT 4h: bitget does not have market symbol XAU/USDT
+2026-06-03 21:32:18,458  WARNING  Fetch failed XAU/USDT 1h: bitget does not have market symbol XAU/USDT
+2026-06-03 21:32:18,460  WARNING    XAU/USDT: insufficient data, skipping
+2026-06-03 21:32:21,461  INFO  Scanning XAG/USDT...
+2026-06-03 21:32:21,462  WARNING  Fetch failed XAG/USDT 1M: bitget does not have market symbol XAG/USDT
+2026-06-03 21:32:21,463  WARNING  Fetch failed XAG/USDT 1w: bitget does not have market symbol XAG/USDT
+2026-06-03 21:32:21,464  WARNING  Fetch failed XAG/USDT 1d: bitget does not have market symbol XAG/USDT
+2026-06-03 21:32:21,465  WARNING  Fetch failed XAG/USDT 4h: bitget does not have market symbol XAG/USDT
+2026-06-03 21:32:21,467  WARNING  Fetch failed XAG/USDT 1h: bitget does not have market symbol XAG/USDT
+2026-06-03 21:32:21,468  WARNING    XAG/USDT: insufficient data, skipping
+2026-06-04 02:23:23,871  ERROR  Telegram send failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+2026-06-04 02:23:23,874  INFO    SCAN CYCLE: 2026-06-03 21:23 UTC
+2026-06-04 02:23:23,876  INFO  Scanning BTC/USDT...
+2026-06-04 02:23:30,707  INFO    BTC/USDT SHORT: score=14, trigger=Inside Bar
+2026-06-04 02:23:30,707  ERROR  Error scanning BTC/USDT: find_swing_levels() got an unexpected keyword argument 'df_daily'
+Traceback (most recent call last):
+  File "D:\Trade\bot_v2.py", line 1130, in main
+    scan_symbol(symbol)
+  File "D:\Trade\bot_v2.py", line 1036, in scan_symbol
+    day_levels = find_swing_levels(df_daily=df_day, window=5, n_levels=8)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: find_swing_levels() got an unexpected keyword argument 'df_daily'
+2026-06-04 02:23:30,708  INFO  Scanning ETH/USDT...
+2026-06-04 02:23:31,922  INFO    ETH/USDT SHORT: score=14, trigger=Inside Bar
+2026-06-04 02:23:31,922  ERROR  Error scanning ETH/USDT: find_swing_levels() got an unexpected keyword argument 'df_daily'
+Traceback (most recent call last):
+  File "D:\Trade\bot_v2.py", line 1130, in main
+    scan_symbol(symbol)
+  File "D:\Trade\bot_v2.py", line 1036, in scan_symbol
+    day_levels = find_swing_levels(df_daily=df_day, window=5, n_levels=8)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: find_swing_levels() got an unexpected keyword argument 'df_daily'
+2026-06-04 02:23:31,923  INFO  Scanning XAU/USDT...
+2026-06-04 02:23:31,924  WARNING  Fetch failed XAU/USDT 1M: bitget does not have market symbol XAU/USDT
+2026-06-04 02:23:31,924  WARNING  Fetch failed XAU/USDT 1w: bitget does not have market symbol XAU/USDT
+2026-06-04 02:23:31,924  WARNING  Fetch failed XAU/USDT 1d: bitget does not have market symbol XAU/USDT
+2026-06-04 02:23:31,925  WARNING  Fetch failed XAU/USDT 4h: bitget does not have market symbol XAU/USDT
+2026-06-04 02:23:31,925  WARNING  Fetch failed XAU/USDT 1h: bitget does not have market symbol XAU/USDT
+2026-06-04 02:23:31,925  WARNING    XAU/USDT: insufficient data, skipping
+2026-06-04 02:23:34,926  INFO  Scanning XAG/USDT...
+2026-06-04 02:23:34,926  WARNING  Fetch failed XAG/USDT 1M: bitget does not have market symbol XAG/USDT
+2026-06-04 02:23:34,927  WARNING  Fetch failed XAG/USDT 1w: bitget does not have market symbol XAG/USDT
+2026-06-04 02:23:34,927  WARNING  Fetch failed XAG/USDT 1d: bitget does not have market symbol XAG/USDT
+2026-06-04 02:23:34,928  WARNING  Fetch failed XAG/USDT 4h: bitget does not have market symbol XAG/USDT
+2026-06-04 02:23:34,928  WARNING  Fetch failed XAG/USDT 1h: bitget does not have market symbol XAG/USDT
+2026-06-04 02:23:34,929  WARNING    XAG/USDT: insufficient data, skipping
+2026-06-04 02:29:17,067  INFO  ╔══════════════════════════════════╗
+2026-06-04 02:29:17,073  INFO  ║  ELITE TRADING SIGNAL BOT v2.0   ║
+2026-06-04 02:29:17,073  INFO  ╚══════════════════════════════════╝
+2026-06-04 02:29:17,985  ERROR  Telegram send failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+2026-06-04 02:29:17,985  INFO  
+═════════════════════════════════════════════
+2026-06-04 02:29:17,986  INFO    SCAN CYCLE: 2026-06-03 21:29 UTC
+2026-06-04 02:29:17,986  INFO  ═════════════════════════════════════════════
+2026-06-04 02:29:17,986  INFO  Scanning BTC/USDT...
+2026-06-04 02:29:25,094  INFO    BTC/USDT SHORT: score=14, trigger=Inside Bar
+2026-06-04 02:29:25,094  ERROR  Error scanning BTC/USDT: find_swing_levels() got an unexpected keyword argument 'df_daily'
+Traceback (most recent call last):
+  File "D:\Trade\bot_v2.py", line 1132, in main
+    scan_symbol(symbol)
+  File "D:\Trade\bot_v2.py", line 1038, in scan_symbol
+    day_levels = find_swing_levels(df_daily=df_day, window=5, n_levels=8)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: find_swing_levels() got an unexpected keyword argument 'df_daily'
+2026-06-04 02:29:25,095  INFO  Scanning ETH/USDT...
+2026-06-04 02:29:26,317  INFO    ETH/USDT SHORT: score=14, trigger=Inside Bar
+2026-06-04 02:29:26,318  ERROR  Error scanning ETH/USDT: find_swing_levels() got an unexpected keyword argument 'df_daily'
+Traceback (most recent call last):
+  File "D:\Trade\bot_v2.py", line 1132, in main
+    scan_symbol(symbol)
+  File "D:\Trade\bot_v2.py", line 1038, in scan_symbol
+    day_levels = find_swing_levels(df_daily=df_day, window=5, n_levels=8)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: find_swing_levels() got an unexpected keyword argument 'df_daily'
+2026-06-04 02:29:26,319  INFO  Scanning XAUT/USDT...
+2026-06-04 02:29:27,591  INFO    XAUT/USDT SHORT: score=20, trigger=Inside Bar
+2026-06-04 02:29:27,591  ERROR  Error scanning XAUT/USDT: find_swing_levels() got an unexpected keyword argument 'df_daily'
+Traceback (most recent call last):
+  File "D:\Trade\bot_v2.py", line 1132, in main
+    scan_symbol(symbol)
+  File "D:\Trade\bot_v2.py", line 1038, in scan_symbol
+    day_levels = find_swing_levels(df_daily=df_day, window=5, n_levels=8)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: find_swing_levels() got an unexpected keyword argument 'df_daily'
+2026-06-04 02:29:27,592  INFO  Scanning XAG/USDT...
+2026-06-04 02:29:27,592  WARNING  Fetch failed XAG/USDT 1M: bitget does not have market symbol XAG/USDT
+2026-06-04 02:29:27,593  WARNING  Fetch failed XAG/USDT 1w: bitget does not have market symbol XAG/USDT
+2026-06-04 02:29:27,593  WARNING  Fetch failed XAG/USDT 1d: bitget does not have market symbol XAG/USDT
+2026-06-04 02:29:27,593  WARNING  Fetch failed XAG/USDT 4h: bitget does not have market symbol XAG/USDT
+2026-06-04 02:29:27,594  WARNING  Fetch failed XAG/USDT 1h: bitget does not have market symbol XAG/USDT
+2026-06-04 02:29:27,594  WARNING    XAG/USDT: insufficient data, skipping
+2026-06-04 02:29:30,595  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 02:32:22,818  INFO  ╔══════════════════════════════════╗
+2026-06-04 02:32:22,818  INFO  ║  ELITE TRADING SIGNAL BOT v2.0   ║
+2026-06-04 02:32:22,818  INFO  ╚══════════════════════════════════╝
+2026-06-04 02:32:23,979  WARNING  Telegram error 400: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2026-06-04 02:32:23,980  INFO  
+═════════════════════════════════════════════
+2026-06-04 02:32:23,981  INFO    SCAN CYCLE: 2026-06-03 21:32 UTC
+2026-06-04 02:32:23,981  INFO  ═════════════════════════════════════════════
+2026-06-04 02:32:23,981  INFO  Scanning BTC/USDT...
+2026-06-04 02:32:28,815  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 02:32:31,816  INFO  Scanning ETH/USDT...
+2026-06-04 02:32:33,046  INFO    ETH/USDT SHORT: score=16, trigger=Inside Bar
+2026-06-04 02:32:33,063  INFO    🚀 SIGNAL FIRED: ETH/USDT SHORT score=16
+2026-06-04 02:32:33,658  ERROR  Telegram send failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+2026-06-04 02:32:36,660  INFO  Scanning XAUT/USDT...
+2026-06-04 02:32:37,890  INFO    XAUT/USDT SHORT: score=20, trigger=Inside Bar
+2026-06-04 02:32:37,904  INFO    🚀 SIGNAL FIRED: XAUT/USDT SHORT score=20
+2026-06-04 02:32:38,480  ERROR  Telegram send failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+2026-06-04 02:32:41,481  INFO  Scanning XAGUSDT...
+2026-06-04 02:32:42,743  INFO    XAGUSDT SHORT: score=16, trigger=Inside Bar
+2026-06-04 02:32:42,752  INFO    🚀 SIGNAL FIRED: XAGUSDT SHORT score=16
+2026-06-04 02:32:43,643  WARNING  Telegram error 400: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2026-06-04 02:32:46,645  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 02:34:51,397  INFO  ╔══════════════════════════════════╗
+2026-06-04 02:34:51,397  INFO  ║  ELITE TRADING SIGNAL BOT v2.0   ║
+2026-06-04 02:34:51,397  INFO  ╚══════════════════════════════════╝
+2026-06-04 02:35:02,157  ERROR  Telegram send failed: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=10)
+2026-06-04 02:35:02,158  INFO  
+═════════════════════════════════════════════
+2026-06-04 02:35:02,159  INFO    SCAN CYCLE: 2026-06-03 21:35 UTC
+2026-06-04 02:35:02,160  INFO  ═════════════════════════════════════════════
+2026-06-04 02:35:02,160  INFO  Scanning BTC/USDT...
+2026-06-04 02:35:06,997  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 02:35:09,999  INFO  Scanning ETH/USDT...
+2026-06-04 02:35:11,190  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 02:35:14,191  INFO  Scanning XAUT/USDT...
+2026-06-04 02:35:15,577  INFO    XAUT/USDT SHORT: score=20, trigger=Inside Bar
+2026-06-04 02:35:15,591  INFO    🚀 SIGNAL FIRED: XAUT/USDT SHORT score=20
+2026-06-04 02:35:16,168  ERROR  Telegram send failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+2026-06-04 02:35:19,169  INFO  Scanning XAGUSDT...
+2026-06-04 02:35:20,453  INFO    XAGUSDT SHORT: score=16, trigger=Inside Bar
+2026-06-04 02:35:20,463  INFO    RR 2.5 below minimum 2.5, skip
+2026-06-04 02:35:23,464  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 02:43:35,385  INFO  ╔══════════════════════════════════╗
+2026-06-04 02:43:35,385  INFO  ║  ELITE TRADING SIGNAL BOT v2.0   ║
+2026-06-04 02:43:35,385  INFO  ╚══════════════════════════════════╝
+2026-06-04 02:43:46,124  WARNING  Direct connection failed: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=10). Trying proxies...
+2026-06-04 02:43:47,011  INFO  Fetched 100 proxies
+2026-06-04 02:44:40,543  ERROR  Telegram: all proxies failed. Message not delivered.
+2026-06-04 02:44:40,544  INFO  
+═════════════════════════════════════════════
+2026-06-04 02:44:40,544  INFO    SCAN CYCLE: 2026-06-03 21:44 UTC
+2026-06-04 02:44:40,545  INFO  ═════════════════════════════════════════════
+2026-06-04 02:44:40,546  INFO  Scanning BTC/USDT...
+2026-06-04 02:44:47,025  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 02:44:50,026  INFO  Scanning ETH/USDT...
+2026-06-04 02:44:51,132  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 02:44:54,133  INFO  Scanning XAUT/USDT...
+2026-06-04 02:44:55,440  INFO    XAUT/USDT SHORT: score=20, trigger=Inside Bar
+2026-06-04 02:44:55,454  INFO    🚀 SIGNAL FIRED: XAUT/USDT SHORT score=20
+2026-06-04 02:44:56,130  WARNING  Direct connection failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)). Trying proxies...
+2026-06-04 02:45:26,824  ERROR  Telegram: all proxies failed. Message not delivered.
+2026-06-04 02:45:29,826  INFO  Scanning XAGUSDT...
+2026-06-04 02:45:31,085  INFO    XAGUSDT SHORT: score=16, trigger=Inside Bar
+2026-06-04 02:45:31,096  INFO    🚀 SIGNAL FIRED: XAGUSDT SHORT score=16
+2026-06-04 02:45:32,021  WARNING  Telegram direct error 400: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2026-06-04 02:46:12,012  ERROR  Telegram: all proxies failed. Message not delivered.
+2026-06-04 02:46:15,014  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 02:51:15,015  INFO  
+═════════════════════════════════════════════
+2026-06-04 02:51:15,015  INFO    SCAN CYCLE: 2026-06-03 21:51 UTC
+2026-06-04 02:51:15,015  INFO  ═════════════════════════════════════════════
+2026-06-04 02:51:15,016  INFO  Scanning BTC/USDT...
+2026-06-04 02:51:16,262  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 02:51:19,263  INFO  Scanning ETH/USDT...
+2026-06-04 02:51:20,338  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 02:51:23,340  INFO  Scanning XAUT/USDT...
+2026-06-04 02:51:24,607  INFO    XAUT/USDT SHORT: score=20, trigger=Inside Bar
+2026-06-04 02:51:24,607  INFO    Already alerted recently, skip
+2026-06-04 02:51:27,608  INFO  Scanning XAGUSDT...
+2026-06-04 02:51:28,993  INFO    XAGUSDT SHORT: score=16, trigger=Inside Bar
+2026-06-04 02:51:28,994  INFO    Already alerted recently, skip
+2026-06-04 02:51:31,995  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 02:56:31,996  INFO  
+═════════════════════════════════════════════
+2026-06-04 02:56:31,998  INFO    SCAN CYCLE: 2026-06-03 21:56 UTC
+2026-06-04 02:56:31,998  INFO  ═════════════════════════════════════════════
+2026-06-04 02:56:31,999  INFO  Scanning BTC/USDT...
+2026-06-04 02:56:33,280  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 02:56:36,282  INFO  Scanning ETH/USDT...
+2026-06-04 02:56:37,565  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 02:56:40,567  INFO  Scanning XAUT/USDT...
+2026-06-04 02:56:41,797  INFO    XAUT/USDT SHORT: score=20, trigger=Inside Bar
+2026-06-04 02:56:41,798  INFO    Already alerted recently, skip
+2026-06-04 02:56:44,799  INFO  Scanning XAGUSDT...
+2026-06-04 02:56:45,957  INFO    XAGUSDT SHORT: score=16, trigger=Inside Bar
+2026-06-04 02:56:45,957  INFO    Already alerted recently, skip
+2026-06-04 02:56:48,959  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:01:30,029  INFO  ╔══════════════════════════════════╗
+2026-06-04 03:01:30,030  INFO  ║  ELITE TRADING SIGNAL BOT v2.0   ║
+2026-06-04 03:01:30,030  INFO  ╚══════════════════════════════════╝
+2026-06-04 03:01:31,156  INFO  Discord: sent OK
+2026-06-04 03:01:31,157  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:01:31,157  INFO    SCAN CYCLE: 2026-06-03 22:01 UTC
+2026-06-04 03:01:31,157  INFO  ═════════════════════════════════════════════
+2026-06-04 03:01:31,158  INFO  Scanning BTC/USDT...
+2026-06-04 03:01:36,550  INFO    BTC/USDT LONG: score=8, trigger=Bullish Pin Bar
+2026-06-04 03:01:36,550  INFO    Score 8 below minimum 9, skip
+2026-06-04 03:01:39,552  INFO  Scanning ETH/USDT...
+2026-06-04 03:01:40,654  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:01:43,656  INFO  Scanning XAUT/USDT...
+2026-06-04 03:01:44,920  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:01:47,922  INFO  Scanning XAGUSDT...
+2026-06-04 03:01:49,195  INFO    XAGUSDT SHORT: score=16, trigger=Inside Bar
+2026-06-04 03:01:49,203  INFO    🚀 SIGNAL FIRED: XAGUSDT SHORT score=16
+2026-06-04 03:01:50,217  INFO  Discord: sent OK
+2026-06-04 03:01:53,223  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:06:53,225  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:06:53,226  INFO    SCAN CYCLE: 2026-06-03 22:06 UTC
+2026-06-04 03:06:53,226  INFO  ═════════════════════════════════════════════
+2026-06-04 03:06:53,227  INFO  Scanning BTC/USDT...
+2026-06-04 03:06:54,442  INFO    BTC/USDT SHORT: score=12, trigger=Inside Bar
+2026-06-04 03:06:54,459  INFO    🚀 SIGNAL FIRED: BTC/USDT SHORT score=12
+2026-06-04 03:06:55,568  INFO  Discord: sent OK
+2026-06-04 03:06:58,573  INFO  Scanning ETH/USDT...
+2026-06-04 03:06:59,785  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:07:02,787  INFO  Scanning XAUT/USDT...
+2026-06-04 03:07:03,957  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:07:06,958  INFO  Scanning XAGUSDT...
+2026-06-04 03:07:08,175  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 03:07:11,175  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:12:11,176  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:12:11,177  INFO    SCAN CYCLE: 2026-06-03 22:12 UTC
+2026-06-04 03:12:11,178  INFO  ═════════════════════════════════════════════
+2026-06-04 03:12:11,179  INFO  Scanning BTC/USDT...
+2026-06-04 03:12:12,426  INFO    BTC/USDT SHORT: score=13, trigger=Inside Bar
+2026-06-04 03:12:12,426  INFO    Already alerted recently, skip
+2026-06-04 03:12:15,428  INFO  Scanning ETH/USDT...
+2026-06-04 03:12:16,545  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:12:19,546  INFO  Scanning XAUT/USDT...
+2026-06-04 03:12:20,669  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:12:23,670  INFO  Scanning XAGUSDT...
+2026-06-04 03:12:24,780  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 03:12:27,782  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:13:23,554  INFO  ╔══════════════════════════════════╗
+2026-06-04 03:13:23,554  INFO  ║  ELITE TRADING SIGNAL BOT v2.0   ║
+2026-06-04 03:13:23,555  INFO  ╚══════════════════════════════════╝
+2026-06-04 03:13:24,557  INFO  Discord: sent OK
+2026-06-04 03:13:24,559  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:13:24,559  INFO    SCAN CYCLE: 2026-06-03 22:13 UTC
+2026-06-04 03:13:24,560  INFO  ═════════════════════════════════════════════
+2026-06-04 03:13:24,560  INFO  Scanning BTC/USDT...
+2026-06-04 03:13:29,764  INFO    BTC/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 03:13:32,765  INFO  Scanning ETH/USDT...
+2026-06-04 03:13:33,961  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:13:36,962  INFO  Scanning XAUT/USDT...
+2026-06-04 03:13:38,196  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:13:41,197  INFO  Scanning XAGUSDT...
+2026-06-04 03:13:42,395  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 03:13:45,397  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:18:45,398  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:18:45,399  INFO    SCAN CYCLE: 2026-06-03 22:18 UTC
+2026-06-04 03:18:45,400  INFO  ═════════════════════════════════════════════
+2026-06-04 03:18:45,400  INFO  Scanning BTC/USDT...
+2026-06-04 03:18:46,611  INFO    BTC/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 03:18:49,613  INFO  Scanning ETH/USDT...
+2026-06-04 03:18:50,914  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:18:53,915  INFO  Scanning XAUT/USDT...
+2026-06-04 03:18:55,208  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:18:58,210  INFO  Scanning XAGUSDT...
+2026-06-04 03:18:59,395  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 03:19:02,396  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:24:02,398  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:24:02,400  INFO    SCAN CYCLE: 2026-06-03 22:24 UTC
+2026-06-04 03:24:02,400  INFO  ═════════════════════════════════════════════
+2026-06-04 03:24:02,401  INFO  Scanning BTC/USDT...
+2026-06-04 03:24:03,505  INFO    BTC/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 03:24:06,507  INFO  Scanning ETH/USDT...
+2026-06-04 03:24:07,796  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:24:10,798  INFO  Scanning XAUT/USDT...
+2026-06-04 03:24:12,278  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:24:15,279  INFO  Scanning XAGUSDT...
+2026-06-04 03:24:16,514  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 03:24:19,514  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:29:19,516  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:29:19,518  INFO    SCAN CYCLE: 2026-06-03 22:29 UTC
+2026-06-04 03:29:19,518  INFO  ═════════════════════════════════════════════
+2026-06-04 03:29:19,519  INFO  Scanning BTC/USDT...
+2026-06-04 03:29:20,789  INFO    BTC/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 03:29:23,790  INFO  Scanning ETH/USDT...
+2026-06-04 03:29:24,875  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:29:27,877  INFO  Scanning XAUT/USDT...
+2026-06-04 03:29:29,080  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:29:32,081  INFO  Scanning XAGUSDT...
+2026-06-04 03:29:33,278  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 03:29:36,280  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:34:36,282  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:34:36,283  INFO    SCAN CYCLE: 2026-06-03 22:34 UTC
+2026-06-04 03:34:36,283  INFO  ═════════════════════════════════════════════
+2026-06-04 03:34:36,284  INFO  Scanning BTC/USDT...
+2026-06-04 03:34:37,544  INFO    BTC/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 03:34:40,546  INFO  Scanning ETH/USDT...
+2026-06-04 03:34:41,722  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:34:44,723  INFO  Scanning XAUT/USDT...
+2026-06-04 03:34:45,810  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:34:48,812  INFO  Scanning XAGUSDT...
+2026-06-04 03:34:50,011  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 03:34:53,012  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:39:53,013  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:39:53,013  INFO    SCAN CYCLE: 2026-06-03 22:39 UTC
+2026-06-04 03:39:53,014  INFO  ═════════════════════════════════════════════
+2026-06-04 03:39:53,014  INFO  Scanning BTC/USDT...
+2026-06-04 03:39:54,212  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:39:57,215  INFO  Scanning ETH/USDT...
+2026-06-04 03:39:58,454  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:40:01,456  INFO  Scanning XAUT/USDT...
+2026-06-04 03:40:02,778  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:40:05,780  INFO  Scanning XAGUSDT...
+2026-06-04 03:40:07,053  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 03:40:10,054  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:45:10,055  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:45:10,055  INFO    SCAN CYCLE: 2026-06-03 22:45 UTC
+2026-06-04 03:45:10,055  INFO  ═════════════════════════════════════════════
+2026-06-04 03:45:10,056  INFO  Scanning BTC/USDT...
+2026-06-04 03:45:11,514  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:45:14,516  INFO  Scanning ETH/USDT...
+2026-06-04 03:45:15,824  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:45:18,826  INFO  Scanning XAUT/USDT...
+2026-06-04 03:45:20,116  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:45:23,117  INFO  Scanning XAGUSDT...
+2026-06-04 03:45:24,337  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 03:45:27,338  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 03:58:36,963  INFO  
+═════════════════════════════════════════════
+2026-06-04 03:58:36,967  INFO    SCAN CYCLE: 2026-06-03 22:58 UTC
+2026-06-04 03:58:36,967  INFO  ═════════════════════════════════════════════
+2026-06-04 03:58:36,969  INFO  Scanning BTC/USDT...
+2026-06-04 03:58:47,028  WARNING  Fetch failed BTC/USDT 1M: bitget GET https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1Mutc&limit=36
+2026-06-04 03:58:49,737  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:58:52,738  INFO  Scanning ETH/USDT...
+2026-06-04 03:58:54,061  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 03:58:57,064  INFO  Scanning XAUT/USDT...
+2026-06-04 03:58:58,349  INFO    XAUT/USDT LONG: score=14, trigger=Bullish Pin Bar
+2026-06-04 03:58:58,365  INFO    XAUT/USDT skipped: confluence 50% below Grade A threshold (70%)
+2026-06-04 03:59:01,367  INFO  Scanning XAGUSDT...
+2026-06-04 03:59:02,594  INFO    XAGUSDT LONG: score=12, trigger=Bullish Pin Bar
+2026-06-04 03:59:02,594  INFO    Score 12 below minimum 13, skip
+2026-06-04 03:59:05,596  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 04:00:12,090  INFO  ╔══════════════════════════════════╗
+2026-06-04 04:00:12,091  INFO  ║  ELITE TRADING SIGNAL BOT v2.0   ║
+2026-06-04 04:00:12,091  INFO  ╚══════════════════════════════════╝
+2026-06-04 04:00:13,203  INFO  Discord: sent OK
+2026-06-04 04:00:13,204  INFO  
+═════════════════════════════════════════════
+2026-06-04 04:00:13,205  INFO    SCAN CYCLE: 2026-06-03 23:00 UTC
+2026-06-04 04:00:13,205  INFO  ═════════════════════════════════════════════
+2026-06-04 04:00:13,205  INFO  Scanning BTC/USDT...
+2026-06-04 04:00:19,159  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 04:00:22,160  INFO  Scanning ETH/USDT...
+2026-06-04 04:00:23,514  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 04:00:26,516  INFO  Scanning XAUT/USDT...
+2026-06-04 04:00:27,617  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 04:00:30,619  INFO  Scanning XAGUSDT...
+2026-06-04 04:00:32,108  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 04:00:35,109  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 04:05:35,111  INFO  
+═════════════════════════════════════════════
+2026-06-04 04:05:35,113  INFO    SCAN CYCLE: 2026-06-03 23:05 UTC
+2026-06-04 04:05:35,113  INFO  ═════════════════════════════════════════════
+2026-06-04 04:05:35,114  INFO  Scanning BTC/USDT...
+2026-06-04 04:05:36,315  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 04:05:39,316  INFO  Scanning ETH/USDT...
+2026-06-04 04:05:40,645  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 04:05:43,646  INFO  Scanning XAUT/USDT...
+2026-06-04 04:05:44,824  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 04:05:47,825  INFO  Scanning XAGUSDT...
+2026-06-04 04:05:50,100  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 04:05:53,101  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 04:10:53,104  INFO  
+═════════════════════════════════════════════
+2026-06-04 04:10:53,104  INFO    SCAN CYCLE: 2026-06-03 23:10 UTC
+2026-06-04 04:10:53,104  INFO  ═════════════════════════════════════════════
+2026-06-04 04:10:53,106  INFO  Scanning BTC/USDT...
+2026-06-04 04:10:56,761  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 04:10:59,762  INFO  Scanning ETH/USDT...
+2026-06-04 04:11:01,298  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 04:11:04,299  INFO  Scanning XAUT/USDT...
+2026-06-04 04:11:05,451  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 04:11:08,452  INFO  Scanning XAGUSDT...
+2026-06-04 04:11:09,709  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 04:11:12,711  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 04:16:12,713  INFO  
+═════════════════════════════════════════════
+2026-06-04 04:16:12,713  INFO    SCAN CYCLE: 2026-06-03 23:16 UTC
+2026-06-04 04:16:12,713  INFO  ═════════════════════════════════════════════
+2026-06-04 04:16:12,714  INFO  Scanning BTC/USDT...
+2026-06-04 04:16:13,927  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 04:16:16,928  INFO  Scanning ETH/USDT...
+2026-06-04 04:16:18,114  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 04:16:21,115  INFO  Scanning XAUT/USDT...
+2026-06-04 04:16:22,317  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 04:16:25,319  INFO  Scanning XAGUSDT...
+2026-06-04 04:16:26,535  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 04:16:29,536  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 04:41:47,308  INFO  
+═════════════════════════════════════════════
+2026-06-04 04:41:47,317  INFO    SCAN CYCLE: 2026-06-03 23:41 UTC
+2026-06-04 04:41:47,319  INFO  ═════════════════════════════════════════════
+2026-06-04 04:41:47,321  INFO  Scanning BTC/USDT...
+2026-06-04 04:41:57,453  WARNING  Fetch failed BTC/USDT 1M: bitget GET https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1Mutc&limit=36
+2026-06-04 04:41:59,410  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 04:42:02,412  INFO  Scanning ETH/USDT...
+2026-06-04 04:42:03,814  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 04:42:06,815  INFO  Scanning XAUT/USDT...
+2026-06-04 04:42:07,987  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 04:42:10,988  INFO  Scanning XAGUSDT...
+2026-06-04 04:42:12,114  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 04:42:15,115  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 04:47:15,117  INFO  
+═════════════════════════════════════════════
+2026-06-04 04:47:15,117  INFO    SCAN CYCLE: 2026-06-03 23:47 UTC
+2026-06-04 04:47:15,118  INFO  ═════════════════════════════════════════════
+2026-06-04 04:47:15,121  INFO  Scanning BTC/USDT...
+2026-06-04 04:47:16,255  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 04:47:19,255  INFO  Scanning ETH/USDT...
+2026-06-04 04:47:20,589  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 04:47:23,590  INFO  Scanning XAUT/USDT...
+2026-06-04 04:47:25,033  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 04:47:28,034  INFO  Scanning XAGUSDT...
+2026-06-04 04:47:29,274  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 04:47:32,275  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 04:52:32,277  INFO  
+═════════════════════════════════════════════
+2026-06-04 04:52:32,277  INFO    SCAN CYCLE: 2026-06-03 23:52 UTC
+2026-06-04 04:52:32,278  INFO  ═════════════════════════════════════════════
+2026-06-04 04:52:32,278  INFO  Scanning BTC/USDT...
+2026-06-04 04:52:33,465  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 04:52:36,466  INFO  Scanning ETH/USDT...
+2026-06-04 04:52:37,713  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 04:52:40,714  INFO  Scanning XAUT/USDT...
+2026-06-04 04:52:41,914  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 04:52:44,915  INFO  Scanning XAGUSDT...
+2026-06-04 04:52:46,130  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 04:52:49,131  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 04:57:49,133  INFO  
+═════════════════════════════════════════════
+2026-06-04 04:57:49,135  INFO    SCAN CYCLE: 2026-06-03 23:57 UTC
+2026-06-04 04:57:49,135  INFO  ═════════════════════════════════════════════
+2026-06-04 04:57:49,136  INFO  Scanning BTC/USDT...
+2026-06-04 04:57:50,423  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 04:57:53,425  INFO  Scanning ETH/USDT...
+2026-06-04 04:57:54,886  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 04:57:57,888  INFO  Scanning XAUT/USDT...
+2026-06-04 04:57:59,072  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 04:58:02,074  INFO  Scanning XAGUSDT...
+2026-06-04 04:58:03,520  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 04:58:06,521  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:03:06,524  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:03:06,526  INFO    SCAN CYCLE: 2026-06-04 00:03 UTC
+2026-06-04 05:03:06,526  INFO  ═════════════════════════════════════════════
+2026-06-04 05:03:06,527  INFO  Scanning BTC/USDT...
+2026-06-04 05:03:07,755  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:03:10,757  INFO  Scanning ETH/USDT...
+2026-06-04 05:03:11,951  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:03:14,953  INFO  Scanning XAUT/USDT...
+2026-06-04 05:03:16,163  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:03:19,164  INFO  Scanning XAGUSDT...
+2026-06-04 05:03:20,414  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:03:23,415  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:08:23,417  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:08:23,418  INFO    SCAN CYCLE: 2026-06-04 00:08 UTC
+2026-06-04 05:08:23,419  INFO  ═════════════════════════════════════════════
+2026-06-04 05:08:23,420  INFO  Scanning BTC/USDT...
+2026-06-04 05:08:24,504  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:08:27,505  INFO  Scanning ETH/USDT...
+2026-06-04 05:08:28,688  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:08:31,689  INFO  Scanning XAUT/USDT...
+2026-06-04 05:08:32,832  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:08:35,833  INFO  Scanning XAGUSDT...
+2026-06-04 05:08:37,022  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:08:40,024  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:13:40,025  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:13:40,025  INFO    SCAN CYCLE: 2026-06-04 00:13 UTC
+2026-06-04 05:13:40,025  INFO  ═════════════════════════════════════════════
+2026-06-04 05:13:40,025  INFO  Scanning BTC/USDT...
+2026-06-04 05:13:41,282  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:13:44,283  INFO  Scanning ETH/USDT...
+2026-06-04 05:13:45,625  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:13:48,627  INFO  Scanning XAUT/USDT...
+2026-06-04 05:13:49,871  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:13:52,873  INFO  Scanning XAGUSDT...
+2026-06-04 05:13:54,145  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:13:57,147  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:18:57,148  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:18:57,149  INFO    SCAN CYCLE: 2026-06-04 00:18 UTC
+2026-06-04 05:18:57,149  INFO  ═════════════════════════════════════════════
+2026-06-04 05:18:57,149  INFO  Scanning BTC/USDT...
+2026-06-04 05:18:58,295  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:19:01,296  INFO  Scanning ETH/USDT...
+2026-06-04 05:19:02,550  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:19:05,551  INFO  Scanning XAUT/USDT...
+2026-06-04 05:19:06,745  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:19:09,747  INFO  Scanning XAGUSDT...
+2026-06-04 05:19:11,001  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:19:14,003  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:24:14,004  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:24:14,005  INFO    SCAN CYCLE: 2026-06-04 00:24 UTC
+2026-06-04 05:24:14,005  INFO  ═════════════════════════════════════════════
+2026-06-04 05:24:14,006  INFO  Scanning BTC/USDT...
+2026-06-04 05:24:15,157  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:24:18,159  INFO  Scanning ETH/USDT...
+2026-06-04 05:24:19,294  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:24:22,295  INFO  Scanning XAUT/USDT...
+2026-06-04 05:24:23,425  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:24:26,426  INFO  Scanning XAGUSDT...
+2026-06-04 05:24:27,587  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:24:30,588  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:29:30,589  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:29:30,591  INFO    SCAN CYCLE: 2026-06-04 00:29 UTC
+2026-06-04 05:29:30,591  INFO  ═════════════════════════════════════════════
+2026-06-04 05:29:30,592  INFO  Scanning BTC/USDT...
+2026-06-04 05:29:31,761  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:29:34,762  INFO  Scanning ETH/USDT...
+2026-06-04 05:29:35,920  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:29:38,921  INFO  Scanning XAUT/USDT...
+2026-06-04 05:29:40,092  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:29:43,093  INFO  Scanning XAGUSDT...
+2026-06-04 05:29:44,478  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:29:47,479  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:34:47,480  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:34:47,480  INFO    SCAN CYCLE: 2026-06-04 00:34 UTC
+2026-06-04 05:34:47,480  INFO  ═════════════════════════════════════════════
+2026-06-04 05:34:47,481  INFO  Scanning BTC/USDT...
+2026-06-04 05:34:48,716  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:34:51,718  INFO  Scanning ETH/USDT...
+2026-06-04 05:34:52,871  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:34:55,873  INFO  Scanning XAUT/USDT...
+2026-06-04 05:34:57,013  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:35:00,013  INFO  Scanning XAGUSDT...
+2026-06-04 05:35:01,148  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:35:04,149  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:40:04,150  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:40:04,151  INFO    SCAN CYCLE: 2026-06-04 00:40 UTC
+2026-06-04 05:40:04,151  INFO  ═════════════════════════════════════════════
+2026-06-04 05:40:04,151  INFO  Scanning BTC/USDT...
+2026-06-04 05:40:05,607  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:40:08,609  INFO  Scanning ETH/USDT...
+2026-06-04 05:40:09,777  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:40:12,778  INFO  Scanning XAUT/USDT...
+2026-06-04 05:40:14,261  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:40:17,263  INFO  Scanning XAGUSDT...
+2026-06-04 05:40:18,454  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:40:21,455  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:45:21,456  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:45:21,457  INFO    SCAN CYCLE: 2026-06-04 00:45 UTC
+2026-06-04 05:45:21,457  INFO  ═════════════════════════════════════════════
+2026-06-04 05:45:21,458  INFO  Scanning BTC/USDT...
+2026-06-04 05:45:22,618  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:45:25,620  INFO  Scanning ETH/USDT...
+2026-06-04 05:45:26,790  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:45:29,792  INFO  Scanning XAUT/USDT...
+2026-06-04 05:45:30,954  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:45:33,956  INFO  Scanning XAGUSDT...
+2026-06-04 05:45:35,127  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:45:38,129  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:50:38,130  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:50:38,130  INFO    SCAN CYCLE: 2026-06-04 00:50 UTC
+2026-06-04 05:50:38,130  INFO  ═════════════════════════════════════════════
+2026-06-04 05:50:38,130  INFO  Scanning BTC/USDT...
+2026-06-04 05:50:41,236  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:50:44,237  INFO  Scanning ETH/USDT...
+2026-06-04 05:50:45,503  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:50:48,505  INFO  Scanning XAUT/USDT...
+2026-06-04 05:50:49,723  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:50:52,724  INFO  Scanning XAGUSDT...
+2026-06-04 05:50:53,949  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:50:56,951  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 05:55:56,952  INFO  
+═════════════════════════════════════════════
+2026-06-04 05:55:56,952  INFO    SCAN CYCLE: 2026-06-04 00:55 UTC
+2026-06-04 05:55:56,953  INFO  ═════════════════════════════════════════════
+2026-06-04 05:55:56,953  INFO  Scanning BTC/USDT...
+2026-06-04 05:55:58,220  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 05:56:01,222  INFO  Scanning ETH/USDT...
+2026-06-04 05:56:02,500  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 05:56:05,502  INFO  Scanning XAUT/USDT...
+2026-06-04 05:56:06,718  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 05:56:09,719  INFO  Scanning XAGUSDT...
+2026-06-04 05:56:10,933  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 05:56:13,935  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:01:13,936  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:01:13,936  INFO    SCAN CYCLE: 2026-06-04 01:01 UTC
+2026-06-04 06:01:13,937  INFO  ═════════════════════════════════════════════
+2026-06-04 06:01:13,938  INFO  Scanning BTC/USDT...
+2026-06-04 06:01:15,433  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:01:18,435  INFO  Scanning ETH/USDT...
+2026-06-04 06:01:19,832  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:01:22,833  INFO  Scanning XAUT/USDT...
+2026-06-04 06:01:24,115  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:01:27,117  INFO  Scanning XAGUSDT...
+2026-06-04 06:01:28,339  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:01:31,340  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:06:31,341  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:06:31,341  INFO    SCAN CYCLE: 2026-06-04 01:06 UTC
+2026-06-04 06:06:31,341  INFO  ═════════════════════════════════════════════
+2026-06-04 06:06:31,341  INFO  Scanning BTC/USDT...
+2026-06-04 06:06:32,587  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:06:35,588  INFO  Scanning ETH/USDT...
+2026-06-04 06:06:36,926  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:06:39,928  INFO  Scanning XAUT/USDT...
+2026-06-04 06:06:42,146  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:06:45,148  INFO  Scanning XAGUSDT...
+2026-06-04 06:06:46,405  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:06:49,406  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:11:49,407  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:11:49,408  INFO    SCAN CYCLE: 2026-06-04 01:11 UTC
+2026-06-04 06:11:49,408  INFO  ═════════════════════════════════════════════
+2026-06-04 06:11:49,409  INFO  Scanning BTC/USDT...
+2026-06-04 06:11:50,656  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:11:53,657  INFO  Scanning ETH/USDT...
+2026-06-04 06:11:54,959  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:11:57,961  INFO  Scanning XAUT/USDT...
+2026-06-04 06:11:59,550  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:12:02,552  INFO  Scanning XAGUSDT...
+2026-06-04 06:12:03,792  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:12:06,794  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:17:06,795  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:17:06,795  INFO    SCAN CYCLE: 2026-06-04 01:17 UTC
+2026-06-04 06:17:06,796  INFO  ═════════════════════════════════════════════
+2026-06-04 06:17:06,796  INFO  Scanning BTC/USDT...
+2026-06-04 06:17:08,042  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:17:11,044  INFO  Scanning ETH/USDT...
+2026-06-04 06:17:12,487  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:17:15,488  INFO  Scanning XAUT/USDT...
+2026-06-04 06:17:16,714  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:17:19,716  INFO  Scanning XAGUSDT...
+2026-06-04 06:17:20,955  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:17:23,957  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:22:23,958  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:22:23,959  INFO    SCAN CYCLE: 2026-06-04 01:22 UTC
+2026-06-04 06:22:23,959  INFO  ═════════════════════════════════════════════
+2026-06-04 06:22:23,960  INFO  Scanning BTC/USDT...
+2026-06-04 06:22:25,210  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:22:28,211  INFO  Scanning ETH/USDT...
+2026-06-04 06:22:29,453  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:22:32,454  INFO  Scanning XAUT/USDT...
+2026-06-04 06:22:33,735  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:22:36,736  INFO  Scanning XAGUSDT...
+2026-06-04 06:22:38,020  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:22:41,021  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:27:41,022  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:27:41,022  INFO    SCAN CYCLE: 2026-06-04 01:27 UTC
+2026-06-04 06:27:41,023  INFO  ═════════════════════════════════════════════
+2026-06-04 06:27:41,023  INFO  Scanning BTC/USDT...
+2026-06-04 06:27:42,252  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:27:45,254  INFO  Scanning ETH/USDT...
+2026-06-04 06:27:46,589  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:27:49,590  INFO  Scanning XAUT/USDT...
+2026-06-04 06:27:50,835  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:27:53,836  INFO  Scanning XAGUSDT...
+2026-06-04 06:27:55,096  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:27:58,097  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:32:58,098  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:32:58,098  INFO    SCAN CYCLE: 2026-06-04 01:32 UTC
+2026-06-04 06:32:58,100  INFO  ═════════════════════════════════════════════
+2026-06-04 06:32:58,100  INFO  Scanning BTC/USDT...
+2026-06-04 06:32:59,340  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:33:02,342  INFO  Scanning ETH/USDT...
+2026-06-04 06:33:03,706  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:33:06,706  INFO  Scanning XAUT/USDT...
+2026-06-04 06:33:07,922  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:33:10,923  INFO  Scanning XAGUSDT...
+2026-06-04 06:33:12,140  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:33:15,141  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:38:15,141  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:38:15,141  INFO    SCAN CYCLE: 2026-06-04 01:38 UTC
+2026-06-04 06:38:15,142  INFO  ═════════════════════════════════════════════
+2026-06-04 06:38:15,142  INFO  Scanning BTC/USDT...
+2026-06-04 06:38:16,413  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:38:19,414  INFO  Scanning ETH/USDT...
+2026-06-04 06:38:20,809  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:38:23,811  INFO  Scanning XAUT/USDT...
+2026-06-04 06:38:25,060  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:38:28,062  INFO  Scanning XAGUSDT...
+2026-06-04 06:38:29,283  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:38:32,284  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:43:32,285  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:43:32,286  INFO    SCAN CYCLE: 2026-06-04 01:43 UTC
+2026-06-04 06:43:32,286  INFO  ═════════════════════════════════════════════
+2026-06-04 06:43:32,287  INFO  Scanning BTC/USDT...
+2026-06-04 06:43:33,566  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:43:36,567  INFO  Scanning ETH/USDT...
+2026-06-04 06:43:37,824  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:43:40,824  INFO  Scanning XAUT/USDT...
+2026-06-04 06:43:42,025  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:43:45,027  INFO  Scanning XAGUSDT...
+2026-06-04 06:43:46,230  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:43:49,232  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:48:49,233  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:48:49,234  INFO    SCAN CYCLE: 2026-06-04 01:48 UTC
+2026-06-04 06:48:49,234  INFO  ═════════════════════════════════════════════
+2026-06-04 06:48:49,235  INFO  Scanning BTC/USDT...
+2026-06-04 06:48:50,496  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:48:53,497  INFO  Scanning ETH/USDT...
+2026-06-04 06:48:54,961  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:48:57,961  INFO  Scanning XAUT/USDT...
+2026-06-04 06:48:59,261  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:49:02,262  INFO  Scanning XAGUSDT...
+2026-06-04 06:49:03,473  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:49:06,474  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:54:06,475  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:54:06,475  INFO    SCAN CYCLE: 2026-06-04 01:54 UTC
+2026-06-04 06:54:06,476  INFO  ═════════════════════════════════════════════
+2026-06-04 06:54:06,476  INFO  Scanning BTC/USDT...
+2026-06-04 06:54:07,878  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:54:10,879  INFO  Scanning ETH/USDT...
+2026-06-04 06:54:12,144  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:54:15,146  INFO  Scanning XAUT/USDT...
+2026-06-04 06:54:16,416  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:54:19,417  INFO  Scanning XAGUSDT...
+2026-06-04 06:54:20,698  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:54:23,700  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 06:59:23,701  INFO  
+═════════════════════════════════════════════
+2026-06-04 06:59:23,701  INFO    SCAN CYCLE: 2026-06-04 01:59 UTC
+2026-06-04 06:59:23,702  INFO  ═════════════════════════════════════════════
+2026-06-04 06:59:23,702  INFO  Scanning BTC/USDT...
+2026-06-04 06:59:24,958  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 06:59:27,960  INFO  Scanning ETH/USDT...
+2026-06-04 06:59:29,245  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 06:59:32,246  INFO  Scanning XAUT/USDT...
+2026-06-04 06:59:33,525  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 06:59:36,527  INFO  Scanning XAGUSDT...
+2026-06-04 06:59:37,717  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 06:59:40,718  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:04:40,719  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:04:40,720  INFO    SCAN CYCLE: 2026-06-04 02:04 UTC
+2026-06-04 07:04:40,720  INFO  ═════════════════════════════════════════════
+2026-06-04 07:04:40,721  INFO  Scanning BTC/USDT...
+2026-06-04 07:04:42,246  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:04:45,247  INFO  Scanning ETH/USDT...
+2026-06-04 07:04:46,619  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:04:49,620  INFO  Scanning XAUT/USDT...
+2026-06-04 07:04:51,217  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:04:54,218  INFO  Scanning XAGUSDT...
+2026-06-04 07:04:55,748  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:04:58,749  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:09:58,750  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:09:58,750  INFO    SCAN CYCLE: 2026-06-04 02:09 UTC
+2026-06-04 07:09:58,752  INFO  ═════════════════════════════════════════════
+2026-06-04 07:09:58,752  INFO  Scanning BTC/USDT...
+2026-06-04 07:10:00,006  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:10:03,008  INFO  Scanning ETH/USDT...
+2026-06-04 07:10:04,318  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:10:07,319  INFO  Scanning XAUT/USDT...
+2026-06-04 07:10:08,610  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:10:11,612  INFO  Scanning XAGUSDT...
+2026-06-04 07:10:12,866  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:10:15,867  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:15:15,869  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:15:15,869  INFO    SCAN CYCLE: 2026-06-04 02:15 UTC
+2026-06-04 07:15:15,870  INFO  ═════════════════════════════════════════════
+2026-06-04 07:15:15,870  INFO  Scanning BTC/USDT...
+2026-06-04 07:15:17,152  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:15:20,154  INFO  Scanning ETH/USDT...
+2026-06-04 07:15:21,470  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:15:24,473  INFO  Scanning XAUT/USDT...
+2026-06-04 07:15:25,710  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:15:28,711  INFO  Scanning XAGUSDT...
+2026-06-04 07:15:29,953  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:15:32,954  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:20:32,955  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:20:32,955  INFO    SCAN CYCLE: 2026-06-04 02:20 UTC
+2026-06-04 07:20:32,956  INFO  ═════════════════════════════════════════════
+2026-06-04 07:20:32,956  INFO  Scanning BTC/USDT...
+2026-06-04 07:20:34,222  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:20:37,224  INFO  Scanning ETH/USDT...
+2026-06-04 07:20:38,924  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:20:41,926  INFO  Scanning XAUT/USDT...
+2026-06-04 07:20:43,355  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:20:46,356  INFO  Scanning XAGUSDT...
+2026-06-04 07:20:47,637  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:20:50,638  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:25:50,640  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:25:50,640  INFO    SCAN CYCLE: 2026-06-04 02:25 UTC
+2026-06-04 07:25:50,641  INFO  ═════════════════════════════════════════════
+2026-06-04 07:25:50,641  INFO  Scanning BTC/USDT...
+2026-06-04 07:26:00,682  WARNING  Fetch failed BTC/USDT 1M: bitget GET https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1Mutc&limit=36
+2026-06-04 07:26:02,432  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:26:05,433  INFO  Scanning ETH/USDT...
+2026-06-04 07:26:06,572  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:26:09,574  INFO  Scanning XAUT/USDT...
+2026-06-04 07:26:10,695  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:26:13,696  INFO  Scanning XAGUSDT...
+2026-06-04 07:26:14,839  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:26:17,840  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:31:17,841  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:31:17,841  INFO    SCAN CYCLE: 2026-06-04 02:31 UTC
+2026-06-04 07:31:17,842  INFO  ═════════════════════════════════════════════
+2026-06-04 07:31:17,843  INFO  Scanning BTC/USDT...
+2026-06-04 07:31:18,939  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:31:21,940  INFO  Scanning ETH/USDT...
+2026-06-04 07:31:23,063  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:31:26,064  INFO  Scanning XAUT/USDT...
+2026-06-04 07:31:27,404  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:31:30,405  INFO  Scanning XAGUSDT...
+2026-06-04 07:31:31,594  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:31:34,595  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:36:34,596  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:36:34,596  INFO    SCAN CYCLE: 2026-06-04 02:36 UTC
+2026-06-04 07:36:34,597  INFO  ═════════════════════════════════════════════
+2026-06-04 07:36:34,597  INFO  Scanning BTC/USDT...
+2026-06-04 07:36:35,701  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:36:38,702  INFO  Scanning ETH/USDT...
+2026-06-04 07:36:39,770  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:36:42,771  INFO  Scanning XAUT/USDT...
+2026-06-04 07:36:43,868  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:36:46,870  INFO  Scanning XAGUSDT...
+2026-06-04 07:36:47,993  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:36:50,995  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:41:50,996  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:41:50,996  INFO    SCAN CYCLE: 2026-06-04 02:41 UTC
+2026-06-04 07:41:50,996  INFO  ═════════════════════════════════════════════
+2026-06-04 07:41:50,996  INFO  Scanning BTC/USDT...
+2026-06-04 07:41:52,053  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:41:55,055  INFO  Scanning ETH/USDT...
+2026-06-04 07:41:56,128  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:41:59,129  INFO  Scanning XAUT/USDT...
+2026-06-04 07:42:00,272  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:42:03,273  INFO  Scanning XAGUSDT...
+2026-06-04 07:42:04,423  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:42:07,425  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:47:07,426  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:47:07,426  INFO    SCAN CYCLE: 2026-06-04 02:47 UTC
+2026-06-04 07:47:07,426  INFO  ═════════════════════════════════════════════
+2026-06-04 07:47:07,427  INFO  Scanning BTC/USDT...
+2026-06-04 07:47:08,483  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:47:11,485  INFO  Scanning ETH/USDT...
+2026-06-04 07:47:12,570  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:47:15,571  INFO  Scanning XAUT/USDT...
+2026-06-04 07:47:16,666  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:47:19,667  INFO  Scanning XAGUSDT...
+2026-06-04 07:47:20,820  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:47:23,822  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:52:23,822  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:52:23,822  INFO    SCAN CYCLE: 2026-06-04 02:52 UTC
+2026-06-04 07:52:23,822  INFO  ═════════════════════════════════════════════
+2026-06-04 07:52:23,822  INFO  Scanning BTC/USDT...
+2026-06-04 07:52:24,900  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:52:27,902  INFO  Scanning ETH/USDT...
+2026-06-04 07:52:28,992  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:52:31,993  INFO  Scanning XAUT/USDT...
+2026-06-04 07:52:33,102  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:52:36,104  INFO  Scanning XAGUSDT...
+2026-06-04 07:52:37,292  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:52:40,294  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 07:57:40,296  INFO  
+═════════════════════════════════════════════
+2026-06-04 07:57:40,297  INFO    SCAN CYCLE: 2026-06-04 02:57 UTC
+2026-06-04 07:57:40,298  INFO  ═════════════════════════════════════════════
+2026-06-04 07:57:40,299  INFO  Scanning BTC/USDT...
+2026-06-04 07:57:41,419  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 07:57:44,420  INFO  Scanning ETH/USDT...
+2026-06-04 07:57:45,523  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 07:57:48,524  INFO  Scanning XAUT/USDT...
+2026-06-04 07:57:49,677  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 07:57:52,679  INFO  Scanning XAGUSDT...
+2026-06-04 07:57:53,806  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 07:57:56,807  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:02:56,809  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:02:56,809  INFO    SCAN CYCLE: 2026-06-04 03:02 UTC
+2026-06-04 08:02:56,809  INFO  ═════════════════════════════════════════════
+2026-06-04 08:02:56,810  INFO  Scanning BTC/USDT...
+2026-06-04 08:02:57,957  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:03:00,958  INFO  Scanning ETH/USDT...
+2026-06-04 08:03:02,117  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:03:05,118  INFO  Scanning XAUT/USDT...
+2026-06-04 08:03:06,302  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:03:09,303  INFO  Scanning XAGUSDT...
+2026-06-04 08:03:10,472  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:03:13,473  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:08:13,474  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:08:13,475  INFO    SCAN CYCLE: 2026-06-04 03:08 UTC
+2026-06-04 08:08:13,475  INFO  ═════════════════════════════════════════════
+2026-06-04 08:08:13,476  INFO  Scanning BTC/USDT...
+2026-06-04 08:08:23,497  WARNING  Fetch failed BTC/USDT 1M: bitget GET https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1Mutc&limit=36
+2026-06-04 08:08:25,125  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:08:28,125  INFO  Scanning ETH/USDT...
+2026-06-04 08:08:29,233  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:08:32,233  INFO  Scanning XAUT/USDT...
+2026-06-04 08:08:33,513  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:08:36,514  INFO  Scanning XAGUSDT...
+2026-06-04 08:08:37,725  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:08:40,726  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:13:40,728  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:13:40,729  INFO    SCAN CYCLE: 2026-06-04 03:13 UTC
+2026-06-04 08:13:40,729  INFO  ═════════════════════════════════════════════
+2026-06-04 08:13:40,730  INFO  Scanning BTC/USDT...
+2026-06-04 08:13:41,840  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:13:44,841  INFO  Scanning ETH/USDT...
+2026-06-04 08:13:45,942  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:13:48,943  INFO  Scanning XAUT/USDT...
+2026-06-04 08:13:50,078  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:13:53,080  INFO  Scanning XAGUSDT...
+2026-06-04 08:13:54,242  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:13:57,244  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:18:57,245  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:18:57,246  INFO    SCAN CYCLE: 2026-06-04 03:18 UTC
+2026-06-04 08:18:57,246  INFO  ═════════════════════════════════════════════
+2026-06-04 08:18:57,247  INFO  Scanning BTC/USDT...
+2026-06-04 08:18:58,832  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:19:01,833  INFO  Scanning ETH/USDT...
+2026-06-04 08:19:02,995  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:19:05,997  INFO  Scanning XAUT/USDT...
+2026-06-04 08:19:07,133  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:19:10,134  INFO  Scanning XAGUSDT...
+2026-06-04 08:19:11,486  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:19:14,487  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:24:14,489  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:24:14,491  INFO    SCAN CYCLE: 2026-06-04 03:24 UTC
+2026-06-04 08:24:14,492  INFO  ═════════════════════════════════════════════
+2026-06-04 08:24:14,493  INFO  Scanning BTC/USDT...
+2026-06-04 08:24:24,506  WARNING  Fetch failed BTC/USDT 1M: bitget GET https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1Mutc&limit=36
+2026-06-04 08:24:26,103  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:24:29,104  INFO  Scanning ETH/USDT...
+2026-06-04 08:24:30,206  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:24:33,207  INFO  Scanning XAUT/USDT...
+2026-06-04 08:24:34,439  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:24:37,439  INFO  Scanning XAGUSDT...
+2026-06-04 08:24:38,553  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:24:41,554  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:29:41,555  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:29:41,556  INFO    SCAN CYCLE: 2026-06-04 03:29 UTC
+2026-06-04 08:29:41,557  INFO  ═════════════════════════════════════════════
+2026-06-04 08:29:41,558  INFO  Scanning BTC/USDT...
+2026-06-04 08:29:42,700  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:29:45,701  INFO  Scanning ETH/USDT...
+2026-06-04 08:29:46,780  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:29:49,782  INFO  Scanning XAUT/USDT...
+2026-06-04 08:29:50,884  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:29:53,885  INFO  Scanning XAGUSDT...
+2026-06-04 08:29:55,028  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:29:58,029  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:34:58,030  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:34:58,030  INFO    SCAN CYCLE: 2026-06-04 03:34 UTC
+2026-06-04 08:34:58,031  INFO  ═════════════════════════════════════════════
+2026-06-04 08:34:58,031  INFO  Scanning BTC/USDT...
+2026-06-04 08:34:59,136  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:35:02,137  INFO  Scanning ETH/USDT...
+2026-06-04 08:35:03,247  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:35:06,249  INFO  Scanning XAUT/USDT...
+2026-06-04 08:35:07,364  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:35:10,366  INFO  Scanning XAGUSDT...
+2026-06-04 08:35:11,497  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:35:14,498  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:40:14,498  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:40:14,499  INFO    SCAN CYCLE: 2026-06-04 03:40 UTC
+2026-06-04 08:40:14,499  INFO  ═════════════════════════════════════════════
+2026-06-04 08:40:14,499  INFO  Scanning BTC/USDT...
+2026-06-04 08:40:15,611  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:40:18,612  INFO  Scanning ETH/USDT...
+2026-06-04 08:40:19,794  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:40:22,795  INFO  Scanning XAUT/USDT...
+2026-06-04 08:40:23,863  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:40:26,864  INFO  Scanning XAGUSDT...
+2026-06-04 08:40:27,979  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:40:30,980  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:45:30,981  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:45:30,981  INFO    SCAN CYCLE: 2026-06-04 03:45 UTC
+2026-06-04 08:45:30,981  INFO  ═════════════════════════════════════════════
+2026-06-04 08:45:30,981  INFO  Scanning BTC/USDT...
+2026-06-04 08:45:32,126  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:45:35,127  INFO  Scanning ETH/USDT...
+2026-06-04 08:45:37,084  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:45:40,085  INFO  Scanning XAUT/USDT...
+2026-06-04 08:45:41,159  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:45:44,159  INFO  Scanning XAGUSDT...
+2026-06-04 08:45:45,286  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:45:48,289  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:50:48,289  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:50:48,289  INFO    SCAN CYCLE: 2026-06-04 03:50 UTC
+2026-06-04 08:50:48,289  INFO  ═════════════════════════════════════════════
+2026-06-04 08:50:48,289  INFO  Scanning BTC/USDT...
+2026-06-04 08:50:49,663  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:50:52,664  INFO  Scanning ETH/USDT...
+2026-06-04 08:50:53,792  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:50:56,794  INFO  Scanning XAUT/USDT...
+2026-06-04 08:50:57,860  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:51:00,862  INFO  Scanning XAGUSDT...
+2026-06-04 08:51:01,993  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:51:04,995  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 08:56:04,996  INFO  
+═════════════════════════════════════════════
+2026-06-04 08:56:04,996  INFO    SCAN CYCLE: 2026-06-04 03:56 UTC
+2026-06-04 08:56:04,996  INFO  ═════════════════════════════════════════════
+2026-06-04 08:56:04,996  INFO  Scanning BTC/USDT...
+2026-06-04 08:56:06,091  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 08:56:09,092  INFO  Scanning ETH/USDT...
+2026-06-04 08:56:10,167  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 08:56:13,168  INFO  Scanning XAUT/USDT...
+2026-06-04 08:56:14,292  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 08:56:17,294  INFO  Scanning XAGUSDT...
+2026-06-04 08:56:18,402  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 08:56:21,403  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:01:21,405  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:01:21,407  INFO    SCAN CYCLE: 2026-06-04 04:01 UTC
+2026-06-04 09:01:21,408  INFO  ═════════════════════════════════════════════
+2026-06-04 09:01:21,408  INFO  Scanning BTC/USDT...
+2026-06-04 09:01:22,554  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:01:25,555  INFO  Scanning ETH/USDT...
+2026-06-04 09:01:26,660  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:01:29,661  INFO  Scanning XAUT/USDT...
+2026-06-04 09:01:30,790  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:01:33,791  INFO  Scanning XAGUSDT...
+2026-06-04 09:01:34,927  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:01:37,928  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:06:37,929  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:06:37,929  INFO    SCAN CYCLE: 2026-06-04 04:06 UTC
+2026-06-04 09:06:37,929  INFO  ═════════════════════════════════════════════
+2026-06-04 09:06:37,929  INFO  Scanning BTC/USDT...
+2026-06-04 09:06:41,083  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:06:44,084  INFO  Scanning ETH/USDT...
+2026-06-04 09:06:45,200  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:06:48,202  INFO  Scanning XAUT/USDT...
+2026-06-04 09:06:49,410  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:06:52,411  INFO  Scanning XAGUSDT...
+2026-06-04 09:06:53,509  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:06:56,510  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:11:56,513  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:11:56,514  INFO    SCAN CYCLE: 2026-06-04 04:11 UTC
+2026-06-04 09:11:56,515  INFO  ═════════════════════════════════════════════
+2026-06-04 09:11:56,516  INFO  Scanning BTC/USDT...
+2026-06-04 09:11:57,667  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:12:00,668  INFO  Scanning ETH/USDT...
+2026-06-04 09:12:01,799  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:12:04,801  INFO  Scanning XAUT/USDT...
+2026-06-04 09:12:05,892  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:12:08,893  INFO  Scanning XAGUSDT...
+2026-06-04 09:12:10,031  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:12:13,034  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:17:13,036  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:17:13,036  INFO    SCAN CYCLE: 2026-06-04 04:17 UTC
+2026-06-04 09:17:13,037  INFO  ═════════════════════════════════════════════
+2026-06-04 09:17:13,037  INFO  Scanning BTC/USDT...
+2026-06-04 09:17:14,161  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:17:17,162  INFO  Scanning ETH/USDT...
+2026-06-04 09:17:18,292  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:17:21,293  INFO  Scanning XAUT/USDT...
+2026-06-04 09:17:22,410  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:17:25,412  INFO  Scanning XAGUSDT...
+2026-06-04 09:17:26,544  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:17:29,545  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:22:29,547  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:22:29,548  INFO    SCAN CYCLE: 2026-06-04 04:22 UTC
+2026-06-04 09:22:29,548  INFO  ═════════════════════════════════════════════
+2026-06-04 09:22:29,549  INFO  Scanning BTC/USDT...
+2026-06-04 09:22:30,661  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:22:33,662  INFO  Scanning ETH/USDT...
+2026-06-04 09:22:34,860  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:22:37,861  INFO  Scanning XAUT/USDT...
+2026-06-04 09:22:39,038  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:22:42,039  INFO  Scanning XAGUSDT...
+2026-06-04 09:22:43,197  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:22:46,200  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:27:46,200  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:27:46,202  INFO    SCAN CYCLE: 2026-06-04 04:27 UTC
+2026-06-04 09:27:46,203  INFO  ═════════════════════════════════════════════
+2026-06-04 09:27:46,203  INFO  Scanning BTC/USDT...
+2026-06-04 09:27:47,292  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:27:50,293  INFO  Scanning ETH/USDT...
+2026-06-04 09:27:51,387  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:27:54,388  INFO  Scanning XAUT/USDT...
+2026-06-04 09:27:55,492  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:27:58,493  INFO  Scanning XAGUSDT...
+2026-06-04 09:27:59,615  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:28:02,617  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:33:02,618  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:33:02,619  INFO    SCAN CYCLE: 2026-06-04 04:33 UTC
+2026-06-04 09:33:02,621  INFO  ═════════════════════════════════════════════
+2026-06-04 09:33:02,621  INFO  Scanning BTC/USDT...
+2026-06-04 09:33:03,723  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:33:06,724  INFO  Scanning ETH/USDT...
+2026-06-04 09:33:10,243  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:33:13,244  INFO  Scanning XAUT/USDT...
+2026-06-04 09:33:14,775  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:33:17,776  INFO  Scanning XAGUSDT...
+2026-06-04 09:33:19,054  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:33:22,056  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:38:22,057  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:38:22,057  INFO    SCAN CYCLE: 2026-06-04 04:38 UTC
+2026-06-04 09:38:22,058  INFO  ═════════════════════════════════════════════
+2026-06-04 09:38:22,058  INFO  Scanning BTC/USDT...
+2026-06-04 09:38:23,456  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:38:26,457  INFO  Scanning ETH/USDT...
+2026-06-04 09:38:27,774  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:38:30,776  INFO  Scanning XAUT/USDT...
+2026-06-04 09:38:32,007  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:38:35,008  INFO  Scanning XAGUSDT...
+2026-06-04 09:38:36,224  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:38:39,226  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:43:39,227  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:43:39,228  INFO    SCAN CYCLE: 2026-06-04 04:43 UTC
+2026-06-04 09:43:39,228  INFO  ═════════════════════════════════════════════
+2026-06-04 09:43:39,228  INFO  Scanning BTC/USDT...
+2026-06-04 09:43:40,492  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:43:43,494  INFO  Scanning ETH/USDT...
+2026-06-04 09:43:44,746  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:43:47,749  INFO  Scanning XAUT/USDT...
+2026-06-04 09:43:48,944  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:43:51,945  INFO  Scanning XAGUSDT...
+2026-06-04 09:43:53,168  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:43:56,170  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:48:56,171  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:48:56,171  INFO    SCAN CYCLE: 2026-06-04 04:48 UTC
+2026-06-04 09:48:56,171  INFO  ═════════════════════════════════════════════
+2026-06-04 09:48:56,172  INFO  Scanning BTC/USDT...
+2026-06-04 09:49:06,179  WARNING  Fetch failed BTC/USDT 1M: bitget GET https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1Mutc&limit=36
+2026-06-04 09:49:14,686  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:49:17,687  INFO  Scanning ETH/USDT...
+2026-06-04 09:49:18,736  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:49:21,737  INFO  Scanning XAUT/USDT...
+2026-06-04 09:49:22,781  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:49:25,782  INFO  Scanning XAGUSDT...
+2026-06-04 09:49:26,877  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:49:29,878  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:54:29,880  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:54:29,880  INFO    SCAN CYCLE: 2026-06-04 04:54 UTC
+2026-06-04 09:54:29,880  INFO  ═════════════════════════════════════════════
+2026-06-04 09:54:29,881  INFO  Scanning BTC/USDT...
+2026-06-04 09:54:30,973  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:54:33,975  INFO  Scanning ETH/USDT...
+2026-06-04 09:54:35,024  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:54:38,025  INFO  Scanning XAUT/USDT...
+2026-06-04 09:54:39,098  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:54:42,099  INFO  Scanning XAGUSDT...
+2026-06-04 09:54:43,201  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 09:54:46,201  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 09:59:46,203  INFO  
+═════════════════════════════════════════════
+2026-06-04 09:59:46,204  INFO    SCAN CYCLE: 2026-06-04 04:59 UTC
+2026-06-04 09:59:46,205  INFO  ═════════════════════════════════════════════
+2026-06-04 09:59:46,205  INFO  Scanning BTC/USDT...
+2026-06-04 09:59:47,305  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 09:59:50,306  INFO  Scanning ETH/USDT...
+2026-06-04 09:59:51,406  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 09:59:54,407  INFO  Scanning XAUT/USDT...
+2026-06-04 09:59:55,482  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 09:59:58,484  INFO  Scanning XAGUSDT...
+2026-06-04 09:59:59,573  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:00:02,574  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:05:02,576  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:05:02,578  INFO    SCAN CYCLE: 2026-06-04 05:05 UTC
+2026-06-04 10:05:02,578  INFO  ═════════════════════════════════════════════
+2026-06-04 10:05:02,579  INFO  Scanning BTC/USDT...
+2026-06-04 10:05:03,703  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:05:06,704  INFO  Scanning ETH/USDT...
+2026-06-04 10:05:07,762  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:05:10,763  INFO  Scanning XAUT/USDT...
+2026-06-04 10:05:11,844  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:05:14,846  INFO  Scanning XAGUSDT...
+2026-06-04 10:05:15,950  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:05:18,952  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:10:18,953  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:10:18,954  INFO    SCAN CYCLE: 2026-06-04 05:10 UTC
+2026-06-04 10:10:18,954  INFO  ═════════════════════════════════════════════
+2026-06-04 10:10:18,954  INFO  Scanning BTC/USDT...
+2026-06-04 10:10:28,958  WARNING  Fetch failed BTC/USDT 1M: bitget GET https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1Mutc&limit=36
+2026-06-04 10:10:30,514  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:10:33,515  INFO  Scanning ETH/USDT...
+2026-06-04 10:10:34,597  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:10:37,599  INFO  Scanning XAUT/USDT...
+2026-06-04 10:10:38,691  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:10:41,692  INFO  Scanning XAGUSDT...
+2026-06-04 10:10:42,815  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:10:45,817  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:15:45,818  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:15:45,818  INFO    SCAN CYCLE: 2026-06-04 05:15 UTC
+2026-06-04 10:15:45,818  INFO  ═════════════════════════════════════════════
+2026-06-04 10:15:45,819  INFO  Scanning BTC/USDT...
+2026-06-04 10:15:46,877  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:15:49,878  INFO  Scanning ETH/USDT...
+2026-06-04 10:15:50,952  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:15:53,954  INFO  Scanning XAUT/USDT...
+2026-06-04 10:15:55,039  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:15:58,040  INFO  Scanning XAGUSDT...
+2026-06-04 10:15:59,118  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:16:02,118  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:21:02,120  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:21:02,120  INFO    SCAN CYCLE: 2026-06-04 05:21 UTC
+2026-06-04 10:21:02,120  INFO  ═════════════════════════════════════════════
+2026-06-04 10:21:02,121  INFO  Scanning BTC/USDT...
+2026-06-04 10:21:03,196  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:21:06,197  INFO  Scanning ETH/USDT...
+2026-06-04 10:21:07,271  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:21:10,273  INFO  Scanning XAUT/USDT...
+2026-06-04 10:21:11,322  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:21:14,324  INFO  Scanning XAGUSDT...
+2026-06-04 10:21:15,429  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:21:18,430  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:26:18,432  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:26:18,432  INFO    SCAN CYCLE: 2026-06-04 05:26 UTC
+2026-06-04 10:26:18,432  INFO  ═════════════════════════════════════════════
+2026-06-04 10:26:18,433  INFO  Scanning BTC/USDT...
+2026-06-04 10:26:19,533  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:26:22,535  INFO  Scanning ETH/USDT...
+2026-06-04 10:26:23,596  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:26:26,597  INFO  Scanning XAUT/USDT...
+2026-06-04 10:26:27,660  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:26:30,662  INFO  Scanning XAGUSDT...
+2026-06-04 10:26:31,746  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:26:34,747  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:31:34,748  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:31:34,750  INFO    SCAN CYCLE: 2026-06-04 05:31 UTC
+2026-06-04 10:31:34,751  INFO  ═════════════════════════════════════════════
+2026-06-04 10:31:34,751  INFO  Scanning BTC/USDT...
+2026-06-04 10:31:35,848  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:31:38,849  INFO  Scanning ETH/USDT...
+2026-06-04 10:31:39,911  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:31:42,912  INFO  Scanning XAUT/USDT...
+2026-06-04 10:31:43,981  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:31:46,982  INFO  Scanning XAGUSDT...
+2026-06-04 10:31:48,062  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:31:51,064  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:36:51,064  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:36:51,065  INFO    SCAN CYCLE: 2026-06-04 05:36 UTC
+2026-06-04 10:36:51,065  INFO  ═════════════════════════════════════════════
+2026-06-04 10:36:51,066  INFO  Scanning BTC/USDT...
+2026-06-04 10:36:52,151  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:36:55,152  INFO  Scanning ETH/USDT...
+2026-06-04 10:36:56,214  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:36:59,216  INFO  Scanning XAUT/USDT...
+2026-06-04 10:37:00,327  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:37:03,329  INFO  Scanning XAGUSDT...
+2026-06-04 10:37:04,431  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:37:07,433  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:42:07,434  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:42:07,435  INFO    SCAN CYCLE: 2026-06-04 05:42 UTC
+2026-06-04 10:42:07,436  INFO  ═════════════════════════════════════════════
+2026-06-04 10:42:07,436  INFO  Scanning BTC/USDT...
+2026-06-04 10:42:08,524  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:42:11,525  INFO  Scanning ETH/USDT...
+2026-06-04 10:42:15,273  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:42:18,275  INFO  Scanning XAUT/USDT...
+2026-06-04 10:42:19,336  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:42:22,338  INFO  Scanning XAGUSDT...
+2026-06-04 10:42:23,418  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:42:26,420  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:47:26,421  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:47:26,421  INFO    SCAN CYCLE: 2026-06-04 05:47 UTC
+2026-06-04 10:47:26,421  INFO  ═════════════════════════════════════════════
+2026-06-04 10:47:26,421  INFO  Scanning BTC/USDT...
+2026-06-04 10:47:27,503  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:47:30,504  INFO  Scanning ETH/USDT...
+2026-06-04 10:47:31,548  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:47:34,549  INFO  Scanning XAUT/USDT...
+2026-06-04 10:47:35,635  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:47:38,637  INFO  Scanning XAGUSDT...
+2026-06-04 10:47:39,710  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:47:42,712  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:52:42,714  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:52:42,714  INFO    SCAN CYCLE: 2026-06-04 05:52 UTC
+2026-06-04 10:52:42,715  INFO  ═════════════════════════════════════════════
+2026-06-04 10:52:42,715  INFO  Scanning BTC/USDT...
+2026-06-04 10:52:43,781  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:52:46,783  INFO  Scanning ETH/USDT...
+2026-06-04 10:52:47,847  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:52:50,848  INFO  Scanning XAUT/USDT...
+2026-06-04 10:52:51,909  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:52:54,910  INFO  Scanning XAGUSDT...
+2026-06-04 10:52:55,994  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:52:58,996  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 10:57:58,997  INFO  
+═════════════════════════════════════════════
+2026-06-04 10:57:58,997  INFO    SCAN CYCLE: 2026-06-04 05:57 UTC
+2026-06-04 10:57:58,998  INFO  ═════════════════════════════════════════════
+2026-06-04 10:57:58,998  INFO  Scanning BTC/USDT...
+2026-06-04 10:58:00,109  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 10:58:03,109  INFO  Scanning ETH/USDT...
+2026-06-04 10:58:04,196  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 10:58:07,197  INFO  Scanning XAUT/USDT...
+2026-06-04 10:58:08,244  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 10:58:11,244  INFO  Scanning XAGUSDT...
+2026-06-04 10:58:12,317  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 10:58:15,318  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:03:15,319  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:03:15,320  INFO    SCAN CYCLE: 2026-06-04 06:03 UTC
+2026-06-04 11:03:15,320  INFO  ═════════════════════════════════════════════
+2026-06-04 11:03:15,321  INFO  Scanning BTC/USDT...
+2026-06-04 11:03:16,414  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:03:19,415  INFO  Scanning ETH/USDT...
+2026-06-04 11:03:20,523  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:03:23,524  INFO  Scanning XAUT/USDT...
+2026-06-04 11:03:24,583  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:03:27,584  INFO  Scanning XAGUSDT...
+2026-06-04 11:03:28,666  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:03:31,668  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:08:31,669  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:08:31,669  INFO    SCAN CYCLE: 2026-06-04 06:08 UTC
+2026-06-04 11:08:31,669  INFO  ═════════════════════════════════════════════
+2026-06-04 11:08:31,669  INFO  Scanning BTC/USDT...
+2026-06-04 11:08:32,703  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:08:35,705  INFO  Scanning ETH/USDT...
+2026-06-04 11:08:36,770  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:08:39,772  INFO  Scanning XAUT/USDT...
+2026-06-04 11:08:40,852  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:08:43,854  INFO  Scanning XAGUSDT...
+2026-06-04 11:08:44,954  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:08:47,956  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:13:47,957  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:13:47,958  INFO    SCAN CYCLE: 2026-06-04 06:13 UTC
+2026-06-04 11:13:47,959  INFO  ═════════════════════════════════════════════
+2026-06-04 11:13:47,960  INFO  Scanning BTC/USDT...
+2026-06-04 11:13:49,038  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:13:52,039  INFO  Scanning ETH/USDT...
+2026-06-04 11:13:53,137  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:13:56,138  INFO  Scanning XAUT/USDT...
+2026-06-04 11:13:57,235  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:14:00,236  INFO  Scanning XAGUSDT...
+2026-06-04 11:14:01,412  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:14:04,414  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:19:04,416  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:19:04,417  INFO    SCAN CYCLE: 2026-06-04 06:19 UTC
+2026-06-04 11:19:04,418  INFO  ═════════════════════════════════════════════
+2026-06-04 11:19:04,418  INFO  Scanning BTC/USDT...
+2026-06-04 11:19:05,498  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:19:08,499  INFO  Scanning ETH/USDT...
+2026-06-04 11:19:09,549  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:19:12,550  INFO  Scanning XAUT/USDT...
+2026-06-04 11:19:13,657  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:19:16,658  INFO  Scanning XAGUSDT...
+2026-06-04 11:19:17,776  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:19:20,777  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:24:20,779  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:24:20,779  INFO    SCAN CYCLE: 2026-06-04 06:24 UTC
+2026-06-04 11:24:20,780  INFO  ═════════════════════════════════════════════
+2026-06-04 11:24:20,781  INFO  Scanning BTC/USDT...
+2026-06-04 11:24:21,842  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:24:24,844  INFO  Scanning ETH/USDT...
+2026-06-04 11:24:25,911  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:24:28,913  INFO  Scanning XAUT/USDT...
+2026-06-04 11:24:30,075  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:24:33,076  INFO  Scanning XAGUSDT...
+2026-06-04 11:24:34,196  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:24:37,197  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:29:37,199  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:29:37,200  INFO    SCAN CYCLE: 2026-06-04 06:29 UTC
+2026-06-04 11:29:37,200  INFO  ═════════════════════════════════════════════
+2026-06-04 11:29:37,201  INFO  Scanning BTC/USDT...
+2026-06-04 11:29:38,281  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:29:41,283  INFO  Scanning ETH/USDT...
+2026-06-04 11:29:42,346  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:29:45,348  INFO  Scanning XAUT/USDT...
+2026-06-04 11:29:46,400  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:29:49,401  INFO  Scanning XAGUSDT...
+2026-06-04 11:29:50,718  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:29:53,720  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:34:53,722  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:34:53,723  INFO    SCAN CYCLE: 2026-06-04 06:34 UTC
+2026-06-04 11:34:53,723  INFO  ═════════════════════════════════════════════
+2026-06-04 11:34:53,724  INFO  Scanning BTC/USDT...
+2026-06-04 11:34:54,800  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:34:57,801  INFO  Scanning ETH/USDT...
+2026-06-04 11:34:58,906  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:35:01,907  INFO  Scanning XAUT/USDT...
+2026-06-04 11:35:03,086  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:35:06,087  INFO  Scanning XAGUSDT...
+2026-06-04 11:35:07,189  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:35:10,189  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:40:10,190  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:40:10,190  INFO    SCAN CYCLE: 2026-06-04 06:40 UTC
+2026-06-04 11:40:10,191  INFO  ═════════════════════════════════════════════
+2026-06-04 11:40:10,191  INFO  Scanning BTC/USDT...
+2026-06-04 11:40:15,802  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:40:18,803  INFO  Scanning ETH/USDT...
+2026-06-04 11:40:19,889  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:40:22,890  INFO  Scanning XAUT/USDT...
+2026-06-04 11:40:23,969  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:40:26,970  INFO  Scanning XAGUSDT...
+2026-06-04 11:40:28,097  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:40:31,098  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:45:31,099  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:45:31,099  INFO    SCAN CYCLE: 2026-06-04 06:45 UTC
+2026-06-04 11:45:31,099  INFO  ═════════════════════════════════════════════
+2026-06-04 11:45:31,100  INFO  Scanning BTC/USDT...
+2026-06-04 11:45:41,113  WARNING  Fetch failed BTC/USDT 1M: bitget GET https://api.bitget.com/api/v2/spot/market/candles?symbol=BTCUSDT&granularity=1Mutc&limit=36
+2026-06-04 11:45:42,720  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:45:45,721  INFO  Scanning ETH/USDT...
+2026-06-04 11:45:46,929  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:45:49,931  INFO  Scanning XAUT/USDT...
+2026-06-04 11:45:51,065  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:45:54,066  INFO  Scanning XAGUSDT...
+2026-06-04 11:45:55,253  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:45:58,254  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:50:58,256  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:50:58,257  INFO    SCAN CYCLE: 2026-06-04 06:50 UTC
+2026-06-04 11:50:58,258  INFO  ═════════════════════════════════════════════
+2026-06-04 11:50:58,259  INFO  Scanning BTC/USDT...
+2026-06-04 11:50:59,411  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:51:02,412  INFO  Scanning ETH/USDT...
+2026-06-04 11:51:03,556  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:51:06,558  INFO  Scanning XAUT/USDT...
+2026-06-04 11:51:07,671  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:51:10,673  INFO  Scanning XAGUSDT...
+2026-06-04 11:51:12,142  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:51:15,143  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 11:56:15,143  INFO  
+═════════════════════════════════════════════
+2026-06-04 11:56:15,144  INFO    SCAN CYCLE: 2026-06-04 06:56 UTC
+2026-06-04 11:56:15,145  INFO  ═════════════════════════════════════════════
+2026-06-04 11:56:15,145  INFO  Scanning BTC/USDT...
+2026-06-04 11:56:16,244  INFO    BTC/USDT: outside active session hours, skipping
+2026-06-04 11:56:19,246  INFO  Scanning ETH/USDT...
+2026-06-04 11:56:20,389  INFO    ETH/USDT: outside active session hours, skipping
+2026-06-04 11:56:23,390  INFO  Scanning XAUT/USDT...
+2026-06-04 11:56:24,577  INFO    XAUT/USDT: outside active session hours, skipping
+2026-06-04 11:56:27,578  INFO  Scanning XAGUSDT...
+2026-06-04 11:56:28,747  INFO    XAGUSDT: outside active session hours, skipping
+2026-06-04 11:56:31,748  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:01:31,749  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:01:31,749  INFO    SCAN CYCLE: 2026-06-04 07:01 UTC
+2026-06-04 12:01:31,749  INFO  ═════════════════════════════════════════════
+2026-06-04 12:01:31,750  INFO  Scanning BTC/USDT...
+2026-06-04 12:01:32,921  INFO    BTC/USDT SHORT: score=11, trigger=Bearish Pin Bar
+2026-06-04 12:01:32,921  INFO    Score 11 below minimum 13, skip
+2026-06-04 12:01:35,923  INFO  Scanning ETH/USDT...
+2026-06-04 12:01:37,025  INFO    ETH/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 12:01:40,026  INFO  Scanning XAUT/USDT...
+2026-06-04 12:01:41,168  INFO    XAUT/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 12:01:44,169  INFO  Scanning XAGUSDT...
+2026-06-04 12:01:45,325  INFO    XAGUSDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 12:01:48,326  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:06:48,328  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:06:48,328  INFO    SCAN CYCLE: 2026-06-04 07:06 UTC
+2026-06-04 12:06:48,328  INFO  ═════════════════════════════════════════════
+2026-06-04 12:06:48,328  INFO  Scanning BTC/USDT...
+2026-06-04 12:06:49,597  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:06:52,598  INFO  Scanning ETH/USDT...
+2026-06-04 12:06:53,692  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:06:56,693  INFO  Scanning XAUT/USDT...
+2026-06-04 12:06:57,857  INFO    XAUT/USDT SHORT: score=21, trigger=Bearish Pin Bar
+2026-06-04 12:06:57,870  INFO    RR 2.5 below minimum 3.0, skip
+2026-06-04 12:07:00,871  INFO  Scanning XAGUSDT...
+2026-06-04 12:07:02,123  INFO    XAGUSDT LONG: score=8, trigger=Bullish Pin Bar
+2026-06-04 12:07:02,123  INFO    Score 8 below minimum 13, skip
+2026-06-04 12:07:05,124  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:12:05,125  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:12:05,125  INFO    SCAN CYCLE: 2026-06-04 07:12 UTC
+2026-06-04 12:12:05,125  INFO  ═════════════════════════════════════════════
+2026-06-04 12:12:05,126  INFO  Scanning BTC/USDT...
+2026-06-04 12:12:06,250  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:12:09,251  INFO  Scanning ETH/USDT...
+2026-06-04 12:12:10,411  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:12:13,413  INFO  Scanning XAUT/USDT...
+2026-06-04 12:12:14,752  INFO    XAUT/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 12:12:17,754  INFO  Scanning XAGUSDT...
+2026-06-04 12:12:19,020  INFO    XAGUSDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 12:12:22,022  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:17:22,022  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:17:22,023  INFO    SCAN CYCLE: 2026-06-04 07:17 UTC
+2026-06-04 12:17:22,023  INFO  ═════════════════════════════════════════════
+2026-06-04 12:17:22,023  INFO  Scanning BTC/USDT...
+2026-06-04 12:17:23,197  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:17:26,198  INFO  Scanning ETH/USDT...
+2026-06-04 12:17:27,345  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:17:30,347  INFO  Scanning XAUT/USDT...
+2026-06-04 12:17:31,452  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:17:34,454  INFO  Scanning XAGUSDT...
+2026-06-04 12:17:35,598  INFO    XAGUSDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 12:17:38,598  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:22:38,599  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:22:38,599  INFO    SCAN CYCLE: 2026-06-04 07:22 UTC
+2026-06-04 12:22:38,600  INFO  ═════════════════════════════════════════════
+2026-06-04 12:22:38,600  INFO  Scanning BTC/USDT...
+2026-06-04 12:22:39,810  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:22:42,811  INFO  Scanning ETH/USDT...
+2026-06-04 12:22:43,986  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:22:46,986  INFO  Scanning XAUT/USDT...
+2026-06-04 12:22:48,134  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:22:51,136  INFO  Scanning XAGUSDT...
+2026-06-04 12:22:52,342  INFO    XAGUSDT LONG: score=8, trigger=Bullish Pin Bar
+2026-06-04 12:22:52,342  INFO    Score 8 below minimum 13, skip
+2026-06-04 12:22:55,343  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:27:55,345  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:27:55,345  INFO    SCAN CYCLE: 2026-06-04 07:27 UTC
+2026-06-04 12:27:55,345  INFO  ═════════════════════════════════════════════
+2026-06-04 12:27:55,346  INFO  Scanning BTC/USDT...
+2026-06-04 12:27:56,550  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:27:59,552  INFO  Scanning ETH/USDT...
+2026-06-04 12:28:00,717  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:28:03,718  INFO  Scanning XAUT/USDT...
+2026-06-04 12:28:04,984  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:28:07,985  INFO  Scanning XAGUSDT...
+2026-06-04 12:28:09,206  INFO    XAGUSDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 12:28:12,207  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:33:12,208  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:33:12,208  INFO    SCAN CYCLE: 2026-06-04 07:33 UTC
+2026-06-04 12:33:12,209  INFO  ═════════════════════════════════════════════
+2026-06-04 12:33:12,210  INFO  Scanning BTC/USDT...
+2026-06-04 12:33:13,415  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:33:16,417  INFO  Scanning ETH/USDT...
+2026-06-04 12:33:17,580  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:33:20,581  INFO  Scanning XAUT/USDT...
+2026-06-04 12:33:21,733  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:33:24,734  INFO  Scanning XAGUSDT...
+2026-06-04 12:33:26,006  INFO    XAGUSDT LONG: score=8, trigger=Bullish Pin Bar
+2026-06-04 12:33:26,007  INFO    Score 8 below minimum 13, skip
+2026-06-04 12:33:29,007  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:38:29,008  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:38:29,008  INFO    SCAN CYCLE: 2026-06-04 07:38 UTC
+2026-06-04 12:38:29,008  INFO  ═════════════════════════════════════════════
+2026-06-04 12:38:29,009  INFO  Scanning BTC/USDT...
+2026-06-04 12:38:30,167  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:38:33,169  INFO  Scanning ETH/USDT...
+2026-06-04 12:38:34,363  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:38:37,364  INFO  Scanning XAUT/USDT...
+2026-06-04 12:38:38,605  INFO    XAUT/USDT LONG: score=10, trigger=Bullish Pin Bar
+2026-06-04 12:38:38,605  INFO    Score 10 below minimum 13, skip
+2026-06-04 12:38:41,606  INFO  Scanning XAGUSDT...
+2026-06-04 12:38:42,807  INFO    XAGUSDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 12:38:45,809  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:43:45,810  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:43:45,811  INFO    SCAN CYCLE: 2026-06-04 07:43 UTC
+2026-06-04 12:43:45,811  INFO  ═════════════════════════════════════════════
+2026-06-04 12:43:45,812  INFO  Scanning BTC/USDT...
+2026-06-04 12:43:47,108  INFO    BTC/USDT LONG: score=6, trigger=Bullish Pin Bar
+2026-06-04 12:43:47,108  INFO    Score 6 below minimum 13, skip
+2026-06-04 12:43:50,110  INFO  Scanning ETH/USDT...
+2026-06-04 12:43:51,258  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:43:54,259  INFO  Scanning XAUT/USDT...
+2026-06-04 12:43:55,429  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:43:58,431  INFO  Scanning XAGUSDT...
+2026-06-04 12:43:59,658  INFO    XAGUSDT LONG: score=8, trigger=Bullish Pin Bar
+2026-06-04 12:43:59,658  INFO    Score 8 below minimum 13, skip
+2026-06-04 12:44:02,659  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:49:02,661  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:49:02,661  INFO    SCAN CYCLE: 2026-06-04 07:49 UTC
+2026-06-04 12:49:02,662  INFO  ═════════════════════════════════════════════
+2026-06-04 12:49:02,662  INFO  Scanning BTC/USDT...
+2026-06-04 12:49:03,822  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:49:06,823  INFO  Scanning ETH/USDT...
+2026-06-04 12:49:07,991  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:49:10,993  INFO  Scanning XAUT/USDT...
+2026-06-04 12:49:12,159  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:49:15,160  INFO  Scanning XAGUSDT...
+2026-06-04 12:49:16,381  INFO    XAGUSDT LONG: score=8, trigger=Bullish Pin Bar
+2026-06-04 12:49:16,382  INFO    Score 8 below minimum 13, skip
+2026-06-04 12:49:19,383  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:54:19,385  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:54:19,386  INFO    SCAN CYCLE: 2026-06-04 07:54 UTC
+2026-06-04 12:54:19,387  INFO  ═════════════════════════════════════════════
+2026-06-04 12:54:19,388  INFO  Scanning BTC/USDT...
+2026-06-04 12:54:20,545  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:54:23,546  INFO  Scanning ETH/USDT...
+2026-06-04 12:54:24,727  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:54:27,728  INFO  Scanning XAUT/USDT...
+2026-06-04 12:54:28,927  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:54:31,928  INFO  Scanning XAGUSDT...
+2026-06-04 12:54:33,187  INFO    XAGUSDT LONG: score=8, trigger=Bullish Pin Bar
+2026-06-04 12:54:33,187  INFO    Score 8 below minimum 13, skip
+2026-06-04 12:54:36,188  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 12:59:36,190  INFO  
+═════════════════════════════════════════════
+2026-06-04 12:59:36,191  INFO    SCAN CYCLE: 2026-06-04 07:59 UTC
+2026-06-04 12:59:36,191  INFO  ═════════════════════════════════════════════
+2026-06-04 12:59:36,192  INFO  Scanning BTC/USDT...
+2026-06-04 12:59:37,350  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:59:40,351  INFO  Scanning ETH/USDT...
+2026-06-04 12:59:41,495  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:59:44,497  INFO  Scanning XAUT/USDT...
+2026-06-04 12:59:45,689  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 12:59:48,690  INFO  Scanning XAGUSDT...
+2026-06-04 12:59:49,933  INFO    XAGUSDT LONG: score=8, trigger=Bullish Pin Bar
+2026-06-04 12:59:49,934  INFO    Score 8 below minimum 13, skip
+2026-06-04 12:59:52,936  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:04:52,937  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:04:52,938  INFO    SCAN CYCLE: 2026-06-04 08:04 UTC
+2026-06-04 13:04:52,938  INFO  ═════════════════════════════════════════════
+2026-06-04 13:04:52,939  INFO  Scanning BTC/USDT...
+2026-06-04 13:04:54,822  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:04:57,823  INFO  Scanning ETH/USDT...
+2026-06-04 13:04:58,985  INFO    ETH/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 13:05:01,986  INFO  Scanning XAUT/USDT...
+2026-06-04 13:05:03,221  INFO    XAUT/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 13:05:06,222  INFO  Scanning XAGUSDT...
+2026-06-04 13:05:07,645  INFO    XAGUSDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 13:05:10,646  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:10:10,647  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:10:10,649  INFO    SCAN CYCLE: 2026-06-04 08:10 UTC
+2026-06-04 13:10:10,650  INFO  ═════════════════════════════════════════════
+2026-06-04 13:10:10,651  INFO  Scanning BTC/USDT...
+2026-06-04 13:10:11,889  INFO    BTC/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:10:11,889  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:10:14,890  INFO  Scanning ETH/USDT...
+2026-06-04 13:10:16,137  INFO    ETH/USDT SHORT: score=14, trigger=Bearish Pin Bar
+2026-06-04 13:10:16,155  INFO    RR 2.5 below minimum 3.0, skip
+2026-06-04 13:10:19,157  INFO  Scanning XAUT/USDT...
+2026-06-04 13:10:20,350  INFO    XAUT/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 13:10:23,352  INFO  Scanning XAGUSDT...
+2026-06-04 13:10:24,728  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 13:10:27,729  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:15:27,730  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:15:27,731  INFO    SCAN CYCLE: 2026-06-04 08:15 UTC
+2026-06-04 13:15:27,732  INFO  ═════════════════════════════════════════════
+2026-06-04 13:15:27,733  INFO  Scanning BTC/USDT...
+2026-06-04 13:15:28,898  INFO    BTC/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:15:31,899  INFO  Scanning ETH/USDT...
+2026-06-04 13:15:33,142  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:15:36,143  INFO  Scanning XAUT/USDT...
+2026-06-04 13:15:37,397  INFO    XAUT/USDT SHORT: score=21, trigger=Bearish Pin Bar
+2026-06-04 13:15:37,397  INFO    Already alerted recently, skip
+2026-06-04 13:15:40,398  INFO  Scanning XAGUSDT...
+2026-06-04 13:15:41,669  INFO    XAGUSDT SHORT: score=16, trigger=Bearish Pin Bar
+2026-06-04 13:15:41,679  INFO    RR 2.5 below minimum 3.0, skip
+2026-06-04 13:15:44,681  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:20:44,682  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:20:44,684  INFO    SCAN CYCLE: 2026-06-04 08:20 UTC
+2026-06-04 13:20:44,684  INFO  ═════════════════════════════════════════════
+2026-06-04 13:20:44,685  INFO  Scanning BTC/USDT...
+2026-06-04 13:20:45,878  INFO    BTC/USDT SHORT: score=13, trigger=Bearish Pin Bar
+2026-06-04 13:20:45,894  INFO    RR 2.5 below minimum 3.0, skip
+2026-06-04 13:20:48,895  INFO  Scanning ETH/USDT...
+2026-06-04 13:20:50,069  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:20:53,070  INFO  Scanning XAUT/USDT...
+2026-06-04 13:20:54,299  INFO    XAUT/USDT LONG: score=9, trigger=Bullish Pin Bar
+2026-06-04 13:20:54,300  INFO    Score 9 below minimum 13, skip
+2026-06-04 13:20:57,301  INFO  Scanning XAGUSDT...
+2026-06-04 13:20:58,560  INFO    XAGUSDT SHORT: score=16, trigger=Shooting Star
+2026-06-04 13:20:58,561  INFO    Already alerted recently, skip
+2026-06-04 13:21:01,562  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:26:01,563  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:26:01,563  INFO    SCAN CYCLE: 2026-06-04 08:26 UTC
+2026-06-04 13:26:01,564  INFO  ═════════════════════════════════════════════
+2026-06-04 13:26:01,564  INFO  Scanning BTC/USDT...
+2026-06-04 13:26:02,959  INFO    BTC/USDT SHORT: score=13, trigger=Bearish Pin Bar
+2026-06-04 13:26:02,959  INFO    Already alerted recently, skip
+2026-06-04 13:26:05,960  INFO  Scanning ETH/USDT...
+2026-06-04 13:26:07,399  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:26:10,401  INFO  Scanning XAUT/USDT...
+2026-06-04 13:26:12,053  INFO    XAUT/USDT SHORT: score=21, trigger=Shooting Star
+2026-06-04 13:26:12,053  INFO    Already alerted recently, skip
+2026-06-04 13:26:15,070  INFO  Scanning XAGUSDT...
+2026-06-04 13:26:16,819  INFO    XAGUSDT SHORT: score=16, trigger=Bearish Pin Bar
+2026-06-04 13:26:16,819  INFO    Already alerted recently, skip
+2026-06-04 13:26:19,821  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:31:19,826  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:31:19,840  INFO    SCAN CYCLE: 2026-06-04 08:31 UTC
+2026-06-04 13:31:19,840  INFO  ═════════════════════════════════════════════
+2026-06-04 13:31:19,843  INFO  Scanning BTC/USDT...
+2026-06-04 13:31:21,304  INFO    BTC/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:31:21,304  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:31:24,305  INFO  Scanning ETH/USDT...
+2026-06-04 13:31:25,582  INFO    ETH/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:31:25,582  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:31:28,583  INFO  Scanning XAUT/USDT...
+2026-06-04 13:31:30,105  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:31:33,106  INFO  Scanning XAGUSDT...
+2026-06-04 13:31:34,270  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 13:31:37,271  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:36:37,272  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:36:37,273  INFO    SCAN CYCLE: 2026-06-04 08:36 UTC
+2026-06-04 13:36:37,274  INFO  ═════════════════════════════════════════════
+2026-06-04 13:36:37,275  INFO  Scanning BTC/USDT...
+2026-06-04 13:36:38,845  INFO    BTC/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:36:38,845  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:36:41,846  INFO  Scanning ETH/USDT...
+2026-06-04 13:36:43,196  INFO    ETH/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:36:43,197  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:36:46,197  INFO  Scanning XAUT/USDT...
+2026-06-04 13:36:47,559  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:36:50,561  INFO  Scanning XAGUSDT...
+2026-06-04 13:36:51,739  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 13:36:54,741  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:41:54,742  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:41:54,742  INFO    SCAN CYCLE: 2026-06-04 08:41 UTC
+2026-06-04 13:41:54,743  INFO  ═════════════════════════════════════════════
+2026-06-04 13:41:54,744  INFO  Scanning BTC/USDT...
+2026-06-04 13:41:56,173  INFO    BTC/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:41:56,174  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:41:59,175  INFO  Scanning ETH/USDT...
+2026-06-04 13:42:00,399  INFO    ETH/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:42:00,400  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:42:03,401  INFO  Scanning XAUT/USDT...
+2026-06-04 13:42:04,685  INFO    XAUT/USDT LONG: score=9, trigger=Bullish Pin Bar
+2026-06-04 13:42:04,685  INFO    Score 9 below minimum 13, skip
+2026-06-04 13:42:07,686  INFO  Scanning XAGUSDT...
+2026-06-04 13:42:09,031  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 13:42:12,032  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:47:12,033  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:47:12,033  INFO    SCAN CYCLE: 2026-06-04 08:47 UTC
+2026-06-04 13:47:12,034  INFO  ═════════════════════════════════════════════
+2026-06-04 13:47:12,035  INFO  Scanning BTC/USDT...
+2026-06-04 13:47:13,353  INFO    BTC/USDT LONG: score=7, trigger=Bullish Pin Bar
+2026-06-04 13:47:13,353  INFO    Score 7 below minimum 13, skip
+2026-06-04 13:47:16,354  INFO  Scanning ETH/USDT...
+2026-06-04 13:47:17,651  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:47:20,653  INFO  Scanning XAUT/USDT...
+2026-06-04 13:47:21,895  INFO    XAUT/USDT SHORT: score=21, trigger=Bearish Pin Bar
+2026-06-04 13:47:21,895  INFO    Already alerted recently, skip
+2026-06-04 13:47:24,896  INFO  Scanning XAGUSDT...
+2026-06-04 13:47:26,237  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 13:47:29,239  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:52:29,241  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:52:29,242  INFO    SCAN CYCLE: 2026-06-04 08:52 UTC
+2026-06-04 13:52:29,243  INFO  ═════════════════════════════════════════════
+2026-06-04 13:52:29,244  INFO  Scanning BTC/USDT...
+2026-06-04 13:52:30,523  INFO    BTC/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:52:30,523  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:52:33,523  INFO  Scanning ETH/USDT...
+2026-06-04 13:52:34,922  INFO    ETH/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:52:37,924  INFO  Scanning XAUT/USDT...
+2026-06-04 13:52:39,270  INFO    XAUT/USDT SHORT: score=21, trigger=Bearish Pin Bar
+2026-06-04 13:52:39,270  INFO    Already alerted recently, skip
+2026-06-04 13:52:42,270  INFO  Scanning XAGUSDT...
+2026-06-04 13:52:43,566  INFO    XAGUSDT SHORT: score=16, trigger=Bearish Pin Bar
+2026-06-04 13:52:43,566  INFO    Already alerted recently, skip
+2026-06-04 13:52:46,567  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 13:57:46,568  INFO  
+═════════════════════════════════════════════
+2026-06-04 13:57:46,570  INFO    SCAN CYCLE: 2026-06-04 08:57 UTC
+2026-06-04 13:57:46,570  INFO  ═════════════════════════════════════════════
+2026-06-04 13:57:46,570  INFO  Scanning BTC/USDT...
+2026-06-04 13:57:47,924  INFO    BTC/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:57:47,925  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:57:50,926  INFO  Scanning ETH/USDT...
+2026-06-04 13:57:52,239  INFO    ETH/USDT LONG: score=5, trigger=Bullish Pin Bar
+2026-06-04 13:57:52,239  INFO    Score 5 below minimum 13, skip
+2026-06-04 13:57:55,240  INFO  Scanning XAUT/USDT...
+2026-06-04 13:57:56,361  INFO    XAUT/USDT: no trigger candle on 1H, skipping
+2026-06-04 13:57:59,362  INFO  Scanning XAGUSDT...
+2026-06-04 13:58:00,611  INFO    XAGUSDT: no trigger candle on 1H, skipping
+2026-06-04 13:58:03,612  INFO    ✅ Cycle complete. Next scan in 5 min.
+2026-06-04 14:03:03,613  INFO  
+═════════════════════════════════════════════
+2026-06-04 14:03:03,614  INFO    SCAN CYCLE: 2026-06-04 09:03 UTC
+2026-06-04 14:03:03,614  INFO  ═════════════════════════════════════════════
+2026-06-04 14:03:03,614  INFO  Scanning BTC/USDT...
+2026-06-04 14:03:04,979  INFO    BTC/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 14:03:07,980  INFO  Scanning ETH/USDT...
+2026-06-04 14:03:09,546  INFO    ETH/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 14:03:12,549  INFO  Scanning XAUT/USDT...
+2026-06-04 14:03:14,153  INFO    XAUT/USDT: Inside Bar is not a valid standalone trigger, skipping
+2026-06-04 14:03:17,155  INFO  Scanning XAGUSDT...
+2026-06-04 14:03:19,101  INFO    XAGUSDT LONG: score=9, trigger=Bullish Pin Bar
+2026-06-04 14:03:19,102  INFO    Score 9 below minimum 13, skip
+2026-06-04 14:03:22,104  INFO    ✅ Cycle complete. Next scan in 5 min.
