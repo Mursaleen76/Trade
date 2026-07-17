@@ -28,7 +28,8 @@ from typing import Optional
 # ══════════════════════════════════════════════════════
 #  CONFIGURATION
 # ══════════════════════════════════════════════════════
-DISCORD_WEBHOOK_URL  = "https://discord.com/api/webhooks/1511851878718242898/9T7evebqOPoJPL_B--G-OBIcN7pq3-67Ddpj1YJ6A0QWP3BrYMxqb4vA93TVEVLjKtRo"
+import os
+DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "https://discord.com/api/webhooks/1511851878718242898/9T7evebqOPoJPL_B--G-OBIcN7pq3-67Ddpj1YJ6A0QWP3BrYMxqb4vA93TVEVLjKtRo")
 
 SYMBOLS = [
     "BTC/USDT",
