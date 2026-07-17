@@ -1,0 +1,675 @@
+2026-06-12 11:58:21,075  INFO  ==================================================
+2026-06-12 11:58:21,076  INFO    ELITE TRADING SIGNAL BOT  v4.0
+2026-06-12 11:58:21,077  INFO  ==================================================
+2026-06-12 11:58:22,528  INFO  Discord: sent OK
+2026-06-12 11:58:22,536  INFO  
+==================================================
+2026-06-12 11:58:22,537  INFO    2026-06-12 06:58 UTC
+2026-06-12 11:58:22,538  INFO    Signals today: 0/2
+2026-06-12 11:58:22,539  INFO  ==================================================
+2026-06-12 11:58:22,540  INFO  Scanning BTC/USDT...
+2026-06-12 11:58:32,162  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-12 11:58:35,163  INFO  Scanning ETH/USDT...
+2026-06-12 11:58:36,449  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-12 11:58:39,451  INFO  Scanning XAUT/USDT...
+2026-06-12 11:58:40,734  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-12 11:58:43,735  INFO  Scanning XAGUSDT...
+2026-06-12 11:58:45,044  INFO    XAGUSDT: pattern quality 37% below 65%. skip.
+2026-06-12 11:58:48,045  INFO    Next scan in 5 min.
+2026-06-12 12:03:48,046  INFO  
+==================================================
+2026-06-12 12:03:48,047  INFO    2026-06-12 07:03 UTC
+2026-06-12 12:03:48,048  INFO    Signals today: 0/2
+2026-06-12 12:03:48,049  INFO  ==================================================
+2026-06-12 12:03:48,049  INFO  Scanning BTC/USDT...
+2026-06-12 12:03:49,339  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-12 12:03:52,340  INFO  Scanning ETH/USDT...
+2026-06-12 12:03:53,703  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-12 12:03:56,705  INFO  Scanning XAUT/USDT...
+2026-06-12 12:03:57,833  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-12 12:04:00,835  INFO  Scanning XAGUSDT...
+2026-06-12 12:04:02,046  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-12 12:04:05,047  INFO    Next scan in 5 min.
+2026-06-12 12:09:05,048  INFO  
+==================================================
+2026-06-12 12:09:05,050  INFO    2026-06-12 07:09 UTC
+2026-06-12 12:09:05,051  INFO    Signals today: 0/2
+2026-06-12 12:09:05,052  INFO  ==================================================
+2026-06-12 12:09:05,053  INFO  Scanning BTC/USDT...
+2026-06-12 12:09:06,677  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-12 12:09:09,678  INFO  Scanning ETH/USDT...
+2026-06-12 12:09:11,058  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-12 12:09:14,060  INFO  Scanning XAUT/USDT...
+2026-06-12 12:09:15,505  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-12 12:09:18,507  INFO  Scanning XAGUSDT...
+2026-06-12 12:09:19,878  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-12 12:09:22,880  INFO    Next scan in 5 min.
+2026-06-12 12:14:22,881  INFO  
+==================================================
+2026-06-12 12:14:22,882  INFO    2026-06-12 07:14 UTC
+2026-06-12 12:14:22,883  INFO    Signals today: 0/2
+2026-06-12 12:14:22,883  INFO  ==================================================
+2026-06-12 12:14:22,884  INFO  Scanning BTC/USDT...
+2026-06-12 12:14:24,174  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-12 12:14:27,176  INFO  Scanning ETH/USDT...
+2026-06-12 12:14:28,556  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-12 12:14:31,558  INFO  Scanning XAUT/USDT...
+2026-06-12 12:14:32,929  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-12 12:14:35,933  INFO  Scanning XAGUSDT...
+2026-06-12 12:14:37,510  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-12 12:14:40,514  INFO    Next scan in 5 min.
+2026-06-12 12:19:40,517  INFO  
+==================================================
+2026-06-12 12:19:40,518  INFO    2026-06-12 07:19 UTC
+2026-06-12 12:19:40,519  INFO    Signals today: 0/2
+2026-06-12 12:19:40,520  INFO  ==================================================
+2026-06-12 12:19:40,521  INFO  Scanning BTC/USDT...
+2026-06-12 12:19:41,852  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-12 12:19:44,854  INFO  Scanning ETH/USDT...
+2026-06-12 12:19:46,139  INFO    ETH/USDT: pattern quality 22% below 70%. skip.
+2026-06-12 12:19:49,141  INFO  Scanning XAUT/USDT...
+2026-06-12 12:19:50,541  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-12 12:19:53,543  INFO  Scanning XAGUSDT...
+2026-06-12 12:19:54,974  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-12 12:19:57,975  INFO    Next scan in 5 min.
+2026-06-12 12:24:57,977  INFO  
+==================================================
+2026-06-12 12:24:57,979  INFO    2026-06-12 07:24 UTC
+2026-06-12 12:24:57,980  INFO    Signals today: 0/2
+2026-06-12 12:24:57,981  INFO  ==================================================
+2026-06-12 12:24:57,981  INFO  Scanning BTC/USDT...
+2026-06-12 12:24:59,265  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-12 12:25:02,267  INFO  Scanning ETH/USDT...
+2026-06-12 12:25:03,575  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-12 12:25:06,576  INFO  Scanning XAUT/USDT...
+2026-06-12 12:25:07,984  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-12 12:25:10,986  INFO  Scanning XAGUSDT...
+2026-06-12 12:25:12,411  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-12 12:25:15,414  INFO    Next scan in 5 min.
+2026-06-14 16:26:51,474  INFO  ==================================================
+2026-06-14 16:26:51,475  INFO    ELITE TRADING SIGNAL BOT  v4.0
+2026-06-14 16:26:51,475  INFO  ==================================================
+2026-06-14 16:26:52,811  INFO  Discord: sent OK
+2026-06-14 16:26:52,813  INFO  
+==================================================
+2026-06-14 16:26:52,814  INFO    2026-06-14 11:26 UTC
+2026-06-14 16:26:52,814  INFO    Signals today: 0/2
+2026-06-14 16:26:52,814  INFO  ==================================================
+2026-06-14 16:26:52,814  INFO  Scanning BTC/USDT...
+2026-06-14 16:27:01,245  INFO    BTC/USDT: pattern quality 53% below 70%. skip.
+2026-06-14 16:27:04,246  INFO  Scanning ETH/USDT...
+2026-06-14 16:27:05,635  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-14 16:27:08,636  INFO  Scanning XAUT/USDT...
+2026-06-14 16:27:10,095  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-14 16:27:13,096  INFO  Scanning XAGUSDT...
+2026-06-14 16:27:14,631  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-14 16:27:17,633  INFO    Next scan in 5 min.
+2026-06-14 16:28:04,938  INFO  ==================================================
+2026-06-14 16:28:04,940  INFO    ELITE TRADING SIGNAL BOT  v4.0
+2026-06-14 16:28:04,940  INFO  ==================================================
+2026-06-14 16:28:06,032  INFO  Discord: sent OK
+2026-06-14 16:28:06,034  INFO  
+==================================================
+2026-06-14 16:28:06,034  INFO    2026-06-14 11:28 UTC
+2026-06-14 16:28:06,035  INFO    Signals today: 0/2
+2026-06-14 16:28:06,035  INFO  ==================================================
+2026-06-14 16:28:06,035  INFO  Scanning BTC/USDT...
+2026-06-14 16:28:11,090  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-14 16:28:14,092  INFO  Scanning ETH/USDT...
+2026-06-14 16:28:15,290  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-14 16:28:18,292  INFO  Scanning XAUT/USDT...
+2026-06-14 16:28:19,513  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-14 16:28:22,514  INFO  Scanning XAGUSDT...
+2026-06-14 16:28:23,833  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-14 16:28:26,834  INFO    Next scan in 5 min.
+2026-06-14 23:01:02,982  INFO  
+==================================================
+2026-06-14 23:01:02,995  INFO    2026-06-14 18:01 UTC
+2026-06-14 23:01:02,997  INFO    Signals today: 0/2
+2026-06-14 23:01:02,998  INFO  ==================================================
+2026-06-14 23:01:02,998  INFO  Scanning BTC/USDT...
+2026-06-14 23:01:05,843  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-14 23:01:08,845  INFO  Scanning ETH/USDT...
+2026-06-14 23:01:10,124  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-14 23:01:13,126  INFO  Scanning XAUT/USDT...
+2026-06-14 23:01:14,735  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-14 23:01:17,739  INFO  Scanning XAGUSDT...
+2026-06-14 23:01:19,445  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-14 23:01:22,446  INFO    Next scan in 5 min.
+2026-06-14 23:06:22,447  INFO  
+==================================================
+2026-06-14 23:06:22,449  INFO    2026-06-14 18:06 UTC
+2026-06-14 23:06:22,450  INFO    Signals today: 0/2
+2026-06-14 23:06:22,450  INFO  ==================================================
+2026-06-14 23:06:22,451  INFO  Scanning BTC/USDT...
+2026-06-14 23:06:23,841  INFO    BTC/USDT: pattern quality 67% below 70%. skip.
+2026-06-14 23:06:26,843  INFO  Scanning ETH/USDT...
+2026-06-14 23:06:28,186  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-14 23:06:31,189  INFO  Scanning XAUT/USDT...
+2026-06-14 23:06:32,543  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-14 23:06:35,544  INFO  Scanning XAGUSDT...
+2026-06-14 23:06:37,425  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-14 23:06:40,426  INFO    Next scan in 5 min.
+2026-06-14 23:11:40,428  INFO  
+==================================================
+2026-06-14 23:11:40,429  INFO    2026-06-14 18:11 UTC
+2026-06-14 23:11:40,430  INFO    Signals today: 0/2
+2026-06-14 23:11:40,430  INFO  ==================================================
+2026-06-14 23:11:40,431  INFO  Scanning BTC/USDT...
+2026-06-14 23:11:41,726  INFO    BTC/USDT: pattern quality 65% below 70%. skip.
+2026-06-14 23:11:44,728  INFO  Scanning ETH/USDT...
+2026-06-14 23:11:46,043  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-14 23:11:49,044  INFO  Scanning XAUT/USDT...
+2026-06-14 23:11:50,309  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-14 23:11:53,310  INFO  Scanning XAGUSDT...
+2026-06-14 23:11:54,661  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-14 23:11:57,662  INFO    Next scan in 5 min.
+2026-06-14 23:16:57,663  INFO  
+==================================================
+2026-06-14 23:16:57,664  INFO    2026-06-14 18:16 UTC
+2026-06-14 23:16:57,664  INFO    Signals today: 0/2
+2026-06-14 23:16:57,665  INFO  ==================================================
+2026-06-14 23:16:57,666  INFO  Scanning BTC/USDT...
+2026-06-14 23:16:59,403  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-14 23:17:02,405  INFO  Scanning ETH/USDT...
+2026-06-14 23:17:03,731  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-14 23:17:06,732  INFO  Scanning XAUT/USDT...
+2026-06-14 23:17:08,091  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-14 23:17:11,092  INFO  Scanning XAGUSDT...
+2026-06-14 23:17:12,551  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-14 23:17:15,553  INFO    Next scan in 5 min.
+2026-06-14 23:22:15,555  INFO  
+==================================================
+2026-06-14 23:22:15,556  INFO    2026-06-14 18:22 UTC
+2026-06-14 23:22:15,556  INFO    Signals today: 0/2
+2026-06-14 23:22:15,557  INFO  ==================================================
+2026-06-14 23:22:15,558  INFO  Scanning BTC/USDT...
+2026-06-14 23:22:16,785  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-14 23:22:19,787  INFO  Scanning ETH/USDT...
+2026-06-14 23:22:21,068  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-14 23:22:24,071  INFO  Scanning XAUT/USDT...
+2026-06-14 23:22:25,584  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-14 23:22:28,586  INFO  Scanning XAGUSDT...
+2026-06-14 23:22:30,361  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-14 23:22:33,363  INFO    Next scan in 5 min.
+2026-06-15 02:55:09,723  INFO  
+==================================================
+2026-06-15 02:55:09,725  INFO    2026-06-14 21:55 UTC
+2026-06-15 02:55:09,726  INFO    Signals today: 0/2
+2026-06-15 02:55:09,726  INFO  ==================================================
+2026-06-15 02:55:09,727  INFO  Scanning BTC/USDT...
+2026-06-15 02:55:11,529  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 02:55:14,530  INFO  Scanning ETH/USDT...
+2026-06-15 02:55:15,614  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 02:55:18,615  INFO  Scanning XAUT/USDT...
+2026-06-15 02:55:19,713  INFO    BLOCKED: Weekly structure bearish against long
+2026-06-15 02:55:22,715  INFO  Scanning XAGUSDT...
+2026-06-15 02:55:23,829  INFO    BLOCKED: Weekly structure bearish against long
+2026-06-15 02:55:26,831  INFO    Next scan in 5 min.
+2026-06-15 03:00:26,833  INFO  
+==================================================
+2026-06-15 03:00:26,834  INFO    2026-06-14 22:00 UTC
+2026-06-15 03:00:26,834  INFO    Signals today: 0/2
+2026-06-15 03:00:26,835  INFO  ==================================================
+2026-06-15 03:00:26,835  INFO  Scanning BTC/USDT...
+2026-06-15 03:00:27,959  INFO    BTC/USDT: ADX 18.8 below 25. skip.
+2026-06-15 03:00:30,960  INFO  Scanning ETH/USDT...
+2026-06-15 03:00:32,063  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 03:00:35,064  INFO  Scanning XAUT/USDT...
+2026-06-15 03:00:36,461  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 03:00:39,463  INFO  Scanning XAGUSDT...
+2026-06-15 03:00:40,626  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 03:00:43,627  INFO    Next scan in 5 min.
+2026-06-15 03:05:43,628  INFO  
+==================================================
+2026-06-15 03:05:43,629  INFO    2026-06-14 22:05 UTC
+2026-06-15 03:05:43,629  INFO    Signals today: 0/2
+2026-06-15 03:05:43,629  INFO  ==================================================
+2026-06-15 03:05:43,629  INFO  Scanning BTC/USDT...
+2026-06-15 03:05:45,005  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 03:05:48,006  INFO  Scanning ETH/USDT...
+2026-06-15 03:05:49,082  INFO    ETH/USDT: ADX 11.6 below 25. skip.
+2026-06-15 03:05:52,083  INFO  Scanning XAUT/USDT...
+2026-06-15 03:05:53,512  INFO    XAUT/USDT: momentum breakout detected: Level Breakout
+2026-06-15 03:05:53,512  INFO    XAUT/USDT long: cooldown. skip.
+2026-06-15 03:05:56,513  INFO  Scanning XAGUSDT...
+2026-06-15 03:05:57,823  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:06:00,825  INFO    Next scan in 5 min.
+2026-06-15 03:11:00,826  INFO  
+==================================================
+2026-06-15 03:11:00,826  INFO    2026-06-14 22:11 UTC
+2026-06-15 03:11:00,826  INFO    Signals today: 0/2
+2026-06-15 03:11:00,827  INFO  ==================================================
+2026-06-15 03:11:00,827  INFO  Scanning BTC/USDT...
+2026-06-15 03:11:02,010  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 03:11:05,011  INFO  Scanning ETH/USDT...
+2026-06-15 03:11:06,215  INFO    ETH/USDT: pattern quality 61% below 70%. skip.
+2026-06-15 03:11:09,216  INFO  Scanning XAUT/USDT...
+2026-06-15 03:11:10,438  INFO    XAUT/USDT: momentum breakout detected: Level Breakout
+2026-06-15 03:11:10,439  INFO    XAUT/USDT long: cooldown. skip.
+2026-06-15 03:11:13,440  INFO  Scanning XAGUSDT...
+2026-06-15 03:11:14,606  INFO    XAGUSDT: momentum breakout detected: Level Breakout
+2026-06-15 03:11:14,607  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:11:17,608  INFO    Next scan in 5 min.
+2026-06-15 03:16:17,609  INFO  
+==================================================
+2026-06-15 03:16:17,609  INFO    2026-06-14 22:16 UTC
+2026-06-15 03:16:17,609  INFO    Signals today: 0/2
+2026-06-15 03:16:17,609  INFO  ==================================================
+2026-06-15 03:16:17,610  INFO  Scanning BTC/USDT...
+2026-06-15 03:16:19,101  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 03:16:22,102  INFO  Scanning ETH/USDT...
+2026-06-15 03:16:23,647  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 03:16:26,648  INFO  Scanning XAUT/USDT...
+2026-06-15 03:16:27,977  INFO    XAUT/USDT: momentum breakout detected: Level Breakout
+2026-06-15 03:16:27,978  INFO    XAUT/USDT long: cooldown. skip.
+2026-06-15 03:16:30,979  INFO  Scanning XAGUSDT...
+2026-06-15 03:16:32,162  INFO    XAGUSDT: momentum breakout detected: Level Breakout
+2026-06-15 03:16:32,162  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:16:35,164  INFO    Next scan in 5 min.
+2026-06-15 03:21:35,165  INFO  
+==================================================
+2026-06-15 03:21:35,165  INFO    2026-06-14 22:21 UTC
+2026-06-15 03:21:35,165  INFO    Signals today: 0/2
+2026-06-15 03:21:35,166  INFO  ==================================================
+2026-06-15 03:21:35,166  INFO  Scanning BTC/USDT...
+2026-06-15 03:21:36,725  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 03:21:39,726  INFO  Scanning ETH/USDT...
+2026-06-15 03:21:40,905  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 03:21:43,906  INFO  Scanning XAUT/USDT...
+2026-06-15 03:21:45,067  INFO    XAUT/USDT: momentum breakout detected: Level Breakout
+2026-06-15 03:21:45,068  INFO    XAUT/USDT long: cooldown. skip.
+2026-06-15 03:21:48,068  INFO  Scanning XAGUSDT...
+2026-06-15 03:21:49,261  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:21:52,263  INFO    Next scan in 5 min.
+2026-06-15 03:26:52,265  INFO  
+==================================================
+2026-06-15 03:26:52,265  INFO    2026-06-14 22:26 UTC
+2026-06-15 03:26:52,265  INFO    Signals today: 0/2
+2026-06-15 03:26:52,266  INFO  ==================================================
+2026-06-15 03:26:52,266  INFO  Scanning BTC/USDT...
+2026-06-15 03:26:53,786  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 03:26:56,788  INFO  Scanning ETH/USDT...
+2026-06-15 03:26:57,972  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 03:27:00,974  INFO  Scanning XAUT/USDT...
+2026-06-15 03:27:02,137  INFO    XAUT/USDT: pattern quality 53% below 65%. skip.
+2026-06-15 03:27:05,138  INFO  Scanning XAGUSDT...
+2026-06-15 03:27:06,294  INFO    XAGUSDT: momentum breakout detected: Level Breakout
+2026-06-15 03:27:06,295  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:27:09,296  INFO    Next scan in 5 min.
+2026-06-15 03:32:09,298  INFO  
+==================================================
+2026-06-15 03:32:09,298  INFO    2026-06-14 22:32 UTC
+2026-06-15 03:32:09,299  INFO    Signals today: 0/2
+2026-06-15 03:32:09,299  INFO  ==================================================
+2026-06-15 03:32:09,299  INFO  Scanning BTC/USDT...
+2026-06-15 03:32:11,007  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 03:32:14,008  INFO  Scanning ETH/USDT...
+2026-06-15 03:32:15,198  INFO    ETH/USDT: pattern quality 39% below 70%. skip.
+2026-06-15 03:32:18,200  INFO  Scanning XAUT/USDT...
+2026-06-15 03:32:19,376  INFO    XAUT/USDT: pattern quality 53% below 65%. skip.
+2026-06-15 03:32:22,377  INFO  Scanning XAGUSDT...
+2026-06-15 03:32:23,567  INFO    XAGUSDT: momentum breakout detected: Level Breakout
+2026-06-15 03:32:23,567  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:32:26,569  INFO    Next scan in 5 min.
+2026-06-15 03:37:26,570  INFO  
+==================================================
+2026-06-15 03:37:26,571  INFO    2026-06-14 22:37 UTC
+2026-06-15 03:37:26,571  INFO    Signals today: 0/2
+2026-06-15 03:37:26,571  INFO  ==================================================
+2026-06-15 03:37:26,571  INFO  Scanning BTC/USDT...
+2026-06-15 03:37:27,779  INFO    BTC/USDT: pattern quality 60% below 70%. skip.
+2026-06-15 03:37:30,780  INFO  Scanning ETH/USDT...
+2026-06-15 03:37:31,998  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 03:37:35,000  INFO  Scanning XAUT/USDT...
+2026-06-15 03:37:36,158  INFO    XAUT/USDT: pattern quality 47% below 65%. skip.
+2026-06-15 03:37:39,160  INFO  Scanning XAGUSDT...
+2026-06-15 03:37:40,418  INFO    XAGUSDT: momentum breakout detected: Level Breakout
+2026-06-15 03:37:40,418  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:37:43,419  INFO    Next scan in 5 min.
+2026-06-15 03:42:43,420  INFO  
+==================================================
+2026-06-15 03:42:43,421  INFO    2026-06-14 22:42 UTC
+2026-06-15 03:42:43,421  INFO    Signals today: 0/2
+2026-06-15 03:42:43,422  INFO  ==================================================
+2026-06-15 03:42:43,422  INFO  Scanning BTC/USDT...
+2026-06-15 03:42:45,219  INFO    BTC/USDT: pattern quality 60% below 70%. skip.
+2026-06-15 03:42:48,221  INFO  Scanning ETH/USDT...
+2026-06-15 03:42:49,597  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 03:42:52,598  INFO  Scanning XAUT/USDT...
+2026-06-15 03:42:53,960  INFO    XAUT/USDT: pattern quality 53% below 65%. skip.
+2026-06-15 03:42:56,960  INFO  Scanning XAGUSDT...
+2026-06-15 03:42:58,210  INFO    XAGUSDT: momentum breakout detected: Level Breakout
+2026-06-15 03:42:58,210  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:43:01,211  INFO    Next scan in 5 min.
+2026-06-15 03:48:01,212  INFO  
+==================================================
+2026-06-15 03:48:01,212  INFO    2026-06-14 22:48 UTC
+2026-06-15 03:48:01,212  INFO    Signals today: 0/2
+2026-06-15 03:48:01,212  INFO  ==================================================
+2026-06-15 03:48:01,213  INFO  Scanning BTC/USDT...
+2026-06-15 03:48:02,726  INFO    BTC/USDT: pattern quality 57% below 70%. skip.
+2026-06-15 03:48:05,726  INFO  Scanning ETH/USDT...
+2026-06-15 03:48:06,907  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 03:48:09,909  INFO  Scanning XAUT/USDT...
+2026-06-15 03:48:11,044  INFO    XAUT/USDT: pattern quality 47% below 65%. skip.
+2026-06-15 03:48:14,045  INFO  Scanning XAGUSDT...
+2026-06-15 03:48:15,167  INFO    XAGUSDT: momentum breakout detected: Level Breakout
+2026-06-15 03:48:15,167  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:48:18,168  INFO    Next scan in 5 min.
+2026-06-15 03:53:18,169  INFO  
+==================================================
+2026-06-15 03:53:18,170  INFO    2026-06-14 22:53 UTC
+2026-06-15 03:53:18,170  INFO    Signals today: 0/2
+2026-06-15 03:53:18,171  INFO  ==================================================
+2026-06-15 03:53:18,171  INFO  Scanning BTC/USDT...
+2026-06-15 03:53:19,774  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 03:53:22,775  INFO  Scanning ETH/USDT...
+2026-06-15 03:53:23,940  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 03:53:26,942  INFO  Scanning XAUT/USDT...
+2026-06-15 03:53:28,096  INFO    XAUT/USDT: pattern quality 47% below 65%. skip.
+2026-06-15 03:53:31,096  INFO  Scanning XAGUSDT...
+2026-06-15 03:53:32,262  INFO    XAGUSDT: momentum breakout detected: Level Breakout
+2026-06-15 03:53:32,262  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:53:35,263  INFO    Next scan in 5 min.
+2026-06-15 03:58:35,264  INFO  
+==================================================
+2026-06-15 03:58:35,264  INFO    2026-06-14 22:58 UTC
+2026-06-15 03:58:35,265  INFO    Signals today: 0/2
+2026-06-15 03:58:35,265  INFO  ==================================================
+2026-06-15 03:58:35,265  INFO  Scanning BTC/USDT...
+2026-06-15 03:58:36,762  INFO    BTC/USDT: pattern quality 57% below 70%. skip.
+2026-06-15 03:58:39,763  INFO  Scanning ETH/USDT...
+2026-06-15 03:58:41,058  INFO    ETH/USDT: pattern quality 39% below 70%. skip.
+2026-06-15 03:58:44,060  INFO  Scanning XAUT/USDT...
+2026-06-15 03:58:45,222  INFO    XAUT/USDT: pattern quality 47% below 65%. skip.
+2026-06-15 03:58:48,223  INFO  Scanning XAGUSDT...
+2026-06-15 03:58:49,380  INFO    XAGUSDT: momentum breakout detected: Level Breakout
+2026-06-15 03:58:49,380  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 03:58:52,382  INFO    Next scan in 5 min.
+2026-06-15 04:03:52,383  INFO  
+==================================================
+2026-06-15 04:03:52,383  INFO    2026-06-14 23:03 UTC
+2026-06-15 04:03:52,383  INFO    Signals today: 0/2
+2026-06-15 04:03:52,383  INFO  ==================================================
+2026-06-15 04:03:52,383  INFO  Scanning BTC/USDT...
+2026-06-15 04:03:54,008  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:03:57,009  INFO  Scanning ETH/USDT...
+2026-06-15 04:03:58,204  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 04:04:01,205  INFO  Scanning XAUT/USDT...
+2026-06-15 04:04:02,536  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:04:05,538  INFO  Scanning XAGUSDT...
+2026-06-15 04:04:06,819  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 04:04:09,820  INFO    Next scan in 5 min.
+2026-06-15 04:09:09,822  INFO  
+==================================================
+2026-06-15 04:09:09,823  INFO    2026-06-14 23:09 UTC
+2026-06-15 04:09:09,823  INFO    Signals today: 0/2
+2026-06-15 04:09:09,823  INFO  ==================================================
+2026-06-15 04:09:09,824  INFO  Scanning BTC/USDT...
+2026-06-15 04:09:11,227  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:09:14,228  INFO  Scanning ETH/USDT...
+2026-06-15 04:09:15,503  INFO    BLOCKED: Monthly structure bearish against long
+2026-06-15 04:09:18,505  INFO  Scanning XAUT/USDT...
+2026-06-15 04:09:19,680  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:09:22,681  INFO  Scanning XAGUSDT...
+2026-06-15 04:09:23,852  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 04:09:26,853  INFO    Next scan in 5 min.
+2026-06-15 04:14:26,854  INFO  
+==================================================
+2026-06-15 04:14:26,854  INFO    2026-06-14 23:14 UTC
+2026-06-15 04:14:26,855  INFO    Signals today: 0/2
+2026-06-15 04:14:26,855  INFO  ==================================================
+2026-06-15 04:14:26,855  INFO  Scanning BTC/USDT...
+2026-06-15 04:14:28,338  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:14:31,340  INFO  Scanning ETH/USDT...
+2026-06-15 04:14:32,527  INFO    ETH/USDT: pattern quality 62% below 70%. skip.
+2026-06-15 04:14:35,528  INFO  Scanning XAUT/USDT...
+2026-06-15 04:14:36,833  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:14:39,862  INFO  Scanning XAGUSDT...
+2026-06-15 04:14:41,107  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 04:14:44,108  INFO    Next scan in 5 min.
+2026-06-15 04:19:44,109  INFO  
+==================================================
+2026-06-15 04:19:44,111  INFO    2026-06-14 23:19 UTC
+2026-06-15 04:19:44,111  INFO    Signals today: 0/2
+2026-06-15 04:19:44,112  INFO  ==================================================
+2026-06-15 04:19:44,112  INFO  Scanning BTC/USDT...
+2026-06-15 04:19:45,638  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:19:48,638  INFO  Scanning ETH/USDT...
+2026-06-15 04:19:49,904  INFO    ETH/USDT: pattern quality 39% below 70%. skip.
+2026-06-15 04:19:52,905  INFO  Scanning XAUT/USDT...
+2026-06-15 04:19:54,212  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:19:57,214  INFO  Scanning XAGUSDT...
+2026-06-15 04:19:58,354  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 04:20:01,355  INFO    Next scan in 5 min.
+2026-06-15 04:25:01,356  INFO  
+==================================================
+2026-06-15 04:25:01,356  INFO    2026-06-14 23:25 UTC
+2026-06-15 04:25:01,357  INFO    Signals today: 0/2
+2026-06-15 04:25:01,357  INFO  ==================================================
+2026-06-15 04:25:01,358  INFO  Scanning BTC/USDT...
+2026-06-15 04:25:02,495  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:25:05,497  INFO  Scanning ETH/USDT...
+2026-06-15 04:25:06,661  INFO    ETH/USDT: pattern quality 39% below 70%. skip.
+2026-06-15 04:25:09,662  INFO  Scanning XAUT/USDT...
+2026-06-15 04:25:10,896  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:25:13,897  INFO  Scanning XAGUSDT...
+2026-06-15 04:25:15,089  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 04:25:18,091  INFO    Next scan in 5 min.
+2026-06-15 04:30:18,092  INFO  
+==================================================
+2026-06-15 04:30:18,093  INFO    2026-06-14 23:30 UTC
+2026-06-15 04:30:18,093  INFO    Signals today: 0/2
+2026-06-15 04:30:18,093  INFO  ==================================================
+2026-06-15 04:30:18,094  INFO  Scanning BTC/USDT...
+2026-06-15 04:30:19,418  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:30:22,421  INFO  Scanning ETH/USDT...
+2026-06-15 04:30:25,870  INFO    ETH/USDT: pattern quality 59% below 70%. skip.
+2026-06-15 04:30:28,871  INFO  Scanning XAUT/USDT...
+2026-06-15 04:30:30,302  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:30:33,303  INFO  Scanning XAGUSDT...
+2026-06-15 04:30:34,654  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 04:30:37,655  INFO    Next scan in 5 min.
+2026-06-15 04:35:37,657  INFO  
+==================================================
+2026-06-15 04:35:37,657  INFO    2026-06-14 23:35 UTC
+2026-06-15 04:35:37,657  INFO    Signals today: 0/2
+2026-06-15 04:35:37,657  INFO  ==================================================
+2026-06-15 04:35:37,658  INFO  Scanning BTC/USDT...
+2026-06-15 04:35:39,263  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:35:42,264  INFO  Scanning ETH/USDT...
+2026-06-15 04:35:43,467  INFO    ETH/USDT: pattern quality 59% below 70%. skip.
+2026-06-15 04:35:46,468  INFO  Scanning XAUT/USDT...
+2026-06-15 04:35:47,662  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:35:50,663  INFO  Scanning XAGUSDT...
+2026-06-15 04:35:51,853  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 04:35:54,854  INFO    Next scan in 5 min.
+2026-06-15 04:40:54,855  INFO  
+==================================================
+2026-06-15 04:40:54,855  INFO    2026-06-14 23:40 UTC
+2026-06-15 04:40:54,855  INFO    Signals today: 0/2
+2026-06-15 04:40:54,855  INFO  ==================================================
+2026-06-15 04:40:54,856  INFO  Scanning BTC/USDT...
+2026-06-15 04:40:56,465  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:40:59,466  INFO  Scanning ETH/USDT...
+2026-06-15 04:41:01,311  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 04:41:04,312  INFO  Scanning XAUT/USDT...
+2026-06-15 04:41:05,468  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:41:08,470  INFO  Scanning XAGUSDT...
+2026-06-15 04:41:09,586  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 04:41:12,587  INFO    Next scan in 5 min.
+2026-06-15 04:46:12,588  INFO  
+==================================================
+2026-06-15 04:46:12,589  INFO    2026-06-14 23:46 UTC
+2026-06-15 04:46:12,590  INFO    Signals today: 0/2
+2026-06-15 04:46:12,590  INFO  ==================================================
+2026-06-15 04:46:12,591  INFO  Scanning BTC/USDT...
+2026-06-15 04:46:14,052  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:46:17,053  INFO  Scanning ETH/USDT...
+2026-06-15 04:46:18,353  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 04:46:21,355  INFO  Scanning XAUT/USDT...
+2026-06-15 04:46:22,535  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:46:25,536  INFO  Scanning XAGUSDT...
+2026-06-15 04:46:26,699  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 04:46:29,700  INFO    Next scan in 5 min.
+2026-06-15 04:51:29,701  INFO  
+==================================================
+2026-06-15 04:51:29,701  INFO    2026-06-14 23:51 UTC
+2026-06-15 04:51:29,701  INFO    Signals today: 0/2
+2026-06-15 04:51:29,701  INFO  ==================================================
+2026-06-15 04:51:29,702  INFO  Scanning BTC/USDT...
+2026-06-15 04:51:31,268  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:51:34,269  INFO  Scanning ETH/USDT...
+2026-06-15 04:51:35,652  INFO    ETH/USDT: pattern quality 59% below 70%. skip.
+2026-06-15 04:51:38,653  INFO  Scanning XAUT/USDT...
+2026-06-15 04:51:39,830  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 04:51:42,831  INFO  Scanning XAGUSDT...
+2026-06-15 04:51:44,004  INFO    XAGUSDT: momentum breakout detected: Bullish Momentum Breakout
+2026-06-15 04:51:44,005  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 04:51:47,005  INFO    Next scan in 5 min.
+2026-06-15 04:56:47,006  INFO  
+==================================================
+2026-06-15 04:56:47,007  INFO    2026-06-14 23:56 UTC
+2026-06-15 04:56:47,007  INFO    Signals today: 0/2
+2026-06-15 04:56:47,009  INFO  ==================================================
+2026-06-15 04:56:47,010  INFO  Scanning BTC/USDT...
+2026-06-15 04:56:48,562  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 04:56:51,564  INFO  Scanning ETH/USDT...
+2026-06-15 04:56:52,772  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 04:56:55,773  INFO  Scanning XAUT/USDT...
+2026-06-15 04:56:57,129  INFO    XAUT/USDT: momentum breakout detected: Level Breakout
+2026-06-15 04:56:57,129  INFO    XAUT/USDT long: cooldown. skip.
+2026-06-15 04:57:00,130  INFO  Scanning XAGUSDT...
+2026-06-15 04:57:01,316  INFO    XAGUSDT: momentum breakout detected: Bullish Momentum Breakout
+2026-06-15 04:57:01,317  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 04:57:04,318  INFO    Next scan in 5 min.
+2026-06-15 05:02:04,319  INFO  
+==================================================
+2026-06-15 05:02:04,319  INFO    2026-06-15 00:02 UTC
+2026-06-15 05:02:04,319  INFO    Signals today: 0/2
+2026-06-15 05:02:04,319  INFO  ==================================================
+2026-06-15 05:02:04,320  INFO  Scanning BTC/USDT...
+2026-06-15 05:02:05,551  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 05:02:08,552  INFO  Scanning ETH/USDT...
+2026-06-15 05:02:09,853  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 05:02:12,854  INFO  Scanning XAUT/USDT...
+2026-06-15 05:02:14,013  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 05:02:17,013  INFO  Scanning XAGUSDT...
+2026-06-15 05:02:18,265  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 05:02:21,266  INFO    Next scan in 5 min.
+2026-06-15 05:07:21,268  INFO  
+==================================================
+2026-06-15 05:07:21,269  INFO    2026-06-15 00:07 UTC
+2026-06-15 05:07:21,270  INFO    Signals today: 0/2
+2026-06-15 05:07:21,270  INFO  ==================================================
+2026-06-15 05:07:21,271  INFO  Scanning BTC/USDT...
+2026-06-15 05:07:22,470  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 05:07:25,472  INFO  Scanning ETH/USDT...
+2026-06-15 05:07:26,655  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 05:07:29,656  INFO  Scanning XAUT/USDT...
+2026-06-15 05:07:30,826  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 05:07:33,827  INFO  Scanning XAGUSDT...
+2026-06-15 05:07:34,980  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 05:07:37,981  INFO    Next scan in 5 min.
+2026-06-15 05:12:37,982  INFO  
+==================================================
+2026-06-15 05:12:37,982  INFO    2026-06-15 00:12 UTC
+2026-06-15 05:12:37,982  INFO    Signals today: 0/2
+2026-06-15 05:12:37,983  INFO  ==================================================
+2026-06-15 05:12:37,983  INFO  Scanning BTC/USDT...
+2026-06-15 05:12:39,215  INFO    BTC/USDT: pattern quality 62% below 70%. skip.
+2026-06-15 05:12:42,216  INFO  Scanning ETH/USDT...
+2026-06-15 05:12:43,382  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 05:12:46,383  INFO  Scanning XAUT/USDT...
+2026-06-15 05:12:47,565  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 05:12:50,566  INFO  Scanning XAGUSDT...
+2026-06-15 05:12:51,763  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 05:12:54,764  INFO    Next scan in 5 min.
+2026-06-15 05:17:54,765  INFO  
+==================================================
+2026-06-15 05:17:54,765  INFO    2026-06-15 00:17 UTC
+2026-06-15 05:17:54,766  INFO    Signals today: 0/2
+2026-06-15 05:17:54,766  INFO  ==================================================
+2026-06-15 05:17:54,766  INFO  Scanning BTC/USDT...
+2026-06-15 05:17:56,329  INFO    BTC/USDT: pattern quality 38% below 70%. skip.
+2026-06-15 05:17:59,331  INFO  Scanning ETH/USDT...
+2026-06-15 05:18:00,489  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 05:18:03,492  INFO  Scanning XAUT/USDT...
+2026-06-15 05:18:04,640  INFO    XAUT/USDT: momentum breakout detected: Level Breakout
+2026-06-15 05:18:04,640  INFO    XAUT/USDT long: cooldown. skip.
+2026-06-15 05:18:07,642  INFO  Scanning XAGUSDT...
+2026-06-15 05:18:08,783  INFO    XAGUSDT: momentum breakout detected: Bullish Momentum Breakout
+2026-06-15 05:18:08,783  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 05:18:11,784  INFO    Next scan in 5 min.
+2026-06-15 05:23:11,786  INFO  
+==================================================
+2026-06-15 05:23:11,786  INFO    2026-06-15 00:23 UTC
+2026-06-15 05:23:11,787  INFO    Signals today: 0/2
+2026-06-15 05:23:11,787  INFO  ==================================================
+2026-06-15 05:23:11,787  INFO  Scanning BTC/USDT...
+2026-06-15 05:23:12,982  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 05:23:15,983  INFO  Scanning ETH/USDT...
+2026-06-15 05:23:17,179  INFO    ETH/USDT short: cooldown. skip.
+2026-06-15 05:23:20,180  INFO  Scanning XAUT/USDT...
+2026-06-15 05:23:21,327  INFO    XAUT/USDT: momentum breakout detected: Level Breakout
+2026-06-15 05:23:21,328  INFO    XAUT/USDT long: cooldown. skip.
+2026-06-15 05:23:24,329  INFO  Scanning XAGUSDT...
+2026-06-15 05:23:25,482  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 05:23:28,483  INFO    Next scan in 5 min.
+2026-06-15 05:28:28,484  INFO  
+==================================================
+2026-06-15 05:28:28,484  INFO    2026-06-15 00:28 UTC
+2026-06-15 05:28:28,484  INFO    Signals today: 0/2
+2026-06-15 05:28:28,484  INFO  ==================================================
+2026-06-15 05:28:28,484  INFO  Scanning BTC/USDT...
+2026-06-15 05:28:29,713  INFO    BTC/USDT: pattern quality 38% below 70%. skip.
+2026-06-15 05:28:32,715  INFO  Scanning ETH/USDT...
+2026-06-15 05:28:33,897  INFO    ETH/USDT: pattern quality 21% below 70%. skip.
+2026-06-15 05:28:36,899  INFO  Scanning XAUT/USDT...
+2026-06-15 05:28:38,093  INFO    XAUT/USDT: momentum breakout detected: Level Breakout
+2026-06-15 05:28:38,094  INFO    XAUT/USDT long: cooldown. skip.
+2026-06-15 05:28:41,095  INFO  Scanning XAGUSDT...
+2026-06-15 05:28:42,247  INFO    XAGUSDT: momentum breakout detected: Bullish Momentum Breakout
+2026-06-15 05:28:42,247  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 05:28:45,249  INFO    Next scan in 5 min.
+2026-06-15 05:33:45,249  INFO  
+==================================================
+2026-06-15 05:33:45,249  INFO    2026-06-15 00:33 UTC
+2026-06-15 05:33:45,249  INFO    Signals today: 0/2
+2026-06-15 05:33:45,249  INFO  ==================================================
+2026-06-15 05:33:45,251  INFO  Scanning BTC/USDT...
+2026-06-15 05:33:46,704  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 05:33:49,706  INFO  Scanning ETH/USDT...
+2026-06-15 05:33:50,836  INFO    ETH/USDT: pattern quality 69% below 70%. skip.
+2026-06-15 05:33:53,838  INFO  Scanning XAUT/USDT...
+2026-06-15 05:33:54,947  INFO    XAUT/USDT: momentum breakout detected: Level Breakout
+2026-06-15 05:33:54,947  INFO    XAUT/USDT long: cooldown. skip.
+2026-06-15 05:33:57,949  INFO  Scanning XAGUSDT...
+2026-06-15 05:33:59,051  INFO    XAGUSDT: momentum breakout detected: Bullish Momentum Breakout
+2026-06-15 05:33:59,052  INFO    XAGUSDT long: cooldown. skip.
+2026-06-15 05:34:02,053  INFO    Next scan in 5 min.
+2026-06-15 05:39:02,054  INFO  
+==================================================
+2026-06-15 05:39:02,055  INFO    2026-06-15 00:39 UTC
+2026-06-15 05:39:02,055  INFO    Signals today: 0/2
+2026-06-15 05:39:02,056  INFO  ==================================================
+2026-06-15 05:39:02,056  INFO  Scanning BTC/USDT...
+2026-06-15 05:39:03,551  INFO    BTC/USDT: no valid pattern. skip.
+2026-06-15 05:39:06,553  INFO  Scanning ETH/USDT...
+2026-06-15 05:39:07,781  INFO    ETH/USDT: no valid pattern. skip.
+2026-06-15 05:39:10,784  INFO  Scanning XAUT/USDT...
+2026-06-15 05:39:11,924  INFO    XAUT/USDT: no valid pattern. skip.
+2026-06-15 05:39:14,926  INFO  Scanning XAGUSDT...
+2026-06-15 05:39:16,054  INFO    XAGUSDT: no valid pattern. skip.
+2026-06-15 05:39:19,055  INFO    Next scan in 5 min.
+2026-06-15 12:28:09,480  INFO  ==================================================
+2026-06-15 12:28:09,485  INFO    ELITE TRADING SIGNAL BOT  v4.0
+2026-06-15 12:28:09,489  INFO  ==================================================
+2026-06-15 12:28:12,223  INFO  Discord: sent OK
+2026-06-15 12:28:12,237  INFO  
+==================================================
+2026-06-15 12:28:12,244  INFO    2026-06-15 07:28 UTC
+2026-06-15 12:28:12,252  INFO    Signals today: 0/2
+2026-06-15 12:28:12,256  INFO  ==================================================
+2026-06-15 12:28:12,266  INFO  Scanning BTC/USDT...
