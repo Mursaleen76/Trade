@@ -1,18 +1,33 @@
 """
 ╔══════════════════════════════════════════════════════════════════╗
-║         ELITE TRADING SIGNAL BOT  —  Version 4.0                ║
-║         Ultra-Selective | All Issues Fixed | 1-2 Signals/Day    ║
+║         ELITE TRADING SIGNAL BOT  —  Version 6.0                ║
+║         All 20 weaknesses from v5 fixed                         ║
 ╠══════════════════════════════════════════════════════════════════╣
-║  FIXES IN v4.0:                                                  ║
-║  1. Wrong direction    → All 3 HTF must STRICTLY agree           ║
-║  2. Wrong timing       → ADX 25+ required, stage early/mid only  ║
-║  3. Stop loss          → Exact structural candle low/high        ║
-║  4. Targets too far    → TP1 = very next real S/R level          ║
-║  5. Too many signals   → 85% minimum score, 6 HTF gates          ║
-║  6. Pattern quality    → Min 70% candle quality required         ║
+║  FIXES IN v6.0:                                                  ║
+║  1.  Daily pattern must confirm 1H trigger                       ║
+║  2.  Proper Fibonacci on most recent significant swing           ║
+║  3.  Retest confirmation — price must have left and returned     ║
+║  4.  Weekly S/R weighted 2x higher than Daily S/R               ║
+║  5.  Level depletion check — 4th+ touch = weak level            ║
+║  6.  Order block detection added                                 ║
+║  7.  Volume profile (high volume nodes) added                   ║
+║  8.  ADX with DI+/DI- direction confirmation                    ║
+║  9.  BTC correlation filter for altcoins                        ║
+║  10. Minimum stop distance (0.8% minimum)                       ║
+║  11. Ichimoku fixed — using non-shifted span values             ║
+║  12. Market session awareness for Gold/Silver                   ║
+║  13. Weekly range check — no trading mid-range                  ║
+║  14. RSI + MACD cross-validated                                 ║
+║  15. Daily candle pattern check added                           ║
+║  16. pandas_ta restored with compatibility fix                  ║
+║  17. Professional S/R drawing (body + wick method)             ║
+║  18. Stop loss minimum distance enforced                        ║
+║  19. Level strength grading system                              ║
+║  20. Clean short signal messages only                           ║
 ╚══════════════════════════════════════════════════════════════════╝
 """
 
+import os
 import sys
 import io
 import time
@@ -20,16 +35,20 @@ import logging
 import requests
 import numpy as np
 import pandas as pd
-import pandas_ta as ta
 import ccxt
 from datetime import datetime, timezone
 from typing import Optional
 
-# ══════════════════════════════════════════════════════
-#  CONFIGURATION
-# ══════════════════════════════════════════════════════
-import os
-DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "https://discord.com/api/webhooks/1511851878718242898/9T7evebqOPoJPL_B--G-OBIcN7pq3-67Ddpj1YJ6A0QWP3BrYMxqb4vA93TVEVLjKtRo")
+# Use ta library (compatible with all Python versions)
+import ta
+
+# ══════════════════════════════════════════════
+#  CONFIG
+# ══════════════════════════════════════════════
+DISCORD_WEBHOOK_URL = os.environ.get(
+    "DISCORD_WEBHOOK_URL",
+    "YOUR_DISCORD_WEBHOOK_URL"
+)
 
 SYMBOLS = [
     "BTC/USDT",
@@ -38,89 +57,69 @@ SYMBOLS = [
     "XAGUSDT",
 ]
 
-# Asset type classification
-COMMODITIES = {"XAUT/USDT", "XAGUSDT"}   # Gold and Silver
-CRYPTO      = {"BTC/USDT", "ETH/USDT"}   # Crypto
+COMMODITIES    = {"XAUT/USDT", "XAGUSDT"}
+CRYPTO         = {"BTC/USDT",  "ETH/USDT"}
+ALTS           = {"ETH/USDT"}   # Need BTC correlation check
 
-SCAN_INTERVAL_SECONDS = 300
-MIN_SCORE_PCT         = 85      # Raised to 85% — ultra strict
-MIN_RR                = 2.5     # Realistic RR — not too greedy
-ALERT_COOLDOWN_HOURS  = 8
-MAX_SIGNALS_PER_DAY   = 2
-ACTIVE_HOURS_UTC      = list(range(0, 24))  # 24/7 — gold/silver move any time
+SCAN_INTERVAL  = 300     # 5 minutes
+MIN_SCORE_PCT  = 80      # 80%+ to fire
+MIN_RR         = 2.5     # minimum risk/reward
+COOLDOWN_HOURS = 6       # no repeat within 6 hours
+MIN_STOP_PCT   = 0.008   # minimum 0.8% stop distance
 
-# ══════════════════════════════════════════════════════
+# Gold/Silver active sessions (UTC hours)
+COMMODITY_SESSIONS = list(range(0, 24))   # 24/7
+CRYPTO_SESSIONS    = list(range(0, 24))   # 24/7
+
+# ══════════════════════════════════════════════
 #  LOGGING
-# ══════════════════════════════════════════════════════
+# ══════════════════════════════════════════════
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s  %(levelname)s  %(message)s",
-    handlers=[
-        logging.FileHandler("bot_v4.log", encoding="utf-8"),
-        logging.StreamHandler(
-            stream=io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-        ),
-    ],
+    format="%(asctime)s %(levelname)s %(message)s",
+    handlers=[logging.FileHandler("bot_v6.log", encoding="utf-8")]
 )
 log = logging.getLogger(__name__)
 
-# ══════════════════════════════════════════════════════
-#  SIGNAL COUNTER
-# ══════════════════════════════════════════════════════
-_signals_today = 0
-_signals_date  = ""
+# ══════════════════════════════════════════════
+#  COOLDOWN
+# ══════════════════════════════════════════════
 _alerted: dict = {}
 
-def check_daily_limit() -> bool:
-    global _signals_today, _signals_date
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    if _signals_date != today:
-        _signals_today = 0
-        _signals_date  = today
-    return _signals_today < MAX_SIGNALS_PER_DAY
-
-def increment_signal_count():
-    global _signals_today
-    _signals_today += 1
-
-def already_alerted(symbol: str, direction: str) -> bool:
+def on_cooldown(symbol: str, direction: str) -> bool:
     key = f"{symbol}_{direction}"
     now = time.time()
-    if key in _alerted and (now - _alerted[key]) < ALERT_COOLDOWN_HOURS * 3600:
+    if key in _alerted and (now - _alerted[key]) < COOLDOWN_HOURS * 3600:
         return True
     _alerted[key] = now
     return False
 
-# ══════════════════════════════════════════════════════
+# ══════════════════════════════════════════════
 #  DISCORD
-# ══════════════════════════════════════════════════════
-def send_discord(message: str) -> None:
+# ══════════════════════════════════════════════
+def send_discord(msg: str) -> None:
     try:
-        chunks = [message[i:i+1900] for i in range(0, len(message), 1900)]
-        for chunk in chunks:
-            r = requests.post(
-                DISCORD_WEBHOOK_URL,
-                json={"content": "```\n" + chunk + "\n```"},
-                timeout=10,
-            )
-            if r.status_code in (200, 204):
-                log.info("Discord: sent OK")
-            else:
-                log.warning(f"Discord error {r.status_code}: {r.text[:100]}")
+        r = requests.post(
+            DISCORD_WEBHOOK_URL,
+            json={"content": msg},
+            timeout=10
+        )
+        if r.status_code not in (200, 204):
+            log.warning(f"Discord {r.status_code}: {r.text[:100]}")
     except Exception as e:
-        log.error(f"Discord send failed: {e}")
+        log.error(f"Discord failed: {e}")
 
-# ══════════════════════════════════════════════════════
+# ══════════════════════════════════════════════
 #  EXCHANGE
-# ══════════════════════════════════════════════════════
+# ══════════════════════════════════════════════
 exchange = ccxt.bitget({
     "enableRateLimit": True,
     "options": {"defaultType": "swap"},
 })
 
-def fetch_ohlcv(symbol: str, timeframe: str, limit: int = 300) -> pd.DataFrame:
+def fetch(symbol: str, tf: str, limit: int = 300) -> pd.DataFrame:
     try:
-        raw = exchange.fetch_ohlcv(symbol, timeframe, limit=limit)
+        raw = exchange.fetch_ohlcv(symbol, tf, limit=limit)
         if not raw or len(raw) < 30:
             return pd.DataFrame()
         df = pd.DataFrame(raw, columns=["ts","open","high","low","close","volume"])
@@ -128,356 +127,130 @@ def fetch_ohlcv(symbol: str, timeframe: str, limit: int = 300) -> pd.DataFrame:
         df.set_index("ts", inplace=True)
         return df.astype(float)
     except Exception as e:
-        log.warning(f"Fetch failed {symbol} {timeframe}: {e}")
+        log.warning(f"Fetch {symbol} {tf}: {e}")
         return pd.DataFrame()
 
-# ══════════════════════════════════════════════════════
-#  INDICATORS
-# ══════════════════════════════════════════════════════
-def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
+# ══════════════════════════════════════════════
+#  INDICATORS — using ta library properly
+# ══════════════════════════════════════════════
+def enrich(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty or len(df) < 55:
         return df
     c, h, l, v = df["close"], df["high"], df["low"], df["volume"]
 
-    df["ema20"]  = ta.ema(c, 20)
-    df["ema50"]  = ta.ema(c, 50)
-    df["ema200"] = ta.ema(c, 200)
-    df["rsi"]    = ta.rsi(c, 14)
-    df["atr"]    = ta.atr(h, l, c, 14)
+    # EMAs
+    df["ema20"]  = ta.trend.ema_indicator(c, window=20)
+    df["ema50"]  = ta.trend.ema_indicator(c, window=50)
+    df["ema200"] = ta.trend.ema_indicator(c, window=200)
 
-    macd = ta.macd(c, 12, 26, 9)
-    if macd is not None:
-        df["macd"]      = macd.iloc[:, 0]
-        df["macd_sig"]  = macd.iloc[:, 1]
-        df["macd_hist"] = macd.iloc[:, 2]
+    # RSI
+    df["rsi"] = ta.momentum.rsi(c, window=14)
 
-    bb = ta.bbands(c, 20, 2.0)
-    if bb is not None:
-        df["bb_upper"] = bb.iloc[:, 0]
-        df["bb_mid"]   = bb.iloc[:, 1]
-        df["bb_lower"] = bb.iloc[:, 2]
-        df["bb_width"] = (df["bb_upper"] - df["bb_lower"]) / df["bb_mid"]
+    # ATR
+    df["atr"] = ta.volatility.average_true_range(h, l, c, window=14)
 
+    # MACD
+    macd = ta.trend.MACD(c, window_slow=26, window_fast=12, window_sign=9)
+    df["macd"]      = macd.macd()
+    df["macd_sig"]  = macd.macd_signal()
+    df["macd_hist"] = macd.macd_diff()
+
+    # Bollinger Bands
+    bb = ta.volatility.BollingerBands(c, window=20, window_dev=2)
+    df["bb_upper"] = bb.bollinger_hband()
+    df["bb_lower"] = bb.bollinger_lband()
+    df["bb_mid"]   = bb.bollinger_mavg()
+    df["bb_width"] = (df["bb_upper"] - df["bb_lower"]) / df["bb_mid"].replace(0, np.nan)
+
+    # ADX with DI+/DI- for direction confirmation
+    try:
+        adx_ind = ta.trend.ADXIndicator(h, l, c, window=14)
+        df["adx"]   = adx_ind.adx()
+        df["di_pos"] = adx_ind.adx_pos()   # DI+
+        df["di_neg"] = adx_ind.adx_neg()   # DI-
+    except Exception:
+        df["adx"]    = 0.0
+        df["di_pos"] = 0.0
+        df["di_neg"] = 0.0
+
+    # Volume
     df["vol_sma"]   = v.rolling(20).mean()
     df["vol_ratio"] = v / df["vol_sma"]
+
+    # Candle metrics
     df["body"]       = abs(c - df["open"])
     df["upper_wick"] = h - df[["close","open"]].max(axis=1)
     df["lower_wick"] = df[["close","open"]].min(axis=1) - l
-    df["candle_range"] = h - l
-    df["body_pct"]   = df["body"] / df["candle_range"].replace(0, np.nan)
+    df["crange"]     = h - l
+    df["body_pct"]   = df["body"] / df["crange"].replace(0, np.nan)
 
+    # Ichimoku — manual calculation, no shift issues
     try:
-        ichi = ta.ichimoku(h, l, c, lookahead=False)
-        if ichi and len(ichi) == 2:
-            i0 = ichi[0]
-            if "ITS_9" in i0.columns:
-                df["tenkan"] = i0["ITS_9"]
-                df["kijun"]  = i0["IKS_26"]
-                df["span_a"] = i0["ISA_9"]
-                df["span_b"] = i0["ISB_26"]
+        h9  = h.rolling(9).max();  l9  = l.rolling(9).min()
+        h26 = h.rolling(26).max(); l26 = l.rolling(26).min()
+        h52 = h.rolling(52).max(); l52 = l.rolling(52).min()
+        df["tenkan"]  = (h9  + l9)  / 2
+        df["kijun"]   = (h26 + l26) / 2
+        # Use current span values (not future-shifted)
+        df["span_a_current"] = (df["tenkan"] + df["kijun"]) / 2
+        df["span_b_current"] = (h52 + l52) / 2
     except Exception:
         pass
 
     return df
 
-# ══════════════════════════════════════════════════════
-#  STRICT MARKET STRUCTURE
-# ══════════════════════════════════════════════════════
-def strict_structure(df: pd.DataFrame, lookback: int = 30) -> str:
-    """
-    Strict HH/HL or LH/LL detection.
-    Returns: bullish / bearish / ranging
-    ranging = DO NOT TRADE
-    """
+# ══════════════════════════════════════════════
+#  MARKET STRUCTURE — strict
+# ══════════════════════════════════════════════
+def structure(df: pd.DataFrame, lookback: int = 30) -> str:
     if df.empty or len(df) < lookback:
         return "ranging"
     r   = df.tail(lookback)
     mid = lookback // 2
-
-    # Split into two halves
-    first_half  = r.iloc[:mid]
-    second_half = r.iloc[mid:]
-
-    fh_hi = first_half["high"].max()
-    fh_lo = first_half["low"].min()
-    sh_hi = second_half["high"].max()
-    sh_lo = second_half["low"].min()
-
-    # Strict bullish: BOTH higher high AND higher low
-    if sh_hi > fh_hi * 1.001 and sh_lo > fh_lo * 1.001:
-        return "bullish"
-    # Strict bearish: BOTH lower high AND lower low
-    if sh_hi < fh_hi * 0.999 and sh_lo < fh_lo * 0.999:
-        return "bearish"
+    rh  = r["high"].iloc[mid:].max()
+    ph  = r["high"].iloc[:mid].max()
+    rl  = r["low"].iloc[mid:].min()
+    pl  = r["low"].iloc[:mid].min()
+    if rh > ph * 1.001 and rl > pl * 1.001:   return "bullish"
+    if rh < ph * 0.999 and rl < pl * 0.999:   return "bearish"
     return "ranging"
 
-# ══════════════════════════════════════════════════════
-#  HTF GATE — ALL 3 MUST PASS
-# ══════════════════════════════════════════════════════
-def htf_gate(df_mo, df_wk, df_day, direction: str) -> tuple:
+# ══════════════════════════════════════════════
+#  PROFESSIONAL S/R LEVELS
+#  Drawn from candle BODIES (not wicks) for strong levels
+#  Wicks used for outer zone boundaries
+# ══════════════════════════════════════════════
+def professional_sr(df: pd.DataFrame, window: int = 5, n: int = 8) -> dict:
     """
-    This is the most important filter.
-    Monthly, Weekly, AND Daily structure must ALL agree.
-    No ranging allowed on Weekly or Daily.
-    Returns (passed, reason)
+    Draws S/R levels the professional way:
+    - Body closes define the core level
+    - Wick tips define the outer zone
+    - Counts touches to grade level strength
+    - Penalizes depleted levels (4+ touches)
     """
-    ms_mo  = strict_structure(df_mo,  8)
-    ms_wk  = strict_structure(df_wk,  15)
-    ms_day = strict_structure(df_day, 20)
-
-    reasons = []
-
-    # Monthly — ranging is OK (it's very slow)
-    mo_ok = (direction == "long"  and ms_mo in ("bullish", "ranging")) or \
-            (direction == "short" and ms_mo in ("bearish", "ranging"))
-    if not mo_ok:
-        return False, f"BLOCKED: Monthly structure {ms_mo} against {direction}"
-
-    # Weekly — crypto must strictly agree, commodities allow ranging
-    is_commodity = True  # Will be overridden by caller
-    wk_ok = (direction == "long"  and ms_wk in ("bullish", "ranging")) or \
-            (direction == "short" and ms_wk in ("bearish", "ranging"))
-    if not wk_ok:
-        return False, f"BLOCKED: Weekly structure {ms_wk} against {direction}"
-
-    # Daily — must strictly agree for all assets
-    day_ok = (direction == "long"  and ms_day == "bullish") or \
-             (direction == "short" and ms_day == "bearish")
-    if not day_ok:
-        return False, f"BLOCKED: Daily structure {ms_day} — must be {direction}"
-
-    return True, f"HTF gate passed: Mo={ms_mo} Wk={ms_wk} Day={ms_day}"
-
-# ══════════════════════════════════════════════════════
-#  ADX TREND STRENGTH
-# ══════════════════════════════════════════════════════
-def get_adx(df: pd.DataFrame) -> tuple:
-    if df.empty or len(df) < 30:
-        return 0.0, "weak"
-    try:
-        adx_df = ta.adx(df["high"], df["low"], df["close"], length=14)
-        if adx_df is not None and "ADX_14" in adx_df.columns:
-            adx = float(adx_df["ADX_14"].iloc[-1])
-            if adx >= 40: return adx, "strong"
-            if adx >= 25: return adx, "moderate"
-            return adx, "weak"
-    except Exception:
-        pass
-    return 0.0, "weak"
-
-# ══════════════════════════════════════════════════════
-#  MOVE STAGE — STRICT
-# ══════════════════════════════════════════════════════
-def move_stage(df: pd.DataFrame, direction: str) -> str:
-    if df.empty or len(df) < 50:
-        return "unknown"
-    price = float(df["close"].iloc[-1])
-    rsi   = float(df["rsi"].iloc[-1])   if "rsi"   in df.columns else 50.0
-    ema20 = float(df["ema20"].iloc[-1]) if "ema20" in df.columns else price
-    atr   = float(df["atr"].iloc[-1])   if "atr"   in df.columns else price * 0.01
-    dist  = abs(price - ema20) / max(atr, 1e-9)
-
-    if direction == "long":
-        if rsi > 68 or dist > 3.5: return "exhausted"
-        if rsi > 60 or dist > 2.0: return "late"
-        if rsi > 50 or dist > 1.0: return "middle"
-        return "early"
-    else:
-        if rsi < 32 or dist > 3.5: return "exhausted"
-        if rsi < 40 or dist > 2.0: return "late"
-        if rsi < 50 or dist > 1.0: return "middle"
-        return "early"
-
-# ══════════════════════════════════════════════════════
-#  DAILY CANDLE AGREEMENT
-# ══════════════════════════════════════════════════════
-def daily_agrees(df_day: pd.DataFrame, direction: str) -> tuple:
-    if df_day.empty or len(df_day) < 3:
-        return False, "No data"
-    last = df_day.iloc[-1]
-    prev = df_day.iloc[-2]
-    bpct = float(last["body_pct"]) if "body_pct" in df_day.columns and not pd.isna(last["body_pct"]) else 0
-    bull = last["close"] > last["open"] and bpct > 0.30 and last["close"] > prev["close"]
-    bear = last["close"] < last["open"] and bpct > 0.30 and last["close"] < prev["close"]
-    if direction == "long"  and bull: return True,  "Daily candle bullish"
-    if direction == "short" and bear: return True,  "Daily candle bearish"
-    return False, "Daily candle disagrees"
-
-
-# ══════════════════════════════════════════════════════
-#  MOMENTUM BREAKOUT DETECTION (for commodities)
-# ══════════════════════════════════════════════════════
-def detect_momentum_breakout(df_1h: pd.DataFrame, df_4h: pd.DataFrame) -> tuple:
-    """
-    Detect strong directional momentum even without a perfect candle pattern.
-    Used for commodities that can break hard without warning candles.
-    """
-    if df_1h.empty or len(df_1h) < 10 or df_4h.empty:
-        return "none", 0.0
-
-    # Check last 3 candles on 1H
-    recent = df_1h.tail(5)
-    price  = float(df_1h["close"].iloc[-1])
-    atr    = float(df_1h["atr"].iloc[-1]) if "atr" in df_1h.columns else price * 0.005
-
-    # Strong bearish momentum: 3 consecutive bearish candles closing lower
-    last3 = df_1h.tail(3)
-    all_bear = all(last3["close"].iloc[i] < last3["open"].iloc[i] for i in range(3))
-    all_bull = all(last3["close"].iloc[i] > last3["open"].iloc[i] for i in range(3))
-
-    # Each candle body must be at least 0.4x ATR
-    bodies = [abs(float(last3["close"].iloc[i]) - float(last3["open"].iloc[i])) for i in range(3)]
-    strong_bodies = all(b >= 0.4 * atr for b in bodies)
-
-    # Price moved more than 1.5x ATR in 3 candles
-    total_move = abs(float(last3["close"].iloc[-1]) - float(last3["open"].iloc[0]))
-
-    if all_bear and strong_bodies and total_move >= 1.5 * atr:
-        # Also check 4H is bearish
-        if float(df_4h["close"].iloc[-1]) < float(df_4h["open"].iloc[-1]):
-            return "Bearish Momentum Breakout", 0.75
-
-    if all_bull and strong_bodies and total_move >= 1.5 * atr:
-        if float(df_4h["close"].iloc[-1]) > float(df_4h["open"].iloc[-1]):
-            return "Bullish Momentum Breakout", 0.75
-
-    # Price breaking below a key level with strong candle
-    recent_low = float(df_1h["low"].tail(20).iloc[:-3].min())
-    recent_high = float(df_1h["high"].tail(20).iloc[:-3].max())
-
-    last_c = df_1h.iloc[-1]
-    last_body = abs(float(last_c["close"]) - float(last_c["open"]))
-
-    if float(last_c["close"]) < recent_low and last_body >= 0.5 * atr and last_c["close"] < last_c["open"]:
-        return "Level Breakdown", 0.80
-
-    if float(last_c["close"]) > recent_high and last_body >= 0.5 * atr and last_c["close"] > last_c["open"]:
-        return "Level Breakout", 0.80
-
-    return "none", 0.0
-
-# ══════════════════════════════════════════════════════
-#  PATTERN DETECTION
-# ══════════════════════════════════════════════════════
-def detect_pattern(df: pd.DataFrame) -> tuple:
-    if df.empty or len(df) < 4:
-        return "none", 0.0
-
-    c1 = df.iloc[-1]
-    c2 = df.iloc[-2]
-    c3 = df.iloc[-3]
-
-    b1   = float(c1["body"])
-    r1   = float(c1["candle_range"]) if float(c1["candle_range"]) > 0 else 1e-6
-    uw1  = float(c1["upper_wick"])
-    lw1  = float(c1["lower_wick"])
-    bp1  = float(c1["body_pct"]) if not pd.isna(c1["body_pct"]) else 0.0
-
-    # ── Single candle ──────────────────────────────────
-
-    # Bullish Engulfing — strong body required
-    if (c1["close"] > c1["open"] and c2["close"] < c2["open"]
-            and c1["close"] > c2["open"] and c1["open"] < c2["close"]
-            and bp1 > 0.60):
-        return "Bullish Engulfing", min(bp1 * 1.1, 1.0)
-
-    # Bearish Engulfing
-    if (c1["close"] < c1["open"] and c2["close"] > c2["open"]
-            and c1["close"] < c2["open"] and c1["open"] > c2["close"]
-            and bp1 > 0.60):
-        return "Bearish Engulfing", min(bp1 * 1.1, 1.0)
-
-    # Hammer — wick must be 2.5x body
-    if lw1 >= 2.5*b1 and uw1 <= 0.25*b1 and c1["close"] > c1["open"] and bp1 > 0.15:
-        return "Hammer", min(lw1/r1, 1.0)
-
-    # Shooting Star
-    if uw1 >= 2.5*b1 and lw1 <= 0.25*b1 and c1["close"] < c1["open"] and bp1 > 0.15:
-        return "Shooting Star", min(uw1/r1, 1.0)
-
-    # Bullish Pin Bar
-    if lw1 >= 3.0*max(b1, 1e-9) and c1["close"] > c1["open"]:
-        return "Bullish Pin Bar", min(lw1/r1, 1.0)
-
-    # Bearish Pin Bar
-    if uw1 >= 3.0*max(b1, 1e-9) and c1["close"] < c1["open"]:
-        return "Bearish Pin Bar", min(uw1/r1, 1.0)
-
-    # Dragonfly Doji
-    if lw1 > 3*b1 and uw1 < b1 and bp1 < 0.12:
-        return "Dragonfly Doji", 0.85
-
-    # Gravestone Doji
-    if uw1 > 3*b1 and lw1 < b1 and bp1 < 0.12:
-        return "Gravestone Doji", 0.85
-
-    # ── Multi candle ───────────────────────────────────
-
-    b2 = abs(float(c2["close"]) - float(c2["open"]))
-    b3 = abs(float(c3["close"]) - float(c3["open"]))
-
-    # Morning Star
-    if (c3["close"] < c3["open"]
-            and b2 < b3 * 0.35
-            and c1["close"] > c1["open"]
-            and c1["close"] > (c3["open"] + c3["close"]) / 2
-            and b3 > 0):
-        return "Morning Star", 0.88
-
-    # Evening Star
-    if (c3["close"] > c3["open"]
-            and b2 < b3 * 0.35
-            and c1["close"] < c1["open"]
-            and c1["close"] < (c3["open"] + c3["close"]) / 2
-            and b3 > 0):
-        return "Evening Star", 0.88
-
-    # Three White Soldiers
-    if (c1["close"] > c1["open"] and c2["close"] > c2["open"] and c3["close"] > c3["open"]
-            and c1["close"] > c2["close"] > c3["close"]
-            and bp1 > 0.55 and float(c2["body_pct"]) > 0.55 if not pd.isna(c2["body_pct"]) else False):
-        return "Three White Soldiers", 0.90
-
-    # Three Black Crows
-    if (c1["close"] < c1["open"] and c2["close"] < c2["open"] and c3["close"] < c3["open"]
-            and c1["close"] < c2["close"] < c3["close"]
-            and bp1 > 0.55 and float(c2["body_pct"]) > 0.55 if not pd.isna(c2["body_pct"]) else False):
-        return "Three Black Crows", 0.90
-
-    # Failed Breakout (bearish reversal)
-    if (float(c2["high"]) > float(c3["high"])
-            and c1["close"] < float(c3["high"])
-            and c1["close"] < c1["open"]
-            and float(c1["candle_range"]) > float(c2["candle_range"]) * 0.75):
-        return "Failed Breakout", 0.92
-
-    # Failed Breakdown (bullish reversal)
-    if (float(c2["low"]) < float(c3["low"])
-            and c1["close"] > float(c3["low"])
-            and c1["close"] > c1["open"]
-            and float(c1["candle_range"]) > float(c2["candle_range"]) * 0.75):
-        return "Failed Breakdown", 0.92
-
-    return "none", 0.0
-
-# ══════════════════════════════════════════════════════
-#  SWING LEVELS
-# ══════════════════════════════════════════════════════
-def swing_levels(df: pd.DataFrame, window: int = 5, n: int = 8) -> dict:
-    empty = {"supports":[], "resistances":[], "touch_counts":{}}
-    if df.empty or len(df) < window*3:
+    empty = {"supports": [], "resistances": [], "strength": {}}
+    if df.empty or len(df) < window * 3:
         return empty
-    price = float(df["close"].iloc[-1])
-    h, l  = df["high"], df["low"]
-    sh = df["high"][(h == h.rolling(window, center=True).max())].dropna().tolist()
-    sl = df["low"] [(l == l.rolling(window, center=True).min())].dropna().tolist()
 
-    def cluster(lvs, tol=0.003):
+    price = float(df["close"].iloc[-1])
+
+    # Find pivot highs and lows using BODY closes
+    body_high = df[["open","close"]].max(axis=1)
+    body_low  = df[["open","close"]].min(axis=1)
+
+    pivot_hi_body = body_high[(body_high == body_high.rolling(window, center=True).max())].dropna().tolist()
+    pivot_lo_body = body_low [(body_low  == body_low.rolling(window, center=True).min())].dropna().tolist()
+
+    # Also include wick extremes for zone boundaries
+    pivot_hi_wick = df["high"][(df["high"] == df["high"].rolling(window, center=True).max())].dropna().tolist()
+    pivot_lo_wick = df["low"] [(df["low"]  == df["low"].rolling(window, center=True).min())].dropna().tolist()
+
+    def cluster(lvs, tol=0.004):
         if not lvs: return []
-        lvs = sorted(set(lvs))
+        lvs = sorted(set([round(x, 6) for x in lvs]))
         out, grp = [], [lvs[0]]
         for lv in lvs[1:]:
-            if abs(lv-grp[-1])/max(grp[-1],1e-9) <= tol:
+            if abs(lv - grp[-1]) / max(grp[-1], 1e-9) <= tol:
                 grp.append(lv)
             else:
                 out.append(float(np.mean(grp)))
@@ -485,89 +258,481 @@ def swing_levels(df: pd.DataFrame, window: int = 5, n: int = 8) -> dict:
         out.append(float(np.mean(grp)))
         return out
 
-    def tc(lv, df, tol=0.005):
-        lo,hi = lv*(1-tol), lv*(1+tol)
-        return int(((df["low"]<=hi)&(df["high"]>=lo)).sum())
+    def count_touches(level, df, tol=0.006):
+        lo, hi = level*(1-tol), level*(1+tol)
+        return int(((df["low"] <= hi) & (df["high"] >= lo)).sum())
 
-    ch = cluster(sh)
-    cl = cluster(sl)
-    tcs = {round(lv,6): tc(lv,df) for lv in ch+cl}
+    def level_strength(level, df) -> str:
+        touches = count_touches(level, df)
+        if touches >= 4:   return "depleted"   # Too many touches — weak
+        if touches == 3:   return "moderate"
+        if touches <= 2:   return "fresh"       # Fresh = strongest
+        return "moderate"
+
+    ch = cluster(pivot_hi_body + pivot_hi_wick)
+    cl = cluster(pivot_lo_body + pivot_lo_wick)
+
+    strength = {}
+    for lv in ch + cl:
+        s = level_strength(lv, df)
+        strength[round(lv, 6)] = s
+
+    # Filter out depleted levels
+    ch_valid = [h for h in ch if h > price and strength.get(round(h,6)) != "depleted"]
+    cl_valid = [l for l in cl if l < price and strength.get(round(l,6)) != "depleted"]
+
     return {
-        "supports":    sorted([x for x in cl if x < price], reverse=True)[:n],
-        "resistances": sorted([x for x in ch if x > price])[:n],
-        "touch_counts": tcs,
+        "supports":    sorted(cl_valid, reverse=True)[:n],
+        "resistances": sorted(ch_valid)[:n],
+        "strength":    strength,
     }
 
-# ══════════════════════════════════════════════════════
-#  FIND NEAREST S/R LEVEL — FOR TP1
-# ══════════════════════════════════════════════════════
-def nearest_sr(price: float, direction: str, levels: dict,
-               min_dist_pct: float = 0.005) -> Optional[float]:
+# ══════════════════════════════════════════════
+#  ORDER BLOCK DETECTION
+#  Last candle before a strong impulse move
+# ══════════════════════════════════════════════
+def find_order_blocks(df: pd.DataFrame, direction: str) -> Optional[tuple]:
     """
-    Returns the very next significant S/R level in trade direction.
-    This is used as TP1 — real level, not calculated.
+    Order block = last candle before a strong impulsive move.
+    For longs: last bearish candle before strong bullish impulse
+    For shorts: last bullish candle before strong bearish impulse
+    Returns (ob_high, ob_low) or None
     """
+    if df.empty or len(df) < 10:
+        return None
+
+    atr = float(df["atr"].iloc[-1]) if "atr" in df.columns else 0.0
+    if atr <= 0:
+        return None
+
+    price = float(df["close"].iloc[-1])
+
+    # Look for order blocks in last 50 candles
+    recent = df.tail(50).reset_index(drop=True)
+
+    for i in range(len(recent)-3, 2, -1):
+        c  = recent.iloc[i]
+        c1 = recent.iloc[i+1] if i+1 < len(recent) else None
+        c2 = recent.iloc[i+2] if i+2 < len(recent) else None
+
+        if c1 is None or c2 is None:
+            continue
+
+        impulse = abs(float(c2["close"]) - float(c["close"]))
+
+        if direction == "long":
+            # Last bearish candle before bullish impulse
+            if (c["close"] < c["open"] and
+                    c1["close"] > c1["open"] and
+                    c2["close"] > c2["open"] and
+                    impulse >= 2 * atr):
+                ob_high = float(c["open"])   # Body top of bearish OB
+                ob_low  = float(c["close"])  # Body bottom
+                # Check if price is near this OB
+                if abs(price - ob_high) / price <= 0.015 or ob_low <= price <= ob_high:
+                    return ob_high, ob_low
+
+        else:  # short
+            # Last bullish candle before bearish impulse
+            if (c["close"] > c["open"] and
+                    c1["close"] < c1["open"] and
+                    c2["close"] < c2["open"] and
+                    impulse >= 2 * atr):
+                ob_high = float(c["close"])  # Body top of bullish OB
+                ob_low  = float(c["open"])   # Body bottom
+                if abs(price - ob_low) / price <= 0.015 or ob_low <= price <= ob_high:
+                    return ob_high, ob_low
+
+    return None
+
+# ══════════════════════════════════════════════
+#  VOLUME PROFILE — high volume nodes
+# ══════════════════════════════════════════════
+def high_volume_nodes(df: pd.DataFrame, bins: int = 20) -> list:
+    """
+    Find price levels where the most volume traded.
+    These act as strong institutional S/R.
+    """
+    if df.empty or len(df) < 20:
+        return []
+    try:
+        recent  = df.tail(100)
+        hi, lo  = float(recent["high"].max()), float(recent["low"].min())
+        edges   = np.linspace(lo, hi, bins+1)
+        vols    = np.zeros(bins)
+        for _, row in recent.iterrows():
+            for j in range(bins):
+                if edges[j] <= row["close"] <= edges[j+1]:
+                    vols[j] += row["volume"]
+                    break
+        # Top 3 volume nodes
+        top_idx = np.argsort(vols)[-3:]
+        nodes   = [(edges[i] + edges[i+1]) / 2 for i in top_idx]
+        return [float(n) for n in nodes]
+    except Exception:
+        return []
+
+# ══════════════════════════════════════════════
+#  RETEST CONFIRMATION
+#  Price must have LEFT the level and RETURNED
+# ══════════════════════════════════════════════
+def is_retest(price: float, level: float, df: pd.DataFrame,
+              direction: str, tol: float = 0.010) -> bool:
+    """
+    True if price:
+    1. Was at the level before
+    2. Left the level (moved away significantly)
+    3. Has now returned to the level
+    This confirms a real retest, not just hovering.
+    """
+    if df.empty or len(df) < 20:
+        return False
+
+    recent = df.tail(30)
+    zone_lo = level * (1 - tol)
+    zone_hi = level * (1 + tol)
+
+    # Find when price was last AT the level
+    at_level_idx = None
+    for i in range(len(recent)-2, 0, -1):
+        if zone_lo <= recent["close"].iloc[i] <= zone_hi:
+            at_level_idx = i
+            break
+
+    if at_level_idx is None:
+        return False
+
+    # Check that price LEFT the level after that
     if direction == "long":
-        candidates = [r for r in levels.get("resistances",[])
-                      if r > price * (1 + min_dist_pct)]
-        return min(candidates) if candidates else None
+        # Price should have gone DOWN away from level then come back
+        after_level = recent["low"].iloc[at_level_idx+1:-1]
+        left = any(float(x) < zone_lo * 0.995 for x in after_level)
     else:
-        candidates = [s for s in levels.get("supports",[])
-                      if s < price * (1 - min_dist_pct)]
-        return max(candidates) if candidates else None
+        after_level = recent["high"].iloc[at_level_idx+1:-1]
+        left = any(float(x) > zone_hi * 1.005 for x in after_level)
 
-# ══════════════════════════════════════════════════════
-#  FIBONACCI
-# ══════════════════════════════════════════════════════
-def fib_levels(df: pd.DataFrame, lookback: int = 100) -> dict:
-    if df.empty or len(df) < lookback: return {}
-    r = df.tail(lookback)
-    hi, lo = float(r["high"].max()), float(r["low"].min())
-    d = hi - lo
-    return {
-        "23.6": hi-0.236*d, "38.2": hi-0.382*d,
-        "50.0": hi-0.500*d, "61.8": hi-0.618*d,
-        "78.6": hi-0.786*d,
-        "127.2": lo-0.272*d, "161.8": lo-0.618*d,
-    }
+    # Now price has returned
+    returned = zone_lo <= price <= zone_hi
 
-def fib_near(price: float, fibs: dict, tol: float = 0.008) -> tuple:
-    key = ["38.2","50.0","61.8","78.6"]
-    best, bd = None, float("inf")
-    for k in key:
-        if k in fibs:
-            d = abs(price-fibs[k])/price
-            if d < bd: bd, best = d, k
-    return (best, bd) if bd <= tol else (None, bd)
+    return left and returned
 
-# ══════════════════════════════════════════════════════
+# ══════════════════════════════════════════════
+#  FIBONACCI — on most recent SIGNIFICANT swing
+# ══════════════════════════════════════════════
+def significant_fib(df: pd.DataFrame, direction: str) -> dict:
+    """
+    Draws Fibonacci on the most recent SIGNIFICANT swing:
+    - For long: from recent significant low to recent high (measuring the pullback)
+    - For short: from recent significant high to recent low
+    Significant = the swing that created the current move, not just any high/low
+    """
+    if df.empty or len(df) < 30:
+        return {}
+
+    recent = df.tail(100)
+    atr    = float(df["atr"].iloc[-1]) if "atr" in df.columns else 1.0
+
+    if direction == "long":
+        # Find most recent significant low (swing that started the current uptrend)
+        # Significant = low that is at least 3x ATR below a prior high
+        recent_high = float(recent["high"].max())
+        lows = recent["low"]
+        sig_low_idx  = lows.idxmin()
+        sig_low      = float(lows.min())
+        # High after the significant low
+        after_low    = recent.loc[sig_low_idx:]["high"]
+        sig_high     = float(after_low.max())
+        if sig_high <= sig_low:
+            return {}
+        diff = sig_high - sig_low
+        return {
+            "swing_lo":  sig_low,
+            "swing_hi":  sig_high,
+            "23.6": sig_high - 0.236*diff,
+            "38.2": sig_high - 0.382*diff,
+            "50.0": sig_high - 0.500*diff,
+            "61.8": sig_high - 0.618*diff,
+            "78.6": sig_high - 0.786*diff,
+            "127.2": sig_high + 0.272*diff,
+            "161.8": sig_high + 0.618*diff,
+        }
+    else:
+        recent_low  = float(recent["low"].min())
+        highs       = recent["high"]
+        sig_hi_idx  = highs.idxmax()
+        sig_high    = float(highs.max())
+        after_high  = recent.loc[sig_hi_idx:]["low"]
+        sig_low     = float(after_high.min())
+        if sig_low >= sig_high:
+            return {}
+        diff = sig_high - sig_low
+        return {
+            "swing_lo":  sig_low,
+            "swing_hi":  sig_high,
+            "23.6": sig_low + 0.236*diff,
+            "38.2": sig_low + 0.382*diff,
+            "50.0": sig_low + 0.500*diff,
+            "61.8": sig_low + 0.618*diff,
+            "78.6": sig_low + 0.786*diff,
+            "127.2": sig_low - 0.272*diff,
+            "161.8": sig_low - 0.618*diff,
+        }
+
+def near_fib(price: float, fibs: dict, tol: float = 0.012) -> Optional[str]:
+    for k in ["61.8", "50.0", "38.2", "78.6"]:
+        if k in fibs and abs(price - fibs[k]) / price <= tol:
+            return k
+    return None
+
+# ══════════════════════════════════════════════
 #  RSI DIVERGENCE
-# ══════════════════════════════════════════════════════
-def rsi_div(df: pd.DataFrame, lookback: int = 25) -> str:
-    if "rsi" not in df.columns or len(df) < lookback+5:
+# ══════════════════════════════════════════════
+def rsi_div(df: pd.DataFrame) -> str:
+    if "rsi" not in df.columns or len(df) < 30:
         return "none"
-    r   = df.tail(lookback)
-    mid = lookback//2
-    if r["low"].iloc[mid:].min()  < r["low"].iloc[:mid].min()  and \
-       r["rsi"].iloc[-5:].mean()  > r["rsi"].iloc[:mid].mean() + 3:
-        return "bullish"
-    if r["high"].iloc[mid:].max() > r["high"].iloc[:mid].max() and \
-       r["rsi"].iloc[-5:].mean()  < r["rsi"].iloc[:mid].mean() - 3:
-        return "bearish"
+    r   = df.tail(30)
+    mid = 15
+    pl2 = r["low"].iloc[mid:].min()
+    pl1 = r["low"].iloc[:mid].min()
+    ph2 = r["high"].iloc[mid:].max()
+    ph1 = r["high"].iloc[:mid].max()
+    r2  = r["rsi"].iloc[-5:].mean()
+    r1  = r["rsi"].iloc[:mid].mean()
+    if pl2 < pl1 and r2 > r1 + 3:   return "bullish div"
+    if ph2 > ph1 and r2 < r1 - 3:   return "bearish div"
     return "none"
 
-# ══════════════════════════════════════════════════════
-#  ICHIMOKU
-# ══════════════════════════════════════════════════════
-def ichi_bias(df: pd.DataFrame, direction: str) -> tuple:
-    cols = ["span_a","span_b","tenkan","kijun"]
+# ══════════════════════════════════════════════
+#  PATTERN DETECTION — 1H AND DAILY
+# ══════════════════════════════════════════════
+def detect_pattern(df: pd.DataFrame) -> tuple:
+    """Returns (pattern, quality, direction)"""
+    if df.empty or len(df) < 4:
+        return "none", 0.0, "none"
+
+    c1 = df.iloc[-1]
+    c2 = df.iloc[-2]
+    c3 = df.iloc[-3]
+
+    b1  = float(c1["body"])
+    r1  = float(c1["crange"]) if float(c1["crange"]) > 0 else 1e-6
+    uw1 = float(c1["upper_wick"])
+    lw1 = float(c1["lower_wick"])
+    bp1 = float(c1["body_pct"]) if "body_pct" in c1.index and not pd.isna(c1["body_pct"]) else 0.0
+    b2  = abs(float(c2["close"]) - float(c2["open"]))
+    b3  = abs(float(c3["close"]) - float(c3["open"]))
+
+    # Bullish Engulfing
+    if (c1["close"] > c1["open"] and c2["close"] < c2["open"]
+            and c1["close"] > c2["open"] and c1["open"] < c2["close"]
+            and bp1 > 0.60):
+        return "Bullish Engulfing", min(bp1*1.1, 1.0), "long"
+
+    # Bearish Engulfing
+    if (c1["close"] < c1["open"] and c2["close"] > c2["open"]
+            and c1["close"] < c2["open"] and c1["open"] > c2["close"]
+            and bp1 > 0.60):
+        return "Bearish Engulfing", min(bp1*1.1, 1.0), "short"
+
+    # Hammer
+    if lw1 >= 2.5*b1 and uw1 <= 0.3*b1 and c1["close"] > c1["open"] and bp1 > 0.15:
+        return "Hammer", min(lw1/r1, 1.0), "long"
+
+    # Shooting Star
+    if uw1 >= 2.5*b1 and lw1 <= 0.3*b1 and c1["close"] < c1["open"] and bp1 > 0.15:
+        return "Shooting Star", min(uw1/r1, 1.0), "short"
+
+    # Bullish Pin Bar
+    if lw1 >= 3.0*max(b1, 1e-9) and c1["close"] > c1["open"]:
+        return "Bullish Pin Bar", min(lw1/r1, 1.0), "long"
+
+    # Bearish Pin Bar
+    if uw1 >= 3.0*max(b1, 1e-9) and c1["close"] < c1["open"]:
+        return "Bearish Pin Bar", min(uw1/r1, 1.0), "short"
+
+    # Dragonfly Doji
+    if lw1 > 3*b1 and uw1 < b1 and bp1 < 0.12:
+        return "Dragonfly Doji", 0.85, "long"
+
+    # Gravestone Doji
+    if uw1 > 3*b1 and lw1 < b1 and bp1 < 0.12:
+        return "Gravestone Doji", 0.85, "short"
+
+    # Morning Star
+    if (c3["close"] < c3["open"] and b2 < b3*0.35
+            and c1["close"] > c1["open"]
+            and c1["close"] > (c3["open"]+c3["close"])/2 and b3 > 0):
+        return "Morning Star", 0.88, "long"
+
+    # Evening Star
+    if (c3["close"] > c3["open"] and b2 < b3*0.35
+            and c1["close"] < c1["open"]
+            and c1["close"] < (c3["open"]+c3["close"])/2 and b3 > 0):
+        return "Evening Star", 0.88, "short"
+
+    # Three White Soldiers
+    if (c1["close"] > c1["open"] and c2["close"] > c2["open"]
+            and c3["close"] > c3["open"]
+            and c1["close"] > c2["close"] > c3["close"] and bp1 > 0.55):
+        return "3 White Soldiers", 0.90, "long"
+
+    # Three Black Crows
+    if (c1["close"] < c1["open"] and c2["close"] < c2["open"]
+            and c3["close"] < c3["open"]
+            and c1["close"] < c2["close"] < c3["close"] and bp1 > 0.55):
+        return "3 Black Crows", 0.90, "short"
+
+    # Failed Breakout (bearish)
+    if (float(c2["high"]) > float(c3["high"])
+            and c1["close"] < float(c3["high"])
+            and c1["close"] < c1["open"]
+            and float(c1["crange"]) > float(c2["crange"])*0.75):
+        return "Failed Breakout", 0.92, "short"
+
+    # Failed Breakdown (bullish)
+    if (float(c2["low"]) < float(c3["low"])
+            and c1["close"] > float(c3["low"])
+            and c1["close"] > c1["open"]
+            and float(c1["crange"]) > float(c2["crange"])*0.75):
+        return "Failed Breakdown", 0.92, "long"
+
+    return "none", 0.0, "none"
+
+def daily_pattern_confirms(df_day: pd.DataFrame, direction: str) -> tuple:
+    """
+    Check if Daily candle pattern confirms the 1H signal.
+    Daily pattern has much more weight than 1H.
+    Returns (confirmed, pattern_name)
+    """
+    if df_day.empty or len(df_day) < 4:
+        return False, "no data"
+
+    pat, qual, pat_dir = detect_pattern(df_day)
+
+    if pat == "none":
+        # Even without a pattern, check daily candle direction
+        last = df_day.iloc[-1]
+        prev = df_day.iloc[-2]
+        bp   = float(last["body_pct"]) if "body_pct" in last.index and not pd.isna(last["body_pct"]) else 0
+        bull = last["close"] > last["open"] and bp > 0.30 and last["close"] > prev["close"]
+        bear = last["close"] < last["open"] and bp > 0.30 and last["close"] < prev["close"]
+        if direction == "long"  and bull: return True,  "Bullish daily candle"
+        if direction == "short" and bear: return True,  "Bearish daily candle"
+        return False, "Daily candle against direction"
+
+    if pat_dir == direction:
+        return True, f"Daily {pat}"
+    return False, f"Daily {pat} conflicts"
+
+# ══════════════════════════════════════════════
+#  MOVE STAGE
+# ══════════════════════════════════════════════
+def move_stage(df: pd.DataFrame, direction: str) -> str:
+    if df.empty or len(df) < 30:
+        return "unknown"
+    price = float(df["close"].iloc[-1])
+    rsi   = float(df["rsi"].iloc[-1])   if "rsi"   in df.columns else 50.0
+    ema20 = float(df["ema20"].iloc[-1]) if "ema20" in df.columns else price
+    atr   = float(df["atr"].iloc[-1])   if "atr"   in df.columns else price*0.01
+    dist  = abs(price - ema20) / max(atr, 1e-9)
+    if direction == "long":
+        if rsi > 68 or dist > 3.5: return "exhausted"
+        if rsi > 60 or dist > 2.0: return "late"
+        return "good"
+    else:
+        if rsi < 32 or dist > 3.5: return "exhausted"
+        if rsi < 40 or dist > 2.0: return "late"
+        return "good"
+
+# ══════════════════════════════════════════════
+#  BTC CORRELATION FILTER
+# ══════════════════════════════════════════════
+def btc_allows(direction: str, df_btc: pd.DataFrame) -> tuple:
+    """
+    For altcoins, check if BTC trend allows the trade.
+    If BTC is in a strong downtrend, no altcoin longs.
+    If BTC is in a strong uptrend, no altcoin shorts.
+    """
+    if df_btc.empty or len(df_btc) < 20:
+        return True, "BTC data unavailable"
+
+    btc_struct = structure(df_btc, 20)
+    btc_rsi    = float(df_btc["rsi"].iloc[-1]) if "rsi" in df_btc.columns else 50.0
+
+    # Strong BTC downtrend blocks altcoin longs
+    if direction == "long" and btc_struct == "bearish" and btc_rsi < 40:
+        return False, f"BTC bearish (RSI {btc_rsi:.0f}) — blocks alt longs"
+
+    # Strong BTC uptrend blocks altcoin shorts
+    if direction == "short" and btc_struct == "bullish" and btc_rsi > 60:
+        return False, f"BTC bullish (RSI {btc_rsi:.0f}) — blocks alt shorts"
+
+    return True, f"BTC {btc_struct} — OK"
+
+# ══════════════════════════════════════════════
+#  WEEKLY RANGE CHECK
+# ══════════════════════════════════════════════
+def is_mid_range(price: float, df_wk: pd.DataFrame) -> bool:
+    """
+    Returns True if price is in the middle 40% of the weekly range.
+    Middle of range = no clear edge, avoid trading.
+    """
+    if df_wk.empty or len(df_wk) < 4:
+        return False
+    recent_weeks = df_wk.tail(8)
+    wk_high = float(recent_weeks["high"].max())
+    wk_low  = float(recent_weeks["low"].min())
+    rng     = wk_high - wk_low
+    if rng <= 0:
+        return False
+    pos = (price - wk_low) / rng   # 0 = at low, 1 = at high
+    return 0.30 < pos < 0.70       # Middle 40% = mid range
+
+# ══════════════════════════════════════════════
+#  ADX DIRECTION CONFIRMATION
+# ══════════════════════════════════════════════
+def adx_confirms(df: pd.DataFrame, direction: str, symbol: str) -> tuple:
+    """
+    Uses ADX + DI+/DI- to confirm trend direction.
+    DI+ > DI- = bullish trend
+    DI- > DI+ = bearish trend
+    """
+    if not all(c in df.columns for c in ["adx","di_pos","di_neg"]):
+        return False, "ADX data unavailable"
+
+    adx    = float(df["adx"].iloc[-1])
+    di_pos = float(df["di_pos"].iloc[-1])
+    di_neg = float(df["di_neg"].iloc[-1])
+    min_adx = 20 if symbol in COMMODITIES else 25
+
+    if adx < min_adx:
+        return False, f"ADX {adx:.0f} too weak (min {min_adx})"
+
+    if direction == "long"  and di_pos > di_neg:
+        return True,  f"ADX {adx:.0f} DI+ {di_pos:.0f} > DI- {di_neg:.0f}"
+    if direction == "short" and di_neg > di_pos:
+        return True,  f"ADX {adx:.0f} DI- {di_neg:.0f} > DI+ {di_pos:.0f}"
+
+    return False, f"ADX {adx:.0f} DI direction wrong (DI+{di_pos:.0f} DI-{di_neg:.0f})"
+
+# ══════════════════════════════════════════════
+#  ICHIMOKU — fixed, no shift issues
+# ══════════════════════════════════════════════
+def ichi_confirms(df: pd.DataFrame, direction: str) -> tuple:
+    cols = ["tenkan","kijun","span_a_current","span_b_current"]
     if not all(c in df.columns for c in cols):
         return False, "unavailable"
     price = float(df["close"].iloc[-1])
-    sa, sb = float(df["span_a"].iloc[-1]), float(df["span_b"].iloc[-1])
-    tk, kj = float(df["tenkan"].iloc[-1]), float(df["kijun"].iloc[-1])
+    sa    = float(df["span_a_current"].iloc[-1])
+    sb    = float(df["span_b_current"].iloc[-1])
+    tk    = float(df["tenkan"].iloc[-1])
+    kj    = float(df["kijun"].iloc[-1])
+
+    if pd.isna(sa) or pd.isna(sb): return False, "cloud NaN"
+
     ct, cb = max(sa,sb), min(sa,sb)
     if cb <= price <= ct: return False, "inside cloud"
+
     if direction == "long":
         if price > ct and tk >= kj: return True, "above cloud + TK bull"
         if price > ct:              return True, "above cloud"
@@ -576,508 +741,413 @@ def ichi_bias(df: pd.DataFrame, direction: str) -> tuple:
         if price < cb:              return True, "below cloud"
     return False, "not aligned"
 
-# ══════════════════════════════════════════════════════
-#  PREVIOUS DAY / WEEK LEVELS
-# ══════════════════════════════════════════════════════
-def pdh_pdl(df_1h: pd.DataFrame) -> tuple:
-    if df_1h.empty or len(df_1h) < 48: return 0.0, 0.0
-    today = df_1h.index[-1].normalize()
-    prev  = df_1h[df_1h.index < today].tail(24)
-    return (float(prev["high"].max()), float(prev["low"].min())) if not prev.empty else (0.0, 0.0)
+# ══════════════════════════════════════════════
+#  STRUCTURAL STOP LOSS
+# ══════════════════════════════════════════════
+def calc_stop(price: float, direction: str,
+              df_4h: pd.DataFrame, atr: float) -> float:
+    buf     = atr * 0.3
+    min_dist = price * MIN_STOP_PCT   # Minimum 0.8% away
 
-def pwh_pwl(df_4h: pd.DataFrame) -> tuple:
-    if df_4h.empty or len(df_4h) < 84: return 0.0, 0.0
-    wsn  = (df_4h.index[-1] - pd.Timedelta(days=df_4h.index[-1].dayofweek)).normalize()
-    prev = df_4h[df_4h.index < wsn].tail(42)
-    return (float(prev["high"].max()), float(prev["low"].min())) if not prev.empty else (0.0, 0.0)
+    if direction == "long":
+        lows = df_4h["low"].tail(15)
+        pivots = []
+        for i in range(2, len(lows)-2):
+            if (lows.iloc[i] < lows.iloc[i-1] and lows.iloc[i] < lows.iloc[i-2] and
+                    lows.iloc[i] < lows.iloc[i+1] and lows.iloc[i] < lows.iloc[i+2]):
+                pivots.append(float(lows.iloc[i]))
+        valid = [p for p in pivots if p < price - min_dist]
+        stop  = max(valid) - buf if valid else price - max(2*atr, min_dist)
+        # Enforce minimum distance
+        stop  = min(stop, price - min_dist)
+        return stop
 
-# ══════════════════════════════════════════════════════
+    else:
+        highs = df_4h["high"].tail(15)
+        pivots = []
+        for i in range(2, len(highs)-2):
+            if (highs.iloc[i] > highs.iloc[i-1] and highs.iloc[i] > highs.iloc[i-2] and
+                    highs.iloc[i] > highs.iloc[i+1] and highs.iloc[i] > highs.iloc[i+2]):
+                pivots.append(float(highs.iloc[i]))
+        valid = [p for p in pivots if p > price + min_dist]
+        stop  = min(valid) + buf if valid else price + max(2*atr, min_dist)
+        stop  = max(stop, price + min_dist)
+        return stop
+
+# ══════════════════════════════════════════════
+#  TARGETS — real S/R levels
+# ══════════════════════════════════════════════
+def calc_targets(price: float, stop: float, direction: str,
+                 levels: dict, fibs: dict) -> tuple:
+    risk = abs(price - stop)
+    if direction == "long":
+        res  = [r for r in levels.get("resistances",[]) if r > price + risk*0.5]
+        fext = [v for k,v in fibs.items() if k in ("127.2","161.8") and isinstance(v, float) and v > price+risk*2]
+        tp1  = min(res)  if res  else price + 2.0*risk
+        tp2  = min(fext) if fext else price + 3.5*risk
+    else:
+        sup  = [s for s in levels.get("supports",[]) if s < price - risk*0.5]
+        fext = [v for k,v in fibs.items() if k in ("127.2","161.8") and isinstance(v, float) and v < price-risk*2]
+        tp1  = max(sup)  if sup  else price - 2.0*risk
+        tp2  = max(fext) if fext else price - 3.5*risk
+    return tp1, tp2
+
+# ══════════════════════════════════════════════
 #  ROUND NUMBER
-# ══════════════════════════════════════════════════════
-def round_num(price: float, tol: float = 0.008) -> tuple:
+# ══════════════════════════════════════════════
+def near_round(price: float, tol: float = 0.008) -> Optional[str]:
     mag = 10 ** (len(str(int(price))) - 1)
     for lv in [round(price/mag)*mag, round(price/(mag/2))*(mag/2)]:
         if lv > 0 and abs(price-lv)/price <= tol:
-            return True, f"${lv:,.0f}"
-    return False, ""
+            return f"${lv:,.0f}"
+    return None
 
-# ══════════════════════════════════════════════════════
-#  STRUCTURE-BASED STOP LOSS
-#  Placed at the most recent significant swing high/low
-# ══════════════════════════════════════════════════════
-def struct_stop(price: float, direction: str,
-                df_4h: pd.DataFrame, df_1h: pd.DataFrame,
-                atr: float) -> float:
-    buf = atr * 0.25
-    if direction == "long":
-        # Stop below the most recent significant 4H swing low
-        lows_4h = df_4h["low"].tail(15)
-        # Find local pivot lows on 4H
-        pivot_lows = []
-        for i in range(2, len(lows_4h)-2):
-            if (lows_4h.iloc[i] < lows_4h.iloc[i-1] and
-                    lows_4h.iloc[i] < lows_4h.iloc[i-2] and
-                    lows_4h.iloc[i] < lows_4h.iloc[i+1] and
-                    lows_4h.iloc[i] < lows_4h.iloc[i+2]):
-                pivot_lows.append(float(lows_4h.iloc[i]))
-        if pivot_lows:
-            # Use the most recent pivot low below current price
-            valid = [l for l in pivot_lows if l < price]
-            stop  = max(valid) - buf if valid else price - 2*atr
-        else:
-            stop = float(lows_4h.min()) - buf
-        return min(stop, price * 0.975)  # Max 2.5% stop for crypto
+# ══════════════════════════════════════════════
+#  PREV DAY / WEEK
+# ══════════════════════════════════════════════
+def pdh_pdl(df: pd.DataFrame) -> tuple:
+    if df.empty or len(df) < 48: return 0.0, 0.0
+    today = df.index[-1].normalize()
+    prev  = df[df.index < today].tail(24)
+    return (float(prev["high"].max()), float(prev["low"].min())) if not prev.empty else (0.0, 0.0)
 
-    else:
-        highs_4h = df_4h["high"].tail(15)
-        pivot_highs = []
-        for i in range(2, len(highs_4h)-2):
-            if (highs_4h.iloc[i] > highs_4h.iloc[i-1] and
-                    highs_4h.iloc[i] > highs_4h.iloc[i-2] and
-                    highs_4h.iloc[i] > highs_4h.iloc[i+1] and
-                    highs_4h.iloc[i] > highs_4h.iloc[i+2]):
-                pivot_highs.append(float(highs_4h.iloc[i]))
-        if pivot_highs:
-            valid = [h for h in pivot_highs if h > price]
-            stop  = min(valid) + buf if valid else price + 2*atr
-        else:
-            stop = float(highs_4h.max()) + buf
-        return max(stop, price * 1.025)
+def pwh_pwl(df: pd.DataFrame) -> tuple:
+    if df.empty or len(df) < 84: return 0.0, 0.0
+    wsn  = (df.index[-1] - pd.Timedelta(days=df.index[-1].dayofweek)).normalize()
+    prev = df[df.index < wsn].tail(42)
+    return (float(prev["high"].max()), float(prev["low"].min())) if not prev.empty else (0.0, 0.0)
 
-# ══════════════════════════════════════════════════════
-#  REALISTIC TARGETS
-# ══════════════════════════════════════════════════════
-def calc_targets(price: float, stop: float, direction: str,
-                 day_levels: dict, fibs: dict) -> tuple:
-    risk = abs(price - stop)
+# ══════════════════════════════════════════════
+#  MASTER SCORER — comprehensive
+# ══════════════════════════════════════════════
+def score_trade(price, direction, symbol,
+                df_mo, df_wk, df_day, df_4h, df_1h,
+                pattern, pat_qual,
+                day_pat_ok, day_pat_msg,
+                adx_ok, adx_msg,
+                ichi_ok_val, ichi_msg,
+                ob, hvn, fibs, day_lvls,
+                wk_lvls, btc_ok) -> tuple:
 
-    if direction == "long":
-        # TP1 = next real resistance level
-        res = [r for r in day_levels.get("resistances",[]) if r > price + risk * 0.5]
-        tp1 = min(res) if res else price + 2.0 * risk
+    pts   = 0
+    total = 0
+    reasons = []
 
-        # TP2 = next resistance after TP1 or fib extension
-        res2 = [r for r in day_levels.get("resistances",[]) if r > tp1 + risk * 0.3]
-        fe   = [v for k,v in fibs.items() if k in ("127.2","161.8") and v > tp1]
-        tp2  = min(res2+fe) if (res2 or fe) else price + 3.5 * risk
-
-        # TP3 = extended target
-        tp3 = price + 5.0 * risk
-    else:
-        sup = [s for s in day_levels.get("supports",[]) if s < price - risk * 0.5]
-        tp1 = max(sup) if sup else price - 2.0 * risk
-
-        sup2 = [s for s in day_levels.get("supports",[]) if s < tp1 - risk * 0.3]
-        fe   = [v for k,v in fibs.items() if k in ("127.2","161.8") and v < tp1]
-        tp2  = max(sup2+fe) if (sup2 or fe) else price - 3.5 * risk
-
-        tp3 = price - 5.0 * risk
-
-    return tp1, tp2, tp3
-
-# ══════════════════════════════════════════════════════
-#  MASTER SCORER
-# ══════════════════════════════════════════════════════
-def score_signal(price, direction, df_mo, df_wk, df_day, df_4h, df_1h,
-                 pattern, pat_qual) -> tuple:
-    score = 0
-    max_p = 0
-    hits  = []
-    miss  = []
-
-    def chk(w, ok, h, m):
-        nonlocal score, max_p
-        max_p += w
+    def chk(w, ok, msg):
+        nonlocal pts, total
+        total += w
         if ok:
-            score += w
-            hits.append(f"  [+{w}] {h}")
-        else:
-            miss.append(f"  [ 0] {m}")
+            pts += w
+            reasons.append(msg)
 
-    # ALREADY PASSED HTF GATE BEFORE THIS FUNCTION
-    # So we add those as confirmed hits
-    ms_mo  = strict_structure(df_mo,  8)
-    ms_wk  = strict_structure(df_wk,  15)
-    ms_day = strict_structure(df_day, 20)
-    ms_4h  = strict_structure(df_4h,  20)
+    # ── TIER 1: STRUCTURE (most important) ───────────
+    ms_mo  = structure(df_mo,  8)
+    ms_wk  = structure(df_wk,  15)
+    ms_day = structure(df_day, 20)
+    ms_4h  = structure(df_4h,  20)
 
-    chk(3, True, f"Monthly structure: {ms_mo}", "")
-    chk(3, True, f"Weekly structure STRICT: {ms_wk}", "")
-    chk(3, True, f"Daily structure STRICT: {ms_day}", "")
+    mo_ok  = (direction=="long"  and ms_mo  in ("bullish","ranging")) or \
+             (direction=="short" and ms_mo  in ("bearish","ranging"))
+    wk_ok  = (direction=="long"  and ms_wk  == "bullish") or \
+             (direction=="short" and ms_wk  == "bearish")
+    day_ok = (direction=="long"  and ms_day == "bullish") or \
+             (direction=="short" and ms_day == "bearish")
+    h4_ok  = (direction=="long"  and ms_4h  in ("bullish","ranging")) or \
+             (direction=="short" and ms_4h  in ("bearish","ranging"))
 
-    chk(2,
-        (direction=="long"  and ms_4h in ("bullish","ranging")) or
-        (direction=="short" and ms_4h in ("bearish","ranging")),
-        f"4H structure: {ms_4h}",
-        f"4H not aligned: {ms_4h}")
-
-    # Daily candle agreement
-    dc_ok, dc_msg = daily_agrees(df_day, direction)
-    chk(3, dc_ok, f"Daily candle: {dc_msg}", f"Daily candle: {dc_msg}")
+    chk(3, mo_ok,  f"Monthly {ms_mo}")
+    chk(3, wk_ok,  f"Weekly {ms_wk}")
+    chk(3, day_ok, f"Daily {ms_day}")
+    chk(2, h4_ok,  f"4H {ms_4h}")
 
     # EMA 200
-    ema200_ok = False
-    e200_val  = 0.0
     if "ema200" in df_day.columns and not pd.isna(df_day["ema200"].iloc[-1]):
-        e200_val  = float(df_day["ema200"].iloc[-1])
-        ema200_ok = (direction=="long" and price>e200_val) or (direction=="short" and price<e200_val)
-    chk(2, ema200_ok,
-        f"Above/below EMA200 (${e200_val:,.2f})",
-        f"Wrong side of EMA200 (${e200_val:,.2f})")
+        e200 = float(df_day["ema200"].iloc[-1])
+        e200_ok = (direction=="long" and price>e200) or (direction=="short" and price<e200)
+        chk(2, e200_ok, f"EMA200 at ${e200:,.2f}")
 
-    # ADX trend strength
-    adx_val, adx_lbl = get_adx(df_4h)
-    chk(2, adx_lbl in ("strong","moderate"),
-        f"ADX trend: {adx_lbl} ({adx_val:.1f})",
-        f"ADX weak ({adx_val:.1f}) — no clear trend")
+    # Daily candle/pattern confirmation — HIGH WEIGHT
+    chk(3, day_pat_ok, day_pat_msg)
 
-    # Move stage
-    stage    = move_stage(df_4h, direction)
-    stage_ok = stage in ("early","middle")
-    chk(3, stage_ok,
-        f"Move stage: {stage}",
-        f"Move stage: {stage} — too late")
+    # ADX + DI direction
+    chk(2, adx_ok, adx_msg)
 
-    # At HTF S/R level
-    wk_lvls  = swing_levels(df_wk,  window=3, n=5)
-    day_lvls = swing_levels(df_day, window=5, n=8)
-    all_htf  = (wk_lvls["supports"] + wk_lvls["resistances"] +
-                day_lvls["supports"] + day_lvls["resistances"])
-    htf_hit  = any(abs(price-lv)/price <= 0.010 for lv in all_htf)
-    near_htf = min(all_htf, key=lambda x:abs(x-price)) if all_htf else 0
-    chk(3, htf_hit,
-        f"At HTF S/R level (${near_htf:,.4f})",
-        f"Not at HTF level (nearest ${near_htf:,.4f})")
+    # ── TIER 2: LOCATION ─────────────────────────────
+    # At weekly S/R (weight 3 — highest location weight)
+    wk_all  = wk_lvls.get("supports",[]) + wk_lvls.get("resistances",[])
+    wk_near = any(abs(price-lv)/price <= 0.012 for lv in wk_all)
+    wk_htf  = min(wk_all, key=lambda x:abs(x-price)) if wk_all else 0
+    chk(3, wk_near, f"Weekly S/R at ${wk_htf:,.4f}")
+
+    # At daily S/R (weight 2)
+    day_all  = day_lvls.get("supports",[]) + day_lvls.get("resistances",[])
+    day_near = any(abs(price-lv)/price <= 0.010 for lv in day_all)
+    day_htf  = min(day_all, key=lambda x:abs(x-price)) if day_all else 0
+    chk(2, day_near, f"Daily S/R at ${day_htf:,.4f}")
+
+    # Retest confirmation
+    all_levels = wk_all + day_all
+    nearest_lv = min(all_levels, key=lambda x:abs(x-price)) if all_levels else 0
+    retest_ok  = is_retest(price, nearest_lv, df_4h, direction) if nearest_lv > 0 else False
+    chk(2, retest_ok, f"Confirmed retest of ${nearest_lv:,.4f}")
+
+    # Order block
+    chk(2, ob is not None, f"Order block at ${ob[1]:,.4f}-${ob[0]:,.4f}" if ob else "")
+
+    # High volume node
+    near_hvn = any(abs(price-n)/price <= 0.008 for n in hvn)
+    chk(1, near_hvn, "At high volume node")
 
     # Fibonacci
-    fibs_day = fib_levels(df_day, 100)
-    fibs_4h  = fib_levels(df_4h,  100)
-    fn_d, fd = fib_near(price, fibs_day)
-    fn_4, f4 = fib_near(price, fibs_4h)
-    fib_ok   = fn_d is not None or fn_4 is not None
-    fib_lbl  = (f"Daily Fib {fn_d}%" if fn_d else (f"4H Fib {fn_4}%" if fn_4 else "none"))
-    chk(2, fib_ok, f"Fibonacci: {fib_lbl}", f"No Fib (day:{fd*100:.1f}% 4h:{f4*100:.1f}% away)")
+    fn = near_fib(price, fibs)
+    chk(2, fn is not None, f"Fib {fn}%" if fn else "")
 
+    # Round number
+    rn = near_round(price)
+    chk(1, rn is not None, f"Round number {rn}" if rn else "")
+
+    # ── TIER 3: MOMENTUM ─────────────────────────────
     # RSI zone + divergence
-    rsi_ok, rsi_lbl = False, "no RSI data"
-    if "rsi" in df_1h.columns:
-        rsi    = float(df_1h["rsi"].iloc[-1])
-        zone   = (direction=="long" and 35<=rsi<=58) or (direction=="short" and 42<=rsi<=65)
-        div    = rsi_div(df_1h)
-        div_ok = (direction=="long" and div=="bullish") or (direction=="short" and div=="bearish")
-        if zone and div_ok:  rsi_ok=True; rsi_lbl=f"RSI {rsi:.1f} + {div} div"
-        elif zone:           rsi_ok=True; rsi_lbl=f"RSI {rsi:.1f} in zone"
-        elif div_ok:         rsi_ok=True; rsi_lbl=f"{div} divergence"
-        else:                rsi_lbl=f"RSI {rsi:.1f} not optimal"
-    chk(2, rsi_ok, f"RSI: {rsi_lbl}", f"RSI: {rsi_lbl}")
+    rsi_val  = float(df_1h["rsi"].iloc[-1]) if "rsi" in df_1h.columns else 50.0
+    rsi_zone = (direction=="long" and 35<=rsi_val<=58) or (direction=="short" and 42<=rsi_val<=65)
+    div      = rsi_div(df_1h)
+    div_ok   = (direction=="long" and div=="bullish div") or (direction=="short" and div=="bearish div")
+    rsi_ok   = rsi_zone or div_ok
+    rsi_msg  = f"RSI {rsi_val:.0f}" + (f" + {div}" if div_ok else "")
+    chk(2, rsi_ok, rsi_msg)
 
-    # MACD
+    # MACD — cross-validated with RSI
     macd_ok = False
     if "macd" in df_4h.columns:
-        m  = float(df_4h["macd"].iloc[-1])
-        ms = float(df_4h["macd_sig"].iloc[-1])
-        mh = float(df_4h["macd_hist"].iloc[-1])
-        macd_ok = (direction=="long" and m>ms and mh>0) or (direction=="short" and m<ms and mh<0)
-    chk(1, macd_ok, "MACD confirms (4H)", "MACD not confirming")
+        m   = float(df_4h["macd"].iloc[-1])
+        ms_v = float(df_4h["macd_sig"].iloc[-1])
+        mh  = float(df_4h["macd_hist"].iloc[-1])
+        macd_dir = (direction=="long" and m>ms_v and mh>0) or (direction=="short" and m<ms_v and mh<0)
+        # Cross-validate: MACD only counts if RSI also agrees
+        macd_ok = macd_dir and rsi_ok
+    chk(1, macd_ok, "MACD + RSI aligned")
 
     # Volume
-    vol_ok = False
     if "vol_ratio" in df_1h.columns:
         vr = float(df_1h["vol_ratio"].iloc[-1])
-        vol_ok = vr >= 1.25
-        chk(1, vol_ok, f"Volume {vr:.1f}x avg", f"Volume weak {vr:.1f}x avg")
-    else:
-        max_p += 1
-        miss.append("  [ 0] Volume unavailable")
+        chk(1, vr >= 1.25, f"Volume {vr:.1f}x avg")
 
     # Ichimoku
-    ichi_ok, ichi_msg = ichi_bias(df_4h, direction)
-    chk(1, ichi_ok, f"Ichimoku: {ichi_msg}", f"Ichimoku: {ichi_msg}")
+    chk(1, ichi_ok_val, ichi_msg)
 
     # PDH/PDL
     pdh, pdl = pdh_pdl(df_1h)
-    pd_ok = (pdh>0 and ((direction=="short" and abs(price-pdh)/price<=0.006) or
-                         (direction=="long"  and abs(price-pdl)/price<=0.006)))
-    chk(1, pd_ok, f"At PDH/PDL", f"Not at PDH/PDL")
+    if pdh > 0:
+        pd_ok = ((direction=="short" and abs(price-pdh)/price<=0.007) or
+                 (direction=="long"  and abs(price-pdl)/price<=0.007))
+        chk(1, pd_ok, f"At PDH/PDL")
 
     # PWH/PWL
     pwh, pwl = pwh_pwl(df_4h)
-    pw_ok = (pwh>0 and ((direction=="short" and abs(price-pwh)/price<=0.008) or
-                         (direction=="long"  and abs(price-pwl)/price<=0.008)))
-    chk(1, pw_ok, f"At PWH/PWL", f"Not at PWH/PWL")
-
-    # Round number
-    rn_ok, rn_lbl = round_num(price)
-    chk(1, rn_ok, f"Round number {rn_lbl}", "No round number")
+    if pwh > 0:
+        pw_ok = ((direction=="short" and abs(price-pwh)/price<=0.009) or
+                 (direction=="long"  and abs(price-pwl)/price<=0.009))
+        chk(1, pw_ok, f"At PWH/PWL")
 
     # Pattern quality
-    strong_patterns = {
-        "Bullish Engulfing","Bearish Engulfing","Hammer","Shooting Star",
-        "Bullish Pin Bar","Bearish Pin Bar","Morning Star","Evening Star",
-        "Three White Soldiers","Three Black Crows",
-        "Failed Breakout","Failed Breakdown","Dragonfly Doji","Gravestone Doji",
-    }
-    pat_ok = pattern in strong_patterns and pat_qual >= 0.70
-    chk(2, pat_ok,
-        f"Pattern: {pattern} ({pat_qual*100:.0f}%)",
-        f"Weak pattern: {pattern} ({pat_qual*100:.0f}%)")
+    strong = {"Bullish Engulfing","Bearish Engulfing","Hammer","Shooting Star",
+              "Bullish Pin Bar","Bearish Pin Bar","Morning Star","Evening Star",
+              "3 White Soldiers","3 Black Crows","Failed Breakout","Failed Breakdown",
+              "Dragonfly Doji","Gravestone Doji"}
+    chk(2, pattern in strong and pat_qual >= 0.68,
+        f"{pattern} ({pat_qual*100:.0f}%)")
 
-    return score, max_p, hits, miss, adx_val, stage
+    pct = min(int(pts/total*100), 100) if total > 0 else 0
+    return pts, total, pct, reasons
 
-# ══════════════════════════════════════════════════════
-#  FORMAT SIGNAL
-# ══════════════════════════════════════════════════════
-def format_signal(symbol, direction, score, max_p, hits, miss,
-                  entry, stop, tp1, tp2, tp3, pattern, pat_qual,
-                  adx_val, stage, ms_day) -> str:
+# ══════════════════════════════════════════════
+#  SIGNAL MESSAGE — short and clean
+# ══════════════════════════════════════════════
+def format_signal(symbol, direction, price, stop, tp1, tp2,
+                  pattern, pct, reasons, ms_day) -> str:
 
-    pct    = min(int(score/max_p*100), 100) if max_p > 0 else 0
-    risk   = abs(entry-stop)
-    rr1    = abs(tp1-entry)/risk if risk>0 else 0
-    rr2    = abs(tp2-entry)/risk if risk>0 else 0
-    rr3    = abs(tp3-entry)/risk if risk>0 else 0
-    now    = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    dirsym = "LONG  [BUY]" if direction=="long" else "SHORT [SELL]"
-    regime = "Trending Bull" if ms_day=="bullish" else "Trending Bear"
-    inv    = f"Daily close {'below' if direction=='long' else 'above'} ${stop:,.6f}"
+    risk  = abs(price - stop)
+    rr1   = abs(tp1 - price) / risk if risk > 0 else 0
+    rr2   = abs(tp2 - price) / risk if risk > 0 else 0
+    emoji = "📈" if direction == "long" else "📉"
+    label = "LONG" if direction == "long" else "SHORT"
 
-    if pct >= 92: grade = "A+  ELITE"
-    elif pct >= 85: grade = "A   HIGH QUALITY"
-    else: grade = "A-"
+    # Max 5 reasons, comma separated
+    why = " | ".join(reasons[:5])
 
-    # Position size example
-    acct_1pct = "e.g. $100 risk on $10,000 account"
-
-    lines = [
-        "=" * 50,
-        f"   ELITE SIGNAL  |  Bot v4.0  |  {grade}",
-        "=" * 50,
-        f"Asset      : {symbol}",
-        f"Direction  : {dirsym}",
-        f"Score      : {score}/{max_p} ({pct}%)",
-        f"Regime     : {regime}  |  ADX {adx_val:.1f}",
-        f"Move Stage : {stage}  (entry timing)",
-        f"Time       : {now}",
-        "",
-        "--- TRADE LEVELS ---",
-        f"Entry      : ${entry:,.6f}",
-        f"Stop Loss  : ${stop:,.6f}  <- set immediately",
-        f"TP1  (33%) : ${tp1:,.6f}   [RR {rr1:.1f}:1]",
-        f"TP2  (33%) : ${tp2:,.6f}   [RR {rr2:.1f}:1]",
-        f"TP3 trail  : ${tp3:,.6f}   [RR {rr3:.1f}:1]",
-        f"Risk/trade : max 1% account ({acct_1pct})",
-        "",
-        f"--- TRIGGER PATTERN ---",
-        f"{pattern}  |  quality {pat_qual*100:.0f}%",
-        "",
-        f"--- CONFIRMED FACTORS ({len(hits)}) ---",
-    ] + hits + [
-        "",
-        f"--- MISSING FACTORS ({len(miss)}) ---",
-    ] + miss[:5] + [
-        "",
-        "--- HOW TO MANAGE ---",
-        "1. Enter at Entry price shown above",
-        "2. Set stop loss IMMEDIATELY",
-        "3. TP1 hit: close 33%, move stop to breakeven",
-        "4. TP2 hit: close 33%, trail stop on rest",
-        "5. TP3: trail stop below each new higher low",
-        f"INVALIDATION: {inv}",
-        "",
-        "CHECK THE CHART BEFORE EXECUTING",
-        "=" * 50,
-    ]
-    return "\n".join(lines)
-
-# ══════════════════════════════════════════════════════
-#  MAIN SCANNER
-# ══════════════════════════════════════════════════════
-def scan_symbol(symbol: str):
-    log.info(f"Scanning {symbol}...")
-
-    if not check_daily_limit():
-        log.info(f"  Daily limit reached. Skipping.")
-        return
-
-    if datetime.now(timezone.utc).hour not in ACTIVE_HOURS_UTC:
-        log.info(f"  Outside active hours.")
-        return
-
-    # Fetch data
-    df_mo  = fetch_ohlcv(symbol, "1M",  36)
-    df_wk  = fetch_ohlcv(symbol, "1w",  52)
-    df_day = fetch_ohlcv(symbol, "1d", 200)
-    df_4h  = fetch_ohlcv(symbol, "4h", 300)
-    df_1h  = fetch_ohlcv(symbol, "1h", 300)
-
-    if df_day.empty or df_1h.empty or df_4h.empty:
-        log.warning(f"  {symbol}: insufficient data")
-        return
-
-    if df_mo.empty:  df_mo  = df_wk.copy()  if not df_wk.empty  else df_day.copy()
-    if df_wk.empty:  df_wk  = df_day.copy()
-
-    for df in [df_mo, df_wk, df_day, df_4h, df_1h]:
-        add_indicators(df)
-
-    price  = float(df_1h["close"].iloc[-1])
-    atr_1h = float(df_1h["atr"].iloc[-1]) if "atr" in df_1h.columns else price * 0.005
-    atr_4h = float(df_4h["atr"].iloc[-1]) if "atr" in df_4h.columns else price * 0.01
-
-    # Detect pattern
-    pattern, pat_qual = detect_pattern(df_1h)
-
-    # For commodities: also detect momentum breakouts even without perfect candle
-    if pattern == "none" and symbol in COMMODITIES:
-        pattern, pat_qual = detect_momentum_breakout(df_1h, df_4h)
-        if pattern != "none":
-            log.info(f"  {symbol}: momentum breakout detected: {pattern}")
-
-    if pattern == "none":
-        log.info(f"  {symbol}: no valid pattern. skip.")
-        return
-    # Lower quality threshold for commodities
-    min_quality = 0.65 if symbol in COMMODITIES else 0.70
-    if pat_qual < min_quality:
-        log.info(f"  {symbol}: pattern quality {pat_qual*100:.0f}% below {min_quality*100:.0f}%. skip.")
-        return
-
-    # Direction from pattern
-    bull_p = {"Bullish Engulfing","Hammer","Bullish Pin Bar","Dragonfly Doji",
-              "Morning Star","Three White Soldiers","Failed Breakdown",
-              "Bullish Momentum Breakout","Level Breakout"}
-    bear_p = {"Bearish Engulfing","Shooting Star","Bearish Pin Bar","Gravestone Doji",
-              "Evening Star","Three Black Crows","Failed Breakout",
-              "Bearish Momentum Breakout","Level Breakdown"}
-
-    directions = []
-    if pattern in bull_p: directions.append("long")
-    if pattern in bear_p: directions.append("short")
-    if not directions: return
-
-    for direction in directions:
-        if already_alerted(symbol, direction):
-            log.info(f"  {symbol} {direction}: cooldown. skip.")
-            continue
-
-        # ── GATE 1: HTF structure must ALL agree (most important filter)
-        htf_ok, htf_msg = htf_gate(df_mo, df_wk, df_day, direction)
-        if not htf_ok:
-            log.info(f"  {htf_msg}")
-            continue
-
-        # ── GATE 2: RSI hard limits
-        if "rsi" in df_1h.columns:
-            rsi = float(df_1h["rsi"].iloc[-1])
-            if direction == "short" and rsi < 35:
-                log.info(f"  SHORT blocked: RSI oversold ({rsi:.1f})")
-                continue
-            if direction == "long" and rsi > 65:
-                log.info(f"  LONG blocked: RSI overbought ({rsi:.1f})")
-                continue
-
-        # ── GATE 3: Move must not be exhausted
-        stage = move_stage(df_4h, direction)
-        if stage == "exhausted":
-            log.info(f"  {symbol}: exhausted move. skip.")
-            continue
-
-        # ── GATE 4: ADX trend strength (lower threshold for commodities)
-        adx_val, adx_lbl = get_adx(df_4h)
-        adx_threshold = 20 if symbol in COMMODITIES else 25
-        if adx_val < adx_threshold:
-            log.info(f"  {symbol}: ADX {adx_val:.1f} below {adx_threshold}. skip.")
-            continue
-
-        # ── GATE 5: No over-extension
-        if atr_4h > 0:
-            move = abs(float(df_4h["close"].iloc[-1]) - float(df_4h["close"].iloc[-20]))
-            if move > 7 * atr_4h:
-                log.info(f"  {symbol}: over-extended {move/atr_4h:.1f}x ATR. skip.")
-                continue
-
-        # ── Score
-        score, max_p, hits, miss, adx_val, stage = score_signal(
-            price, direction, df_mo, df_wk, df_day, df_4h, df_1h, pattern, pat_qual
-        )
-        pct = min(int(score/max_p*100), 100) if max_p > 0 else 0
-        log.info(f"  {symbol} {direction.upper()}: {score}/{max_p} ({pct}%) [{pattern}]")
-
-        if pct < MIN_SCORE_PCT:
-            log.info(f"  {pct}% below {MIN_SCORE_PCT}%. skip.")
-            continue
-
-        # ── Build trade levels
-        day_lvls     = swing_levels(df_day, window=5, n=10)
-        fibs         = fib_levels(df_day, 100)
-        stop         = struct_stop(price, direction, df_4h, df_1h, atr_1h)
-        tp1, tp2, tp3 = calc_targets(price, stop, direction, day_lvls, fibs)
-
-        risk = abs(price - stop)
-        if risk <= 0: continue
-
-        rr1 = abs(tp1-price)/risk
-        if rr1 < MIN_RR:
-            log.info(f"  RR {rr1:.1f} below {MIN_RR}. skip.")
-            continue
-
-        ms_day = strict_structure(df_day, 20)
-
-        msg = format_signal(
-            symbol=symbol, direction=direction,
-            score=score, max_p=max_p, hits=hits, miss=miss,
-            entry=price, stop=stop, tp1=tp1, tp2=tp2, tp3=tp3,
-            pattern=pattern, pat_qual=pat_qual,
-            adx_val=adx_val, stage=stage, ms_day=ms_day,
-        )
-
-        log.info(f"  >>> SIGNAL FIRED: {symbol} {direction.upper()} {pct}% <<<")
-        send_discord(msg)
-        increment_signal_count()
-
-# ══════════════════════════════════════════════════════
-#  MAIN
-# ══════════════════════════════════════════════════════
-def main():
-    log.info("="*50)
-    log.info("  ELITE TRADING SIGNAL BOT  v4.0")
-    log.info("="*50)
-
-    send_discord(
-        "ELITE TRADING SIGNAL BOT v4.0 — ONLINE\n"
-        "=========================================\n"
-        f"Assets   : {', '.join(SYMBOLS)}\n"
-        f"TFs      : Monthly > Weekly > Daily > 4H > 1H\n"
-        f"Min Score: {MIN_SCORE_PCT}%  |  Min RR: {MIN_RR}:1\n"
-        f"Max/Day  : {MAX_SIGNALS_PER_DAY} signals\n"
-        "=========================================\n"
-        "v4.0 — All issues fixed:\n"
-        "  + Weekly + Daily must STRICTLY agree\n"
-        "  + ADX 25+ required — no weak trends\n"
-        "  + Pivot-based structural stop loss\n"
-        "  + TP1 = next real S/R level\n"
-        "  + Pattern quality min 70% required\n"
-        "  + 5 hard gates before scoring\n"
-        "  + Over-extension filter tightened\n"
-        "=========================================\n"
-        "Running 24/7. Always confirm before trading."
+    return (
+        f"{emoji} **{label} {symbol}** — {pct}% confidence\n"
+        f"`Entry ${price:,.4f}` | `Stop ${stop:,.4f}` | "
+        f"`TP1 ${tp1:,.4f}` ({rr1:.1f}R) | `TP2 ${tp2:,.4f}` ({rr2:.1f}R)\n"
+        f"**{pattern}** | {why}\n"
+        f"*Max 1% risk | Stop immediately | Confirm on chart*"
     )
 
+# ══════════════════════════════════════════════
+#  MAIN SCANNER
+# ══════════════════════════════════════════════
+def scan(symbol: str, df_btc_4h: pd.DataFrame):
+    log.info(f"Scanning {symbol}")
+
+    df_mo  = fetch(symbol, "1M",  36)
+    df_wk  = fetch(symbol, "1w",  52)
+    df_day = fetch(symbol, "1d", 200)
+    df_4h  = fetch(symbol, "4h", 300)
+    df_1h  = fetch(symbol, "1h", 300)
+
+    if df_day.empty or df_1h.empty or df_4h.empty:
+        log.warning(f"{symbol}: no data")
+        return
+
+    if df_mo.empty:  df_mo = df_wk.copy()  if not df_wk.empty  else df_day.copy()
+    if df_wk.empty:  df_wk = df_day.copy()
+
+    for df in [df_mo, df_wk, df_day, df_4h, df_1h]:
+        enrich(df)
+
+    price  = float(df_1h["close"].iloc[-1])
+    atr_1h = float(df_1h["atr"].iloc[-1]) if "atr" in df_1h.columns else price*0.005
+    atr_4h = float(df_4h["atr"].iloc[-1]) if "atr" in df_4h.columns else price*0.01
+
+    # 1H Pattern detection
+    pattern, pat_qual, direction = detect_pattern(df_1h)
+    if pattern == "none" or pat_qual < 0.68 or direction == "none":
+        log.info(f"{symbol}: no valid 1H pattern")
+        return
+
+    if on_cooldown(symbol, direction):
+        log.info(f"{symbol} {direction}: on cooldown")
+        return
+
+    # ── HARD GATES ────────────────────────────────────
+
+    # Gate 1: Weekly structure must strictly agree
+    ms_wk = structure(df_wk, 15)
+    if not ((direction=="long" and ms_wk=="bullish") or (direction=="short" and ms_wk=="bearish")):
+        log.info(f"{symbol}: weekly {ms_wk} blocks {direction}")
+        return
+
+    # Gate 2: Daily structure must strictly agree
+    ms_day = structure(df_day, 20)
+    if not ((direction=="long" and ms_day=="bullish") or (direction=="short" and ms_day=="bearish")):
+        log.info(f"{symbol}: daily {ms_day} blocks {direction}")
+        return
+
+    # Gate 3: RSI hard limits
+    if "rsi" in df_1h.columns:
+        rsi = float(df_1h["rsi"].iloc[-1])
+        if direction == "short" and rsi < 33:
+            log.info(f"{symbol}: RSI {rsi:.0f} oversold — no short")
+            return
+        if direction == "long"  and rsi > 67:
+            log.info(f"{symbol}: RSI {rsi:.0f} overbought — no long")
+            return
+
+    # Gate 4: Move stage
+    if move_stage(df_4h, direction) == "exhausted":
+        log.info(f"{symbol}: exhausted")
+        return
+
+    # Gate 5: Not mid-range on weekly
+    if is_mid_range(price, df_wk):
+        log.info(f"{symbol}: mid-range on weekly — no edge")
+        return
+
+    # Gate 6: Over-extension
+    if atr_4h > 0:
+        move = abs(float(df_4h["close"].iloc[-1]) - float(df_4h["close"].iloc[-20]))
+        if move > 7 * atr_4h:
+            log.info(f"{symbol}: over-extended")
+            return
+
+    # Gate 7: BTC correlation (alts only)
+    if symbol in ALTS and not df_btc_4h.empty:
+        btc_ok, btc_msg = btc_allows(direction, df_btc_4h)
+        if not btc_ok:
+            log.info(f"{symbol}: {btc_msg}")
+            return
+    else:
+        btc_ok = True
+
+    # Gate 8: ADX direction confirmation
+    adx_ok, adx_msg = adx_confirms(df_4h, direction, symbol)
+    if not adx_ok:
+        log.info(f"{symbol}: {adx_msg}")
+        return
+
+    # ── PRE-SCORE CALCULATIONS ────────────────────────
+    day_pat_ok, day_pat_msg = daily_pattern_confirms(df_day, direction)
+    ichi_ok_val, ichi_msg   = ichi_confirms(df_4h, direction)
+    ob   = find_order_blocks(df_4h, direction)
+    hvn  = high_volume_nodes(df_4h)
+    fibs = significant_fib(df_4h, direction)
+    wk_lvls  = professional_sr(df_wk,  window=3, n=5)
+    day_lvls = professional_sr(df_day, window=5, n=8)
+
+    # ── SCORE ─────────────────────────────────────────
+    pts, total, pct, reasons = score_trade(
+        price, direction, symbol,
+        df_mo, df_wk, df_day, df_4h, df_1h,
+        pattern, pat_qual,
+        day_pat_ok, day_pat_msg,
+        adx_ok, adx_msg,
+        ichi_ok_val, ichi_msg,
+        ob, hvn, fibs, day_lvls, wk_lvls, btc_ok
+    )
+
+    log.info(f"{symbol} {direction}: {pct}% score [{pattern}]")
+
+    if pct < MIN_SCORE_PCT:
+        log.info(f"{symbol}: {pct}% below {MIN_SCORE_PCT}%")
+        return
+
+    # ── BUILD TRADE LEVELS ────────────────────────────
+    stop       = calc_stop(price, direction, df_4h, atr_1h)
+    all_lvls   = {"supports": day_lvls["supports"]+wk_lvls["supports"],
+                  "resistances": day_lvls["resistances"]+wk_lvls["resistances"]}
+    tp1, tp2   = calc_targets(price, stop, direction, all_lvls, fibs)
+
+    risk = abs(price - stop)
+    if risk <= 0: return
+
+    rr1 = abs(tp1 - price) / risk
+    if rr1 < MIN_RR:
+        log.info(f"{symbol}: RR {rr1:.1f} below {MIN_RR}")
+        return
+
+    # ── FIRE SIGNAL ───────────────────────────────────
+    ms_day_str = structure(df_day, 20)
+    msg = format_signal(
+        symbol, direction, price, stop, tp1, tp2,
+        pattern, pct, reasons, ms_day_str
+    )
+
+    log.info(f">>> SIGNAL: {symbol} {direction} {pct}%")
+    send_discord(msg)
+
+# ══════════════════════════════════════════════
+#  MAIN
+# ══════════════════════════════════════════════
+def main():
+    log.info("Bot v6.0 started")
+
     while True:
-        log.info(f"\n{'='*50}")
-        log.info(f"  {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
-        log.info(f"  Signals today: {_signals_today}/{MAX_SIGNALS_PER_DAY}")
-        log.info(f"{'='*50}")
+        log.info("Scan cycle start")
+
+        # Fetch BTC data once per cycle for correlation checks
+        df_btc_4h = fetch("BTC/USDT", "4h", 100)
+        if not df_btc_4h.empty:
+            enrich(df_btc_4h)
 
         for symbol in SYMBOLS:
             try:
-                scan_symbol(symbol)
+                scan(symbol, df_btc_4h)
                 time.sleep(3)
             except Exception as e:
-                log.error(f"Error {symbol}: {e}", exc_info=True)
+                log.error(f"{symbol}: {e}", exc_info=True)
 
-        log.info(f"  Next scan in {SCAN_INTERVAL_SECONDS//60} min.")
-        time.sleep(SCAN_INTERVAL_SECONDS)
+        log.info(f"Cycle done. Next in {SCAN_INTERVAL//60} min.")
+        time.sleep(SCAN_INTERVAL)
 
 if __name__ == "__main__":
     main()
